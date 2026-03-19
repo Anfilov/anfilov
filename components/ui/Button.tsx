@@ -27,7 +27,7 @@ const variantStyles: Record<ButtonVariant, string> = {
   ghost:
     "text-[var(--color-text-secondary)] bg-transparent hover:text-[var(--color-forest-mid)] active:scale-[0.98]",
   destructive:
-    "bg-[var(--color-error)] text-white hover:brightness-110 active:scale-[0.98] shadow-[var(--shadow-sm)]",
+    "bg-[var(--color-error)] text-[var(--color-cream)] hover:brightness-110 active:scale-[0.98] shadow-[var(--shadow-sm)]",
 };
 
 const sizeStyles: Record<ButtonSize, string> = {

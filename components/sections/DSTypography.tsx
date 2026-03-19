@@ -27,7 +27,7 @@ const bodySizes = [
 
 export function DSTypography() {
   return (
-    <section className="bg-white py-[var(--section-padding-y)] border-t border-[var(--color-border)]">
+    <section className="bg-[var(--color-surface-elevated)] py-[var(--section-padding-y)] border-t border-[var(--color-border)]">
       <Container>
         <SectionHeading
           overline="Brand Identity"
@@ -171,7 +171,7 @@ export function DSTypography() {
             <li>Jedno písmo: <strong>Averta Standard</strong> pro veškerý text</li>
             <li>Minimální velikost: <strong>12 px</strong></li>
             <li>Nikdy nepoužívat font-weight 800 (Extra Bold)</li>
-            <li>Font stack: <code className="text-xs bg-white/60 px-1.5 py-0.5 rounded-[4px]">&apos;Averta Standard&apos;, -apple-system, BlinkMacSystemFont, sans-serif</code></li>
+            <li>Font stack: <code className="text-xs bg-[var(--color-surface-elevated)]/60 px-1.5 py-0.5 rounded-[var(--radius-xs)]">&apos;Averta Standard&apos;, -apple-system, BlinkMacSystemFont, sans-serif</code></li>
           </ul>
         </div>
       </Container>

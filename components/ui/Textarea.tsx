@@ -46,7 +46,7 @@ export function Textarea({
           resize-y min-h-[100px]
           transition-[border-color,box-shadow] duration-[var(--duration-fast)]
           hover:border-[var(--color-border-strong)]
-          focus-visible:border-[var(--input-border-focus)] focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]/20 focus-visible:outline-none
+          focus-visible:border-[var(--input-border-focus)] focus-visible:ring-2 focus-visible:ring-[var(--input-focus-ring)] focus-visible:outline-none
           disabled:opacity-50 disabled:cursor-not-allowed
           ${error ? "border-[var(--color-error)] focus-visible:border-[var(--color-error)] focus-visible:ring-[var(--color-error)]/20" : ""}
           ${className}

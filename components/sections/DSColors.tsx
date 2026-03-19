@@ -86,7 +86,7 @@ function ColorSwatch({ hex, name, desc }: { hex: string; name: string; desc?: st
           {hex}
         </span>
       </div>
-      <div className="bg-white border border-t-0 border-[var(--color-border)] rounded-b-[var(--radius-lg)] px-3 py-2.5">
+      <div className="bg-[var(--color-surface-elevated)] border border-t-0 border-[var(--color-border)] rounded-b-[var(--radius-lg)] px-3 py-2.5">
         <p className="text-[13px] font-bold font-[family-name:var(--font-heading)] text-[var(--color-text-primary)] tracking-tight">
           {name}
         </p>
@@ -209,8 +209,8 @@ export function DSColors() {
                 className={`
                   rounded-[var(--radius-lg)] border p-6 flex flex-col items-center gap-4
                   ${r.context === "Dark BG"
-                    ? "bg-[#1C1C1C] border-[rgba(245,240,230,0.10)]"
-                    : "bg-white border-[var(--color-warm-200)]"
+                    ? "bg-[var(--color-surface-dark)] border-[var(--color-border)]"
+                    : "bg-[var(--color-surface-elevated)] border-[var(--color-border)]"
                   }
                 `}
               >

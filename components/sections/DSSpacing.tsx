@@ -17,6 +17,7 @@ const spacingTokens = [
 ];
 
 const radiusTokens = [
+  { token: "--radius-xs", value: "6px", label: "XS", desc: "Tagy, pills" },
   { token: "--radius-sm", value: "10px", label: "SM", desc: "Buttony, inputy" },
   { token: "--radius-md", value: "16px", label: "MD", desc: "Tabulky, kód" },
   { token: "--radius-lg", value: "22px", label: "LG", desc: "Karty, sekce" },
@@ -59,7 +60,7 @@ const componentTokens = [
     { token: "--input-border-focus", value: "var(--color-forest-mid)" },
   ]},
   { group: "Badge", tokens: [
-    { token: "--badge-radius", value: "6px" },
+    { token: "--badge-radius", value: "var(--radius-xs) → 6px" },
     { token: "--badge-padding-x/y", value: "11px / 5px" },
   ]},
   { group: "Avatar", tokens: [
@@ -124,7 +125,7 @@ function SpacingBar({ value, label, token, desc }: { value: string; label: strin
 
 export function DSSpacing() {
   return (
-    <section className="bg-white py-[var(--section-padding-y)] border-t border-[var(--color-border)]">
+    <section className="bg-[var(--color-surface-elevated)] py-[var(--section-padding-y)] border-t border-[var(--color-border)]">
       <Container>
         <SectionHeading
           overline="Brand Identity"
@@ -204,7 +205,7 @@ export function DSSpacing() {
             {shadowTokens.map((s) => (
               <div
                 key={s.token}
-                className="bg-white rounded-[var(--card-radius)] p-5 border border-[var(--color-border)]"
+                className="bg-[var(--color-surface-elevated)] rounded-[var(--card-radius)] p-5 border border-[var(--color-border)]"
                 style={{ boxShadow: s.value }}
               >
                 <p className="text-sm font-bold font-[family-name:var(--font-heading)] text-[var(--color-text-primary)] tracking-tight mb-1">
@@ -224,7 +225,7 @@ export function DSSpacing() {
             {accentShadows.map((s) => (
               <div
                 key={s.token}
-                className="bg-white rounded-[var(--card-radius)] p-5 border border-[var(--color-border)]"
+                className="bg-[var(--color-surface-elevated)] rounded-[var(--card-radius)] p-5 border border-[var(--color-border)]"
                 style={{ boxShadow: s.value }}
               >
                 <p className="text-sm font-bold font-[family-name:var(--font-heading)] text-[var(--color-text-primary)] tracking-tight mb-1">

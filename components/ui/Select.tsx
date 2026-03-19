@@ -57,7 +57,7 @@ export function Select({
           pr-10
           transition-[border-color,box-shadow] duration-[var(--duration-fast)]
           hover:border-[var(--color-border-strong)]
-          focus-visible:border-[var(--input-border-focus)] focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]/20 focus-visible:outline-none
+          focus-visible:border-[var(--input-border-focus)] focus-visible:ring-2 focus-visible:ring-[var(--input-focus-ring)] focus-visible:outline-none
           disabled:opacity-50 disabled:cursor-not-allowed
           ${error ? "border-[var(--color-error)]" : ""}
           ${className}

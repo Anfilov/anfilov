@@ -129,7 +129,7 @@ export function DSElements() {
           <p className="text-sm text-[var(--color-text-secondary)] font-[family-name:var(--font-body)] mb-5">
             <strong>Gold</strong> = primární na tmavém pozadí. Forest se na tmavém <strong>nikdy nepoužívá</strong>.
           </p>
-          <div className="bg-[#1C1C1C] rounded-[var(--radius-lg)] p-8 flex flex-wrap items-center gap-3">
+          <div className="bg-[var(--color-surface-dark)] rounded-[var(--radius-lg)] p-8 flex flex-wrap items-center gap-3">
             <Button variant="secondary">Gold Button</Button>
             <button className="inline-flex items-center justify-center gap-2 font-semibold font-[family-name:var(--font-ui)] tracking-[0.01em] text-[14px] px-[26px] py-[13px] min-h-[44px] rounded-[10px] cursor-pointer select-none border-[1.5px] border-[rgba(245,240,230,0.20)] text-[var(--color-cream)] bg-transparent hover:border-[var(--color-gold-light)] hover:text-[var(--color-gold-light)] transition-all duration-200">
               Outline Dark
@@ -240,10 +240,10 @@ export function DSElements() {
                 Stacked
               </p>
               <div className="flex -space-x-2">
-                <Avatar size="md" initials="A" alt="User A" className="ring-2 ring-white" />
-                <Avatar size="md" initials="B" alt="User B" className="ring-2 ring-white" />
-                <Avatar size="md" initials="C" alt="User C" className="ring-2 ring-white" />
-                <Avatar size="md" initials="+3" alt="3 more users" className="ring-2 ring-white" />
+                <Avatar size="md" initials="A" alt="User A" className="ring-2 ring-[var(--color-surface)]" />
+                <Avatar size="md" initials="B" alt="User B" className="ring-2 ring-[var(--color-surface)]" />
+                <Avatar size="md" initials="C" alt="User C" className="ring-2 ring-[var(--color-surface)]" />
+                <Avatar size="md" initials="+3" alt="3 more users" className="ring-2 ring-[var(--color-surface)]" />
               </div>
             </div>
           </div>
@@ -281,7 +281,7 @@ export function DSElements() {
             ].map(({ icon: Icon, name, accent }) => (
               <div
                 key={name}
-                className="flex flex-col items-center gap-1.5 p-3 rounded-[var(--radius-lg)] bg-white border border-[var(--color-warm-200)] hover:border-[var(--color-gold-light)] hover:shadow-[0_2px_8px_rgba(200,168,78,0.12)] transition-[border-color,box-shadow] duration-[var(--duration-fast)]"
+                className="flex flex-col items-center gap-1.5 p-3 rounded-[var(--radius-lg)] bg-[var(--color-surface-elevated)] border border-[var(--color-border)] hover:border-[var(--color-gold-light)] hover:shadow-[var(--shadow-gold-sm)] transition-[border-color,box-shadow] duration-[var(--duration-fast)]"
               >
                 <Icon
                   size={20}
@@ -376,7 +376,7 @@ export function DSElements() {
             </Card>
 
             {/* Dark card — gold button */}
-            <div className="bg-[#1C1C1C] rounded-[22px] border border-[rgba(245,240,230,0.10)] p-[32px] flex flex-col gap-3">
+            <div className="bg-[var(--color-surface-dark)] rounded-[var(--card-radius)] border border-[var(--color-border)] p-[var(--card-padding)] flex flex-col gap-3">
               <h3 className="text-lg font-bold font-[family-name:var(--font-heading)] tracking-tight text-[var(--color-cream)]">Dark karta</h3>
               <p className="text-sm text-[rgba(245,240,230,0.7)] font-[family-name:var(--font-body)] leading-relaxed">
                 Invertovaná karta. Na tmavém pozadí se používá gold button — nikdy forest.
@@ -398,7 +398,7 @@ export function DSElements() {
           <p className="text-sm text-[var(--color-text-secondary)] font-[family-name:var(--font-body)] mb-5">
             Zlatý border — <strong>jen pro citace</strong>.
           </p>
-          <div className="relative pl-[48px] pr-[32px] py-[32px] border-l-[3px] border-[var(--color-gold)] bg-[rgba(200,168,78,0.08)] rounded-r-[22px] max-w-2xl">
+          <div className="relative pl-[48px] pr-[32px] py-[32px] border-l-[3px] border-[var(--color-border-quote)] bg-[var(--color-accent-subtle)] rounded-r-[var(--card-radius)] max-w-2xl">
             <p className="font-[family-name:var(--font-body)] text-[20px] italic text-[var(--color-warm-800)] leading-[1.5]">
               &ldquo;Design je nejen to, jak to vypadá a jak to působí. Design je to, jak to funguje.&rdquo;
             </p>
@@ -433,7 +433,7 @@ export function DSElements() {
             <Tooltip text="Nastavení" position="top">
               <button
                 aria-label="Settings"
-                className="p-3 rounded-[10px] bg-white border border-[var(--color-warm-200)] text-[var(--color-warm-700)] hover:text-[var(--color-forest-mid)] hover:border-[var(--color-warm-300)] transition-colors duration-[var(--duration-fast)] cursor-pointer min-h-[44px] min-w-[44px] inline-flex items-center justify-center focus-visible:ring-2 focus-visible:ring-[var(--color-gold)] focus-visible:ring-offset-2 focus-visible:outline-none"
+                className="p-3 rounded-[var(--radius-sm)] bg-[var(--color-surface-elevated)] border border-[var(--color-border)] text-[var(--color-warm-700)] hover:text-[var(--color-forest-mid)] hover:border-[var(--color-border-strong)] transition-colors duration-[var(--duration-fast)] cursor-pointer min-h-[44px] min-w-[44px] inline-flex items-center justify-center focus-visible:ring-2 focus-visible:ring-[var(--color-gold)] focus-visible:ring-offset-2 focus-visible:outline-none"
               >
                 <Settings size={18} strokeWidth={1.5} aria-hidden="true" />
               </button>
@@ -441,7 +441,7 @@ export function DSElements() {
             <Tooltip text="Nahrát soubory" position="top">
               <button
                 aria-label="Upload"
-                className="p-3 rounded-[10px] bg-white border border-[var(--color-warm-200)] text-[var(--color-warm-700)] hover:text-[var(--color-forest-mid)] hover:border-[var(--color-warm-300)] transition-colors duration-[var(--duration-fast)] cursor-pointer min-h-[44px] min-w-[44px] inline-flex items-center justify-center focus-visible:ring-2 focus-visible:ring-[var(--color-gold)] focus-visible:ring-offset-2 focus-visible:outline-none"
+                className="p-3 rounded-[var(--radius-sm)] bg-[var(--color-surface-elevated)] border border-[var(--color-border)] text-[var(--color-warm-700)] hover:text-[var(--color-forest-mid)] hover:border-[var(--color-border-strong)] transition-colors duration-[var(--duration-fast)] cursor-pointer min-h-[44px] min-w-[44px] inline-flex items-center justify-center focus-visible:ring-2 focus-visible:ring-[var(--color-gold)] focus-visible:ring-offset-2 focus-visible:outline-none"
               >
                 <Upload size={18} strokeWidth={1.5} aria-hidden="true" />
               </button>
@@ -449,7 +449,7 @@ export function DSElements() {
             <Tooltip text="Hledat" position="bottom">
               <button
                 aria-label="Search"
-                className="p-3 rounded-[10px] bg-white border border-[var(--color-warm-200)] text-[var(--color-warm-700)] hover:text-[var(--color-forest-mid)] hover:border-[var(--color-warm-300)] transition-colors duration-[var(--duration-fast)] cursor-pointer min-h-[44px] min-w-[44px] inline-flex items-center justify-center focus-visible:ring-2 focus-visible:ring-[var(--color-gold)] focus-visible:ring-offset-2 focus-visible:outline-none"
+                className="p-3 rounded-[var(--radius-sm)] bg-[var(--color-surface-elevated)] border border-[var(--color-border)] text-[var(--color-warm-700)] hover:text-[var(--color-forest-mid)] hover:border-[var(--color-border-strong)] transition-colors duration-[var(--duration-fast)] cursor-pointer min-h-[44px] min-w-[44px] inline-flex items-center justify-center focus-visible:ring-2 focus-visible:ring-[var(--color-gold)] focus-visible:ring-offset-2 focus-visible:outline-none"
               >
                 <Search size={18} strokeWidth={1.5} aria-hidden="true" />
               </button>
@@ -480,7 +480,7 @@ export function DSElements() {
                 onClick={() => setModalOpen(false)}
                 aria-hidden="true"
               />
-              <div className="relative w-full max-w-md bg-white rounded-[28px] shadow-[0_16px_48px_rgba(45,40,32,0.16)] border border-[var(--color-warm-200)] p-6 sm:p-8">
+              <div className="relative w-full max-w-md bg-[var(--color-surface-elevated)] rounded-[var(--radius-xl)] shadow-[var(--shadow-xl)] border border-[var(--color-border)] p-6 sm:p-8">
                 <button
                   onClick={() => setModalOpen(false)}
                   aria-label="Close dialog"

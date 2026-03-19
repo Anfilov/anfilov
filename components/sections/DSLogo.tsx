@@ -83,8 +83,8 @@ function DisplayCard({
           min-h-[160px] px-8 py-10
           ${
             dark
-              ? "bg-[#1C1C1C] border-[rgba(245,240,230,0.10)]"
-              : "bg-white border-[var(--color-warm-200)]"
+              ? "bg-[var(--color-surface-dark)] border-[var(--color-border)]"
+              : "bg-[var(--color-surface-elevated)] border-[var(--color-border)]"
           }
         `}
       >
@@ -144,7 +144,7 @@ export function DSLogo() {
               <div className="flex items-center gap-4">
                 {[48, 32, 16].map((s) => (
                   <div key={s} className="flex flex-col items-center gap-2">
-                    <div className="bg-[#1C1C1C] rounded-[4px] flex items-center justify-center" style={{ width: s, height: s }}>
+                    <div className="bg-[var(--color-surface-dark)] rounded-[4px] flex items-center justify-center" style={{ width: s, height: s }}>
                       <SymbolWhite size={s} />
                     </div>
                     <span className="text-[10px] font-mono text-[rgba(245,240,230,0.5)]">{s}px</span>
@@ -165,7 +165,7 @@ export function DSLogo() {
             Žádný text, grafika ani jiné prvky nesmí do této zóny zasahovat.
           </p>
 
-          <div className="inline-flex items-center justify-center bg-white border border-[var(--color-warm-200)] rounded-[var(--radius-lg)] p-14 sm:p-20">
+          <div className="inline-flex items-center justify-center bg-[var(--color-surface-elevated)] border border-[var(--color-border)] rounded-[var(--radius-lg)] p-14 sm:p-20">
             <div className="relative">
               {/* Dashed clearspace border */}
               <div
@@ -229,7 +229,7 @@ export function DSLogo() {
                     rounded-[var(--radius-md)] border px-4 py-3
                     ${
                       ok
-                        ? "bg-white border-[var(--color-warm-200)]"
+                        ? "bg-[var(--color-surface-elevated)] border-[var(--color-border)]"
                         : "bg-[var(--color-error-subtle)] border-[var(--color-error)]/30"
                     }
                   `}

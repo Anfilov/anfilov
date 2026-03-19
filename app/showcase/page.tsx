@@ -171,15 +171,23 @@ export default function ShowcasePage() {
     <>
       <Navbar />
 
+      {/* ══════════════ Hero ══════════════ */}
+      <section className="pt-32 pb-16 sm:pt-40 sm:pb-20 bg-[var(--color-bg)]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold font-[family-name:var(--font-heading)] tracking-[var(--heading-tracking)] text-[var(--color-text-primary)] mb-4">
+            Block Catalogue
+          </h1>
+          <p className="text-base sm:text-lg text-[var(--color-text-secondary)] font-[family-name:var(--font-body)] max-w-2xl mx-auto">
+            All available sections in the Master Framework. Browse, pick, and compose your pages.
+          </p>
+        </div>
+      </section>
+
       {/* ══════════════ Table of Contents ══════════════ */}
       <section className="bg-[var(--color-surface)] border-b border-[var(--color-border)] py-10 sm:py-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-2xl sm:text-3xl font-bold font-[family-name:var(--font-heading)] tracking-[var(--heading-tracking)] text-[var(--color-text-primary)] mb-2">
-            Block Catalogue
-          </h1>
-          <p className="text-sm text-[var(--color-text-secondary)] font-[family-name:var(--font-body)] mb-8 max-w-2xl">
-            All available sections grouped by category. Click any name to jump
-            to its live preview below.
+          <p className="text-sm text-[var(--color-text-secondary)] font-[family-name:var(--font-body)] mb-6 max-w-2xl">
+            Jump to any section below by clicking its name.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
