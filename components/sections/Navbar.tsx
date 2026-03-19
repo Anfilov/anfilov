@@ -10,7 +10,7 @@ const navLinks = [
   { label: "Homepage", href: "/" },
   { label: "Showcase", href: "/showcase" },
   { label: "Brandguide", href: "/brandguide" },
-  { label: "Contact", href: "/contact" },
+  { label: "Kontakt", href: "/kontakt" },
 ];
 
 /* ── ANFILOV Symbol for nav ── */

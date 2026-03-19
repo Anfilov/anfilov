@@ -80,3 +80,5 @@ export { ApiShowcase } from "./ApiShowcase";
 export { StackLogos } from "./StackLogos";
 export { ContactMap } from "./ContactMap";
 export { ContactMapCards } from "./ContactMapCards";
+export { ContactHero } from "./ContactHero";
+export { LegalLayout } from "./LegalLayout";

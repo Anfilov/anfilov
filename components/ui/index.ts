@@ -21,6 +21,7 @@ export { Alert } from "./Alert";
 export { Breadcrumbs } from "./Breadcrumbs";
 export { DropdownMenu } from "./DropdownMenu";
 export { Accordion } from "./Accordion";
+export { FaqSection } from "./FaqSection";
 export { Pagination } from "./Pagination";
 export { Rating } from "./Rating";
 export { Table } from "./Table";

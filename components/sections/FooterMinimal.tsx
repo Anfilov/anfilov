@@ -7,8 +7,8 @@ const links = [
   { label: "Pricing", href: "#" },
   { label: "Blog", href: "#" },
   { label: "Docs", href: "#" },
-  { label: "Privacy", href: "#" },
-  { label: "Terms", href: "#" },
+  { label: "GDPR", href: "/gdpr" },
+  { label: "Cookies", href: "/cookies" },
 ];
 
 const socialLinks = [

@@ -9,7 +9,7 @@ import { useTheme } from "@/components/ui/ThemeProvider";
 const navLinks = [
   { label: "Features", href: "#features" },
   { label: "Pricing", href: "#pricing" },
-  { label: "Contact", href: "/contact" },
+  { label: "Kontakt", href: "/kontakt" },
 ];
 
 export function NavbarFloating() {

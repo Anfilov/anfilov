@@ -14,7 +14,7 @@ const leftLinks = [
 
 const rightLinks = [
   { label: "About", href: "#about" },
-  { label: "Contact", href: "/contact" },
+  { label: "Kontakt", href: "/kontakt" },
 ];
 
 const allLinks = [...leftLinks, ...rightLinks];

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type ReactNode } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 
 interface AccordionItem {
@@ -59,26 +60,48 @@ export function Accordion({
               <span className="text-sm font-semibold font-[family-name:var(--font-heading)] tracking-tight">
                 {item.title}
               </span>
-              <ChevronDown
-                size={16}
-                className={`shrink-0 text-[var(--color-text-tertiary)] transition-transform duration-[var(--duration-normal)] ease-[var(--ease-smooth)] ${
-                  isOpen ? "rotate-180" : ""
-                }`}
-                aria-hidden="true"
-              />
+              <motion.div
+                animate={{ rotate: isOpen ? 180 : 0 }}
+                transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
+                className="flex-shrink-0"
+              >
+                <ChevronDown
+                  size={16}
+                  aria-hidden="true"
+                  style={{
+                    color: isOpen
+                      ? "var(--color-accent)"
+                      : "var(--color-text-tertiary)",
+                    transition: "color 200ms",
+                  }}
+                />
+              </motion.div>
             </button>
-            <div
-              id={`accordion-panel-${item.id}`}
-              role="region"
-              aria-labelledby={`accordion-trigger-${item.id}`}
-              className={`overflow-hidden transition-[max-height,opacity] duration-[var(--duration-normal)] ease-[var(--ease-smooth)] ${
-                isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
-              }`}
-            >
-              <div className="pb-4 px-1 text-sm text-[var(--color-text-secondary)] font-[family-name:var(--font-body)] leading-relaxed">
-                {item.content}
-              </div>
-            </div>
+            <AnimatePresence initial={false}>
+              {isOpen && (
+                <motion.div
+                  id={`accordion-panel-${item.id}`}
+                  role="region"
+                  aria-labelledby={`accordion-trigger-${item.id}`}
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{
+                    height: "auto",
+                    opacity: 1,
+                    transition: { duration: 0.25, ease: [0, 0, 0.2, 1] },
+                  }}
+                  exit={{
+                    height: 0,
+                    opacity: 0,
+                    transition: { duration: 0.2, ease: [0.4, 0, 1, 1] },
+                  }}
+                  style={{ overflow: "hidden" }}
+                >
+                  <div className="pb-4 px-1 text-sm text-[var(--color-text-secondary)] font-[family-name:var(--font-body)] leading-relaxed">
+                    {item.content}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         );
       })}

@@ -37,10 +37,8 @@ const footerColumns = [
   {
     title: "Legal",
     links: [
-      { label: "Privacy Policy", href: "#" },
-      { label: "Terms of Service", href: "#" },
-      { label: "Cookie Policy", href: "#" },
-      { label: "GDPR", href: "#" },
+      { label: "GDPR", href: "/gdpr" },
+      { label: "Cookies", href: "/cookies" },
     ],
   },
 ];
@@ -191,19 +189,13 @@ export function FooterFull() {
           </p>
           <div className="flex items-center gap-4">
             <a
-              href="#"
+              href="/gdpr"
               className="text-xs text-[var(--color-text-tertiary)] hover:text-[var(--color-text-secondary)] transition-colors duration-[var(--duration-fast)] cursor-pointer focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:outline-none rounded-[var(--radius-sm)]"
             >
-              Privacy
+              GDPR
             </a>
             <a
-              href="#"
-              className="text-xs text-[var(--color-text-tertiary)] hover:text-[var(--color-text-secondary)] transition-colors duration-[var(--duration-fast)] cursor-pointer focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:outline-none rounded-[var(--radius-sm)]"
-            >
-              Terms
-            </a>
-            <a
-              href="#"
+              href="/cookies"
               className="text-xs text-[var(--color-text-tertiary)] hover:text-[var(--color-text-secondary)] transition-colors duration-[var(--duration-fast)] cursor-pointer focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:outline-none rounded-[var(--radius-sm)]"
             >
               Cookies

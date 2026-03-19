@@ -8,7 +8,7 @@ export const siteConfig = {
   ogImage: "/og.jpg",
 
   // Design dimensions (applied to <html> data-attributes)
-  layout: "center" as const,
+  layout: "left" as const,
   radius: "rounded" as const,
   density: "balanced" as const,
   shadows: "subtle" as const,
@@ -25,6 +25,11 @@ export const siteConfig = {
   themeStorageKey: "anfilov-theme",
 
   cookieConsentId: "",
+
+  // Google Reviews — Place ID from Place ID Finder
+  google: {
+    placeId: process.env.GOOGLE_PLACE_ID ?? "",
+  },
 
   seo: {
     organization: {

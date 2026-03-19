@@ -1,75 +1,152 @@
-import { Github, Linkedin, Twitter } from "lucide-react";
+import { Linkedin, Instagram, Facebook } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Separator } from "@/components/ui/Separator";
 
+/* ── ANFILOV Symbol — White outline (for dark bg) ── */
+function AnfilovSymbol({ size = 40 }: { size?: number }) {
+  return (
+    <svg viewBox="0 0 360 360" width={size} height={size} aria-hidden="true">
+      <path
+        fill="#fff"
+        d="M281.8,0H78.2C35.01,0,0,35,0,78.16v203.67C0,325,35.01,360,78.2,360h203.6c43.19,0,78.2-35,78.2-78.16V78.16C360,35,324.99,0,281.8,0ZM326.79,279.67c0,25.99-21.16,47.14-47.16,47.14H80.37c-26,0-47.16-21.15-47.16-47.14V80.33c0-25.99,21.16-47.14,47.16-47.14h199.27c26,0,47.16,21.15,47.16,47.14v199.33Z"
+      />
+      <path
+        fill="#fff"
+        d="M163.76,92.32h32.24l62.58,168.31h-34.85l-11.62-33.66h-64.48l-11.38,33.66h-34.85l62.35-168.31ZM202.64,198.53l-22.52-65.9h-.47l-22.52,65.9h45.52Z"
+      />
+    </svg>
+  );
+}
+
+/* ── Pinterest icon — matches Lucide style (line, 1.5px stroke, round caps) ── */
+function PinterestIcon({ size = 18 }: { size?: number }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width={size}
+      height={size}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.5}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M8 12a4 4 0 1 1 8 0c0 3-2 5-4 5s-2.5-1-2.5-1" />
+      <path d="M9.5 15.5 8 21" />
+      <circle cx="12" cy="12" r="10" />
+    </svg>
+  );
+}
+
 const footerLinks = [
   {
-    title: "Product",
+    title: "Kontakt",
     links: [
-      { label: "Features", href: "#features" },
-      { label: "Pricing", href: "#pricing" },
-      { label: "Changelog", href: "#" },
-      { label: "Roadmap", href: "#" },
+      { label: "simon@anfilov.cz", href: "mailto:simon@anfilov.cz" },
+      { label: "+420 602 26 26 33", href: "tel:+420602262633" },
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/simon-anfilov/" },
     ],
   },
   {
-    title: "Company",
+    title: "Služby",
     links: [
-      { label: "About", href: "#" },
-      { label: "Team", href: "#team" },
-      { label: "Blog", href: "#" },
-      { label: "Careers", href: "#" },
+      { label: "Tvorba loga", href: "#" },
+      { label: "Brand identita", href: "#" },
+      { label: "Webdesign", href: "#" },
+      { label: "Grafický design", href: "#" },
     ],
   },
   {
-    title: "Resources",
+    title: "Zdroje",
     links: [
-      { label: "Documentation", href: "#" },
-      { label: "FAQ", href: "#faq" },
-      { label: "Support", href: "#contact" },
-      { label: "Status", href: "#" },
+      { label: "Portfolio", href: "#" },
+      { label: "Recenze klientů", href: "#" },
+      { label: "Časté dotazy", href: "#" },
+      { label: "Kontakt", href: "/kontakt" },
     ],
   },
   {
     title: "Legal",
     links: [
-      { label: "Privacy Policy", href: "#" },
-      { label: "Terms of Service", href: "#" },
-      { label: "Cookie Policy", href: "#" },
-      { label: "GDPR", href: "#" },
+      { label: "GDPR", href: "/gdpr" },
+      { label: "Cookies", href: "/cookies" },
     ],
   },
 ];
 
 const socialLinks = [
-  { label: "Twitter", icon: Twitter, href: "#" },
-  { label: "GitHub", icon: Github, href: "#" },
-  { label: "LinkedIn", icon: Linkedin, href: "#" },
+  {
+    label: "LinkedIn",
+    icon: Linkedin,
+    href: "https://www.linkedin.com/in/simon-anfilov/",
+  },
+  {
+    label: "Instagram",
+    icon: Instagram,
+    href: "https://www.instagram.com/simonanfilov/",
+  },
+  {
+    label: "Pinterest",
+    icon: PinterestIcon,
+    href: "https://cz.pinterest.com/anfilov/",
+  },
+  {
+    label: "Facebook",
+    icon: Facebook,
+    href: "https://www.facebook.com/anfilov",
+  },
 ];
 
 export function Footer() {
   return (
     <footer className="section-contrast bg-[var(--sc-bg)] text-[var(--sc-text)] pt-[var(--space-section)] pb-[var(--space-element)]">
       <Container>
-        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-[var(--space-grid)] lg:gap-[var(--space-grid-lg)]">
-          {/* Brand col */}
-          <div className="col-span-2 sm:col-span-4 lg:col-span-1 mb-4 lg:mb-0">
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-x-[var(--space-grid)] gap-y-10 sm:gap-y-[var(--space-grid)] lg:gap-[var(--space-grid-lg)]">
+          {/* ── Brand col (logo + socials pinned bottom) ── */}
+          <div className="col-span-2 sm:col-span-4 lg:col-span-1 mb-4 lg:mb-0 flex flex-col">
             <a
-              href="#"
-              className="text-xl font-bold tracking-[var(--heading-tracking)] font-[family-name:var(--font-heading)] hover:opacity-80 transition-opacity duration-[var(--duration-fast)] cursor-pointer"
+              href="/"
+              aria-label="Anfilov — domů"
+              className="inline-block hover:opacity-80 transition-opacity duration-[var(--duration-fast)]"
             >
-              Brand
+              <AnfilovSymbol size={36} />
             </a>
-            <p className="mt-3 text-sm text-[var(--sc-text-muted)] leading-relaxed font-[family-name:var(--font-body)] max-w-xs">
-              A comprehensive design framework for business websites, driven by
-              design tokens.
-            </p>
+
+            <div className="mt-5 flex items-center gap-2">
+              {socialLinks.map((social) => {
+                const Icon = social.icon;
+                return (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.label}
+                    className="
+                      p-2 rounded-[var(--radius-sm)]
+                      border border-[var(--sc-border)]
+                      text-[var(--sc-text-dimmer)]
+                      hover:text-[var(--sc-text)] hover:border-[var(--sc-text-dimmer)]
+                      transition-colors duration-[var(--duration-fast)]
+                      cursor-pointer min-h-[36px] min-w-[36px]
+                      inline-flex items-center justify-center
+                      focus-visible:ring-2 focus-visible:ring-[var(--sc-text)] focus-visible:outline-none
+                    "
+                  >
+                    <Icon size={16} aria-hidden="true" />
+                  </a>
+                );
+              })}
+            </div>
           </div>
 
-          {/* Link columns */}
+          {/* ── Link columns ── */}
           {footerLinks.map((col) => (
             <div key={col.title}>
-              <h3 className="text-sm font-semibold mb-3 text-[var(--sc-text)]">{col.title}</h3>
+              <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-[var(--color-gold)] mb-4 font-[family-name:var(--font-heading)]">
+                {col.title}
+              </p>
               <ul className="space-y-2">
                 {col.links.map((link) => (
                   <li key={link.label}>
@@ -94,34 +171,10 @@ export function Footer() {
 
         <Separator className="my-8 !bg-[var(--sc-border)]" />
 
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-[var(--sc-text-dimmer)] font-[family-name:var(--font-body)]">
-            &copy; {new Date().getFullYear()} Brand. All rights reserved.
-          </p>
-          <div className="flex items-center gap-1">
-            {socialLinks.map((social) => {
-              const Icon = social.icon;
-              return (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  aria-label={social.label}
-                  className="
-                    p-2 rounded-[var(--radius-md)]
-                    text-[var(--sc-text-dimmer)]
-                    hover:text-[var(--sc-text)] hover:bg-[var(--sc-pill-bg)]
-                    transition-colors duration-[var(--duration-fast)]
-                    cursor-pointer min-h-[44px] min-w-[44px]
-                    inline-flex items-center justify-center
-                    focus-visible:ring-2 focus-visible:ring-[var(--sc-text)] focus-visible:outline-none
-                  "
-                >
-                  <Icon size={18} aria-hidden="true" />
-                </a>
-              );
-            })}
-          </div>
-        </div>
+        <p className="text-xs text-[var(--sc-text-dimmer)] font-[family-name:var(--font-body)] pb-6">
+          &copy; {new Date().getFullYear()} Simon Anfilov, Krhanice 275, 257 42
+          Krhanice
+        </p>
       </Container>
     </footer>
   );
