@@ -5,9 +5,7 @@ import { structureTool } from "sanity/structure";
 import { visionTool } from "@sanity/vision";
 import { schemaTypes } from "./sanity/schemas";
 import { structure } from "./sanity/studio/structure";
-
-const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ?? "";
-const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET ?? "production";
+import { projectId, dataset } from "./sanity/lib/client";
 
 export default defineConfig({
   name: "default",

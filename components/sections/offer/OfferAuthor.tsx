@@ -162,7 +162,7 @@ export function OfferAuthor() {
                         backgroundPosition: "center",
                       }}
                     />
-                    <div style={{ position: "absolute", inset: 0, background: "var(--color-surface-overlay, rgba(28,28,28,0.35))" }} />
+                    <div style={{ position: "absolute", inset: 0, background: "rgba(28,28,28,0.15)" }} />
                     {i === activeImg && (
                       <span
                         style={{
