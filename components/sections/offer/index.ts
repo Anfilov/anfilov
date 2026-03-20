@@ -8,6 +8,7 @@ export { OfferComparison } from "./OfferComparison";
 export { OfferPricing } from "./OfferPricing";
 export { OfferFaq } from "./OfferFaq";
 export { OfferAuthor } from "./OfferAuthor";
+export { OfferTools } from "./OfferTools";
 export { OfferCrossSell } from "./OfferCrossSell";
 export { OfferArticles } from "./OfferArticles";
 export { OfferContact } from "./OfferContact";

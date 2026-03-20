@@ -10,10 +10,11 @@ const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ?? "";
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET ?? "production";
 
 export default defineConfig({
-  name: "studio",
-  title: "Studio",
+  name: "default",
+  title: "ANFILOV Studio",
   projectId,
   dataset,
+  basePath: "/studio",
   plugins: [structureTool({ structure }), visionTool()],
   schema: { types: schemaTypes },
 });

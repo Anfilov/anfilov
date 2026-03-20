@@ -24,9 +24,12 @@ interface Props {
 /** Blok 2 — Pain Points. Emocionální přechod od problému k řešení. */
 export function OfferPainPoints({ offer }: Props) {
   return (
-    <section className="bg-[var(--color-surface)] py-[var(--section-padding-y)]">
+    <section className="bg-[var(--color-surface)] pt-[var(--space-section-compact)] pb-[var(--section-padding-y)]">
       <Container>
         <header className="max-w-[680px] mb-[var(--space-heading-gap)]">
+          <p className="text-[12px] font-semibold tracking-[3px] uppercase text-[var(--color-gold)] mb-3 font-[family-name:var(--font-ui)]">
+            Problém
+          </p>
           <h2 className="text-3xl sm:text-4xl lg:text-[2.5rem] leading-[1.12] tracking-[-0.03em]">
             Poznáváte některý z&nbsp;těchto problémů?
           </h2>

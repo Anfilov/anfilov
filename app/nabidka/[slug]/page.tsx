@@ -14,6 +14,7 @@ import {
   OfferPricing,
   OfferFaq,
   OfferAuthor,
+  OfferTools,
   OfferArticles,
   OfferContact,
   OfferRelated,
@@ -40,6 +41,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!offer) return {};
 
   const url = `${siteConfig.url}/nabidka/${offer.slug}`;
+  const ogImage = `${siteConfig.url}/og/${offer.slug}.jpg`;
+  const ogFallback = `${siteConfig.url}/og/default-nabidka.jpg`;
 
   return {
     title: offer.metaTitle,
@@ -55,11 +58,20 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       siteName: siteConfig.name,
       locale: siteConfig.locale,
       type: "website",
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: offer.metaTitle,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: offer.metaTitle,
       description: offer.metaDescription,
+      images: [ogImage, ogFallback],
     },
   };
 }
@@ -193,7 +205,7 @@ function OfferJsonLd({ offer, googleRating, googleReviewCount }: { offer: OfferD
         {
           "@type": "ListItem",
           position: 2,
-          name: offer.tema,
+          name: "Služby",
           item: `${siteConfig.url}/nabidka`,
         },
         {
@@ -260,6 +272,9 @@ export default async function OfferPage({ params }: PageProps) {
 
         {/* Blok 9 — Author / E-E-A-T */}
         <OfferAuthor />
+
+        {/* Blok — Nástroje */}
+        <OfferTools />
 
         {/* Blok 8 — FAQ */}
         <OfferFaq faq={offer.faq} serviceName={offer.name} />

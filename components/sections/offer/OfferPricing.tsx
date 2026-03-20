@@ -96,7 +96,7 @@ export function OfferPricing({ offer }: Props) {
               Ceník a srovnání
             </p>
             <h2 className="text-3xl sm:text-4xl lg:text-[2.5rem] leading-[1.12] tracking-[-0.03em] mb-5">
-              Kolik to stojí
+              Kolik stojí tvorba loga
             </h2>
             <p className="text-lg sm:text-xl text-[var(--color-text-secondary)] leading-relaxed font-[family-name:var(--font-body)] max-w-2xl text-balance">
               Cenu vám připravím vždy na míru na&nbsp;základě konkrétní specifikace zadání a&nbsp;rozsahu zakázky.
@@ -121,38 +121,36 @@ export function OfferPricing({ offer }: Props) {
               </h3>
 
               <motion.div variants={itemVariants} className="mb-8">
-                <span className="text-3xl sm:text-4xl font-bold text-[var(--color-text-primary)] font-[family-name:var(--font-heading)] tracking-tight leading-none">
+                <span className="text-3xl sm:text-4xl font-bold text-[var(--color-gold)] font-[family-name:var(--font-heading)] tracking-tight leading-none">
                   od {pricing.anchor.toLocaleString("cs-CZ")}<span className="text-xl sm:text-2xl">&nbsp;Kč</span>
                 </span>
               </motion.div>
 
-              {/* Příklady z praxe */}
-              <div className="w-16 h-px bg-[var(--color-border)] my-6" />
+              {/* Co vše je v ceně */}
               <div className="mb-8">
                 <h3 className="text-base font-bold text-[var(--color-text-primary)] font-[family-name:var(--font-heading)] tracking-tight mb-4">
-                  Příklady z praxe
+                  Co vše je v ceně
                 </h3>
                 <div className="space-y-4">
-                  {pricing.examples.map((ex, i) => (
+                  {[
+                    { name: "Grafické návrhy", desc: "3 grafické návrhy loga v online prezentaci s ukázkami aplikace a doporučením" },
+                    { name: "Licence na užití", desc: "Neomezená a výhradní licence na užití loga" },
+                    { name: "Zdrojové soubory", desc: "Vektorové soubory loga pro rozvíjení vizuální identity značky" },
+                  ].map((item, i) => (
                     <motion.div
                       key={i}
                       variants={listItemVariants}
                       className="flex items-start gap-3"
                     >
-                      <span className="flex-shrink-0 w-5 h-5 mt-0.5 rounded-[var(--avatar-radius)] bg-[rgba(46,122,90,0.08)] text-[var(--color-forest-mid)] inline-flex items-center justify-center">
-                        <Check size={12} strokeWidth={3} />
+                      <span className="flex-shrink-0 w-9 h-9 mt-0.5 rounded-[var(--avatar-radius)] bg-[rgba(46,122,90,0.08)] text-[var(--color-forest-mid)] inline-flex items-center justify-center">
+                        <Check size={16} strokeWidth={2.5} />
                       </span>
                       <div>
-                        <div className="flex flex-wrap items-baseline gap-x-3 gap-y-0.5">
-                          <span className="text-[14px] font-bold text-[var(--color-text-primary)] font-[family-name:var(--font-heading)]">
-                            {ex.name}
-                          </span>
-                          <span className="text-[14px] font-bold text-[var(--color-gold)] font-[family-name:var(--font-heading)]">
-                            od {ex.price.toLocaleString("cs-CZ")}&nbsp;Kč
-                          </span>
-                        </div>
-                        <p className="text-[13px] text-[var(--color-text-tertiary)] font-[family-name:var(--font-ui)] mt-0.5">
-                          {ex.scope}
+                        <span className="block text-[14px] font-bold text-[var(--color-text-primary)] font-[family-name:var(--font-heading)] leading-[1.4]">
+                          {item.name}
+                        </span>
+                        <p className="text-[13px] text-[var(--color-text-tertiary)] font-[family-name:var(--font-ui)] mt-1 leading-[1.5]">
+                          {item.desc}
                         </p>
                       </div>
                     </motion.div>

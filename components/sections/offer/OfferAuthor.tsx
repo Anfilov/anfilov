@@ -59,7 +59,7 @@ export function OfferAuthor() {
   const [activeImg, setActiveImg] = useState(0);
 
   return (
-    <section className="bg-[var(--color-surface)] py-[var(--section-padding-y)]">
+    <section className="bg-[var(--color-surface)] pt-[var(--section-padding-y)] pb-[var(--space-section-compact)]">
       <Container>
         {/* Header */}
         <header className="mb-[var(--space-heading-gap)]">

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Check, ShieldCheck } from "lucide-react";
+import { Check } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import type { OfferData } from "@/lib/offer-types";
 
@@ -29,19 +29,29 @@ export function OfferDeliverables({ offer }: Props) {
           <div>
             <header className="mb-8">
               <p className="text-[12px] font-semibold tracking-[3px] uppercase text-[var(--color-gold)] mb-3 font-[family-name:var(--font-ui)]">
-                Co získáte
+                Řešení
               </p>
               <h2 className="text-3xl sm:text-4xl lg:text-[2.5rem] leading-[1.12] tracking-[-0.03em]">
-                Co vše zahrnuje {offer.name.toLowerCase()}
+                Skvělé logo, které prodává
               </h2>
             </header>
 
             <div className="space-y-0 divide-y divide-[var(--color-border)]">
-              {offer.deliverables.map((item, i) => (
-                <div
-                  key={i}
-                  className="flex gap-5 py-5"
-                >
+              {[
+                {
+                  title: "Strategicky navržené",
+                  desc: "Logo musí posilovat vaši značku ve všech aspektech: psychologicky správně navržená symbolika, barva, písmo nebo tvar. Toto je úkol pro strategického tvůrce — nikoliv pro logo generátor či začínajícího grafika.",
+                },
+                {
+                  title: "Skutečně originální",
+                  desc: "Na webu najdete stovky služeb, generátorů a nástrojů pro tvorbu loga a tisíce značek, které jsou si velmi podobné. Originální značka však vyžaduje sladění všeho: strategie, názvu, smyslu značky a komunikačního konceptu.",
+                },
+                {
+                  title: "Praktické a na míru",
+                  desc: "Potřebujete manuál, šablony pro sociální sítě, nabídky či tiskoviny nebo chcete logo sami co nejsnadněji používat? Každá firma má jiné potřeby a proto výstup musí být na míru. Žádný generický manuál pro všechny.",
+                },
+              ].map((item, i) => (
+                <div key={i} className="flex gap-5 py-5">
                   <span
                     aria-hidden="true"
                     className="
@@ -58,22 +68,13 @@ export function OfferDeliverables({ offer }: Props) {
                       {item.title}
                     </h3>
                     <p className="text-[15px] text-[var(--color-text-secondary)] font-[family-name:var(--font-body)] leading-[1.65]">
-                      {item.benefit}
+                      {item.desc}
                     </p>
                   </div>
                 </div>
               ))}
             </div>
 
-            {/* Trust note */}
-            {offer.deliverablesTrustNote && (
-              <div className="mt-8 inline-flex items-center gap-2.5 px-4 py-3 rounded-[var(--radius-sm)] bg-[rgba(46,122,90,0.06)] border border-[rgba(46,122,90,0.12)]">
-                <ShieldCheck size={16} className="text-[var(--color-forest-mid)] flex-shrink-0" aria-hidden="true" />
-                <p className="text-sm font-medium text-[var(--color-forest-mid)] font-[family-name:var(--font-ui)]">
-                  {offer.deliverablesTrustNote}
-                </p>
-              </div>
-            )}
           </div>
         </div>
       </Container>

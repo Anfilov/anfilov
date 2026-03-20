@@ -3,6 +3,7 @@ import type { SchemaTypeDefinition } from "sanity";
 // Documents
 import { page } from "./documents/page";
 import { siteSettings } from "./documents/site-settings";
+import { project } from "./documents/project";
 
 // Objects
 import { link } from "./objects/link";
@@ -17,6 +18,7 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   // Documents
   page,
   siteSettings,
+  project,
   // Objects
   link,
   imageWithAlt,
