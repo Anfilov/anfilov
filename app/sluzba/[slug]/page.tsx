@@ -4,7 +4,6 @@ import { siteConfig } from "@/site.config";
 import {
   getSluzbaBySlug,
   getAllSluzbaSlugs,
-  getToolsForPage,
 } from "@/sanity/lib/queries";
 import { urlForImage } from "@/sanity/lib/image";
 import { fetchGoogleReviews } from "@/lib/google-reviews";
@@ -217,13 +216,20 @@ export default async function SluzbaPage({ params }: PageProps) {
 
   const sluzba = mapSanityToSluzbaData(raw);
 
-  const [googleData, tools] = await Promise.all([
-    fetchGoogleReviews(),
-    getToolsForPage(slug),
-  ]);
+  const googleData = await fetchGoogleReviews();
+
+  // Tools from the sluzba document directly (nastrojeItems)
+  const tools = (raw.nastrojeItems ?? []).map((t: Record<string, unknown>) => ({
+    _id: t._id as string,
+    name: t.name as string,
+    url: (t.url as string) ?? "",
+    logoUrl: (t.logoUrl as string) ?? "",
+  }));
 
   // Pre-compute portfolio image URLs from Sanity project references
-  const rawProjects = raw.portfolioProjects ?? [];
+  const rawProjects = (raw.portfolioProjects ?? []).filter(
+    (p: Record<string, unknown>) => p && p.image,
+  );
   const projects: PortfolioProjectView[] = rawProjects.map(
     (p: Record<string, unknown>) => {
       const img = p.image as { image: Record<string, unknown>; alt?: string };
@@ -292,12 +298,18 @@ export default async function SluzbaPage({ params }: PageProps) {
 
         {/* Video */}
         <div className="reveal">
-          <SluzbaVideo />
+          <SluzbaVideo
+            overline={raw.videoOverline}
+            title={raw.videoTitle}
+            body={raw.videoBody}
+            videoUrl={raw.videoSource === "url" ? raw.videoUrl : undefined}
+            videoEmbed={raw.videoSource === "embed" ? raw.videoEmbed : undefined}
+          />
         </div>
 
         {/* Portfolio */}
         <div className="reveal">
-          <SluzbaPortfolio projects={projects} />
+          <SluzbaPortfolio projects={projects} serviceName={sluzba.name} />
         </div>
 
         {/* Recenze */}

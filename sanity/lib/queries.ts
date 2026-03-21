@@ -124,6 +124,8 @@ const sluzbaFields = `
   _id,
   name,
   "slug": slug.current,
+  category,
+  categoryOrder,
   heroTitle,
   heroSubheadline,
   heroMediaType,
@@ -189,6 +191,9 @@ const sluzbaFields = `
   cenikTableColumns,
   cenikTableRows[] { criterion, scores },
   cenikTableNote,
+  nastrojeOverline,
+  nastrojeTitle,
+  nastrojeItems[]-> { ${toolFields} },
   faqOverline,
   faqTitle,
   faqItems[] { question, answer }

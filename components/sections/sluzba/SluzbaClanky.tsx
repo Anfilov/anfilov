@@ -24,7 +24,7 @@ export function SluzbaClanky({ offer }: Props) {
             Články
           </p>
           <h2 className="text-3xl sm:text-4xl lg:text-[2.5rem] leading-[1.12] tracking-[-0.03em]">
-            Přečtěte si více o&nbsp;tvorbě loga
+            Přečtěte si více — {offer.name}
           </h2>
         </header>
 

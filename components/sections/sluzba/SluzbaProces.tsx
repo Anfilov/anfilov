@@ -35,6 +35,8 @@ function pracovnichDni(n: number): string {
 
 /** Proces — jak probíhá spolupráce. Horizontální stepper. */
 export function SluzbaProces({ offer }: Props) {
+  if (!offer.steps || offer.steps.length === 0) return null;
+
   const totalDays = offer.steps.reduce((sum, s) => sum + s.days, 0);
   const count = offer.steps.length;
   const isDesktop = useIsDesktop();

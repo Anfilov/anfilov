@@ -96,7 +96,7 @@ export function SluzbaCenik({ offer }: Props) {
               Ceník a srovnání
             </p>
             <h2 className="text-3xl sm:text-4xl lg:text-[2.5rem] leading-[1.12] tracking-[-0.03em] mb-5">
-              Kolik stojí tvorba loga
+              {offer.name} — ceník
             </h2>
             <p className="text-lg sm:text-xl text-[var(--color-text-secondary)] leading-relaxed font-[family-name:var(--font-body)] max-w-2xl text-balance">
               Cenu vám připravím vždy na míru na&nbsp;základě konkrétní specifikace zadání a&nbsp;rozsahu zakázky.

@@ -143,7 +143,7 @@ export function SluzbaVideo({
           <div style={{ flex: 1, marginTop: isDesktop ? 0 : 40 }}>
             {embedHtml ? (
               <div
-                className="relative w-full rounded-[var(--card-radius)] overflow-hidden bg-black"
+                className="relative w-full overflow-hidden bg-black"
                 style={{ paddingBottom: "56.25%" /* 16:9 */ }}
                 dangerouslySetInnerHTML={{ __html: embedHtml }}
               />

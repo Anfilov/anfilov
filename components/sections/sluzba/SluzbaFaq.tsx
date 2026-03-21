@@ -25,7 +25,7 @@ export function SluzbaFaq({ faq, serviceName }: Props) {
             FAQ
           </p>
           <h2 className="text-3xl sm:text-4xl lg:text-[2.5rem] leading-[1.12] tracking-[-0.03em]">
-            Časté otázky ohledně tvorby loga
+            Často kladené otázky — {serviceName}
           </h2>
         </header>
 

@@ -28,7 +28,7 @@ export function SluzbaNastroje({ tools }: SluzbaNastrojeProps) {
           </h2>
         </header>
 
-        <div className="grid grid-cols-3 sm:grid-cols-5 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8">
           {tools.map((tool) => (
             <a
               key={tool._id}
@@ -37,13 +37,13 @@ export function SluzbaNastroje({ tools }: SluzbaNastrojeProps) {
               rel="noopener noreferrer"
               className="group flex flex-col items-start gap-3"
             >
-              <div className="w-14 h-14 sm:w-16 sm:h-16 relative">
+              <div className="w-full h-[48px] relative">
                 <Image
                   src={tool.logoUrl}
                   alt={tool.name}
                   fill
-                  className="object-contain"
-                  sizes="64px"
+                  className="object-contain object-left"
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
                 />
               </div>
               <span className="text-[13px] font-semibold text-[var(--color-text-tertiary)] group-hover:text-[var(--color-text-primary)] transition-colors duration-[var(--duration-slow)] font-[family-name:var(--font-ui)]">

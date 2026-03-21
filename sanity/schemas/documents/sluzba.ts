@@ -14,6 +14,7 @@ export const sluzba = defineType({
     { name: "video", title: "Video" },
     { name: "portfolio", title: "Portfolio" },
     { name: "cenik", title: "Ceník" },
+    { name: "nastroje", title: "Nástroje" },
     { name: "faq", title: "FAQ" },
     { name: "seo", title: "SEO" },
   ],
@@ -34,6 +35,35 @@ export const sluzba = defineType({
       options: { source: "name" },
       description: "Bude v URL: /sluzba-template/{slug}",
       validation: (r) => r.required(),
+      group: "hero",
+    }),
+
+    // ── Kategorie ──────────────────────────────────────────────────────
+    defineField({
+      name: "category",
+      title: "Kategorie",
+      type: "string",
+      description: "Kategorie služby pro seskupení na stránce /sluzba",
+      options: {
+        list: [
+          { value: "znacka-identita", title: "Značka & identita" },
+          { value: "webdesign", title: "Webdesign" },
+          { value: "firemni-tiskoviny", title: "Firemní & reklamní tiskoviny" },
+          { value: "obalovy-design", title: "Obalový design" },
+          { value: "socialni-media", title: "Sociální média" },
+          { value: "digitalni-design", title: "Digitální design" },
+          { value: "online-prodej", title: "Online prodej" },
+        ],
+      },
+      validation: (r) => r.required(),
+      group: "hero",
+    }),
+    defineField({
+      name: "categoryOrder",
+      title: "Pořadí v kategorii",
+      type: "number",
+      description: "Pořadí služby v rámci její kategorie (1, 2, 3...)",
+      validation: (r) => r.required().min(1),
       group: "hero",
     }),
 
@@ -579,6 +609,35 @@ export const sluzba = defineType({
           preview: {
             select: { title: "question" },
           },
+        },
+      ],
+    }),
+
+    // ── Nástroje ────────────────────────────────────────────────────
+    defineField({
+      name: "nastrojeOverline",
+      title: "Nadtitulek",
+      type: "string",
+      initialValue: "Nástroje",
+      group: "nastroje",
+    }),
+    defineField({
+      name: "nastrojeTitle",
+      title: "Titulek",
+      type: "string",
+      initialValue: "S čím pracuji",
+      group: "nastroje",
+    }),
+    defineField({
+      name: "nastrojeItems",
+      title: "Nástroje",
+      type: "array",
+      description: "Vyberte nástroje z existujících a seřaďte přetažením.",
+      group: "nastroje",
+      of: [
+        {
+          type: "reference",
+          to: [{ type: "tool" }],
         },
       ],
     }),

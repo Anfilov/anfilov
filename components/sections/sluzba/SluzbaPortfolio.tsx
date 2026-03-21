@@ -20,10 +20,11 @@ export interface PortfolioProjectView {
 
 interface Props {
   projects?: PortfolioProjectView[];
+  serviceName?: string;
 }
 
 /** Portfolio — ukázky prací. Grid 3 sloupce, data ze Sanity. */
-export function SluzbaPortfolio({ projects }: Props) {
+export function SluzbaPortfolio({ projects, serviceName }: Props) {
   const [lightbox, setLightbox] = useState<{ projectIdx: number; imageIdx: number } | null>(null);
 
   const closeLightbox = useCallback(() => setLightbox(null), []);
@@ -76,7 +77,7 @@ export function SluzbaPortfolio({ projects }: Props) {
             </p>
             <div className="flex items-end justify-between gap-6">
               <h2 className="text-3xl sm:text-4xl lg:text-[2.5rem] leading-[1.12] tracking-[-0.03em]">
-                Ukázky tvorby loga
+                Ukázky — {serviceName || "Portfolio"}
               </h2>
               <a
                 href="/portfolio"
