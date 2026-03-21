@@ -15,6 +15,9 @@ export const structure: StructureResolver = (S) =>
       // Služby
       S.documentTypeListItem("sluzba").title("Služby"),
       S.divider(),
+      // Slovník
+      S.documentTypeListItem("glossaryTerm").title("Slovník"),
+      S.divider(),
       // Projects
       S.documentTypeListItem("project").title("Projekty"),
       // Tools

@@ -211,3 +211,53 @@ export async function getSluzbaBySlug(slug: string) {
 export async function getAllSluzbaSlugs(): Promise<string[]> {
   return client.fetch(`*[_type == "sluzba"].slug.current`);
 }
+
+// ---------------------------------------------------------------------------
+// Glossary (slovník)
+// ---------------------------------------------------------------------------
+
+const glossaryTermFields = `
+  _id,
+  term,
+  "slug": slug.current,
+  aliases,
+  category,
+  shortDefinition,
+  hasDetailPage
+`;
+
+const glossaryDetailFields = `
+  ${glossaryTermFields},
+  extendedDescription,
+  practicalUse,
+  image {
+    image { asset->, hotspot, crop },
+    alt
+  },
+  relatedTerms[]-> { _id, term, "slug": slug.current, hasDetailPage, shortDefinition, category },
+  relatedServices[]-> { _id, name, "slug": slug.current, heroTitle, heroPriceLabel },
+  metaTitle,
+  metaDescription
+`;
+
+/** All glossary terms (for hub page). */
+export async function getAllGlossaryTerms() {
+  return client.fetch(
+    `*[_type == "glossaryTerm"] | order(term asc) { ${glossaryTermFields} }`,
+  );
+}
+
+/** Single glossary term by slug (for detail page). */
+export async function getGlossaryTermBySlug(slug: string) {
+  return client.fetch(
+    `*[_type == "glossaryTerm" && slug.current == $slug][0] { ${glossaryDetailFields} }`,
+    { slug },
+  );
+}
+
+/** All glossary detail slugs (for static generation — only hasDetailPage). */
+export async function getAllGlossaryDetailSlugs(): Promise<string[]> {
+  return client.fetch(
+    `*[_type == "glossaryTerm" && hasDetailPage == true].slug.current`,
+  );
+}

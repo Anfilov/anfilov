@@ -2,17 +2,13 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
-import { Menu, X, Sun, Moon, ChevronDown } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
 import { useTheme } from "@/components/ui/ThemeProvider";
 import { cn } from "@/lib/utils";
 
-const serviceLinks = [
-  { label: "Tvorba loga", href: "/sluzba/tvorba-loga" },
-];
-
 const navLinks = [
   { label: "Homepage", href: "/" },
-  { label: "Služby", href: "/sluzba", children: serviceLinks },
+  { label: "Služby", href: "/sluzba" },
   { label: "Showcase", href: "/showcase" },
   { label: "Kontakt", href: "/kontakt" },
 ];
@@ -32,13 +28,10 @@ type NavVisibility = "visible" | "hidden" | "pill";
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [visibility, setVisibility] = useState<NavVisibility>("visible");
   const { theme, toggle } = useTheme();
   const lastScrollY = useRef(0);
   const ticking = useRef(false);
-  const dropdownRef = useRef<HTMLLIElement>(null);
 
   const updateNavbar = useCallback(() => {
     const currentY = window.scrollY;
@@ -53,7 +46,6 @@ export function Navbar() {
     } else if (scrollingDown && currentY >= 800 && delta > 8) {
       setVisibility("hidden");
       setMobileOpen(false);
-      setDropdownOpen(false);
     } else if (!scrollingDown && delta > 8) {
       setVisibility("pill");
     }
@@ -72,17 +64,6 @@ export function Navbar() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [updateNavbar]);
-
-  // Close dropdown on outside click
-  useEffect(() => {
-    const handleClick = (e: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
-        setDropdownOpen(false);
-      }
-    };
-    document.addEventListener("click", handleClick);
-    return () => document.removeEventListener("click", handleClick);
-  }, []);
 
   const isPill = visibility === "pill";
   const isHidden = visibility === "hidden";
@@ -144,66 +125,16 @@ export function Navbar() {
               {/* ── Desktop centered links ── */}
               <div className="absolute inset-0 m-auto hidden size-fit lg:block">
                 <ul className="flex gap-8 text-sm">
-                  {navLinks.map((link) =>
-                    link.children ? (
-                      <li key={link.href} ref={dropdownRef} className="relative">
-                        <button
-                          onClick={() => setDropdownOpen(!dropdownOpen)}
-                          className="inline-flex items-center gap-1 text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors duration-[var(--duration-fast)] font-[family-name:var(--font-ui)] cursor-pointer"
-                        >
-                          {link.label}
-                          <ChevronDown
-                            size={14}
-                            className={cn(
-                              "transition-transform duration-[var(--duration-fast)]",
-                              dropdownOpen && "rotate-180"
-                            )}
-                          />
-                        </button>
-
-                        {/* Dropdown panel */}
-                        <div
-                          className={cn(
-                            "absolute left-1/2 -translate-x-1/2 top-full pt-3 transition-all duration-[var(--duration-normal)]",
-                            dropdownOpen
-                              ? "opacity-100 translate-y-0 pointer-events-auto"
-                              : "opacity-0 -translate-y-2 pointer-events-none"
-                          )}
-                        >
-                          <div className="min-w-[220px] rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface-elevated)] shadow-[var(--shadow-lg)] p-2">
-                            {/* "Všechny služby" link */}
-                            <Link
-                              href={link.href}
-                              onClick={() => setDropdownOpen(false)}
-                              className="block px-4 py-2.5 text-[13px] font-semibold text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-surface-sunken)] rounded-[var(--radius-sm)] transition-colors duration-[var(--duration-fast)] font-[family-name:var(--font-ui)]"
-                            >
-                              Všechny služby
-                            </Link>
-                            <div className="my-1.5 h-px bg-[var(--color-border)]" />
-                            {link.children.map((child) => (
-                              <Link
-                                key={child.href}
-                                href={child.href}
-                                onClick={() => setDropdownOpen(false)}
-                                className="block px-4 py-2.5 text-[13px] text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-surface-sunken)] rounded-[var(--radius-sm)] transition-colors duration-[var(--duration-fast)] font-[family-name:var(--font-ui)]"
-                              >
-                                {child.label}
-                              </Link>
-                            ))}
-                          </div>
-                        </div>
-                      </li>
-                    ) : (
-                      <li key={link.href}>
-                        <Link
-                          href={link.href}
-                          className="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] block transition-colors duration-[var(--duration-fast)] font-[family-name:var(--font-ui)]"
-                        >
-                          {link.label}
-                        </Link>
-                      </li>
-                    )
-                  )}
+                  {navLinks.map((link) => (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        className="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] block transition-colors duration-[var(--duration-fast)] font-[family-name:var(--font-ui)]"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
                 </ul>
               </div>
 
@@ -218,59 +149,17 @@ export function Navbar() {
                 {/* Mobile nav links */}
                 <div className="lg:hidden">
                   <ul className="space-y-5 text-base">
-                    {navLinks.map((link) =>
-                      link.children ? (
-                        <li key={link.href}>
-                          <button
-                            onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
-                            className="flex items-center gap-1 text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors duration-[var(--duration-fast)] font-[family-name:var(--font-ui)] cursor-pointer"
-                          >
-                            {link.label}
-                            <ChevronDown
-                              size={14}
-                              className={cn(
-                                "transition-transform duration-[var(--duration-fast)]",
-                                mobileServicesOpen && "rotate-180"
-                              )}
-                            />
-                          </button>
-                          {mobileServicesOpen && (
-                            <ul className="mt-3 ml-4 space-y-3">
-                              <li>
-                                <Link
-                                  href={link.href}
-                                  onClick={() => setMobileOpen(false)}
-                                  className="text-[var(--color-text-tertiary)] hover:text-[var(--color-text-primary)] text-sm transition-colors duration-[var(--duration-fast)] font-[family-name:var(--font-ui)]"
-                                >
-                                  Všechny služby
-                                </Link>
-                              </li>
-                              {link.children.map((child) => (
-                                <li key={child.href}>
-                                  <Link
-                                    href={child.href}
-                                    onClick={() => setMobileOpen(false)}
-                                    className="text-[var(--color-text-tertiary)] hover:text-[var(--color-text-primary)] text-sm transition-colors duration-[var(--duration-fast)] font-[family-name:var(--font-ui)]"
-                                  >
-                                    {child.label}
-                                  </Link>
-                                </li>
-                              ))}
-                            </ul>
-                          )}
-                        </li>
-                      ) : (
-                        <li key={link.href}>
-                          <Link
-                            href={link.href}
-                            onClick={() => setMobileOpen(false)}
-                            className="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] block transition-colors duration-[var(--duration-fast)] font-[family-name:var(--font-ui)]"
-                          >
-                            {link.label}
-                          </Link>
-                        </li>
-                      )
-                    )}
+                    {navLinks.map((link) => (
+                      <li key={link.href}>
+                        <Link
+                          href={link.href}
+                          onClick={() => setMobileOpen(false)}
+                          className="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] block transition-colors duration-[var(--duration-fast)] font-[family-name:var(--font-ui)]"
+                        >
+                          {link.label}
+                        </Link>
+                      </li>
+                    ))}
                   </ul>
                 </div>
 

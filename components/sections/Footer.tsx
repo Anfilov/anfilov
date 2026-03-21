@@ -61,8 +61,8 @@ const footerLinks = [
     title: "Zdroje",
     links: [
       { label: "Portfolio", href: "#" },
+      { label: "Slovník", href: "/slovnik" },
       { label: "Recenze klientů", href: "#" },
-      { label: "Časté dotazy", href: "#" },
       { label: "Kontakt", href: "/kontakt" },
     ],
   },

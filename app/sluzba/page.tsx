@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+// import { ArrowRight } from "lucide-react";
 import { siteConfig } from "@/site.config";
 import { client } from "@/sanity/lib/client";
-import { urlForImage } from "@/sanity/lib/image";
+// import { urlForImage } from "@/sanity/lib/image";
 import { Navbar, Footer } from "@/components/sections";
 import { Container } from "@/components/ui/Container";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
-import { Button } from "@/components/ui/Button";
+import { CtaBlock } from "@/components/sections/CtaBlock";
 
 // ---------------------------------------------------------------------------
 // Metadata
@@ -29,11 +29,11 @@ export const metadata: Metadata = {
 const CATEGORIES = [
   { value: "znacka-identita", label: "Značka & identita" },
   { value: "webdesign", label: "Webdesign" },
-  { value: "firemni-tiskoviny", label: "Firemní & reklamní tiskoviny" },
-  { value: "obalovy-design", label: "Obalový design" },
-  { value: "socialni-media", label: "Sociální média" },
+  { value: "firemni-tiskoviny", label: "Propagační tiskoviny" },
   { value: "digitalni-design", label: "Digitální design" },
   { value: "online-prodej", label: "Online prodej" },
+  { value: "socialni-media", label: "Sociální média" },
+  { value: "obalovy-design", label: "Obalový design" },
 ] as const;
 
 // ---------------------------------------------------------------------------
@@ -144,117 +144,59 @@ export default async function SluzbyPage() {
               <p className="text-[12px] font-semibold tracking-[3px] uppercase text-[var(--color-gold)] mb-3 font-[family-name:var(--font-ui)]">
                 Služby
               </p>
-              <h1 className="text-4xl sm:text-5xl lg:text-[3.75rem] leading-[1.06] tracking-[-0.03em] mb-6">
-                Co pro vás mohu udělat
+              <h1 className="text-4xl sm:text-5xl lg:text-[3.75rem] leading-[1.06] tracking-[-0.03em]">
+                Design &amp; Marketing
               </h1>
-              <p className="text-lg sm:text-xl text-[var(--color-text-secondary)] leading-relaxed font-[family-name:var(--font-body)] max-w-[520px]">
-                Každá služba je navržena tak, aby vaše značka fungovala strategicky, vypadala profesionálně a&nbsp;přinášela výsledky.
-              </p>
             </header>
           </Container>
         </section>
 
-        {/* Service cards grouped by category */}
+        {/* Service cards grouped by category — 3 columns */}
         <section className="bg-[var(--color-surface)] pb-[var(--section-padding-y)]">
           <Container>
-            {CATEGORIES.map((cat, catIndex) => {
-              const items = grouped.get(cat.value);
-              if (!items || items.length === 0) return null;
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-14">
+              {CATEGORIES.map((cat) => {
+                const items = grouped.get(cat.value);
+                if (!items || items.length === 0) return null;
 
-              return (
-                <div key={cat.value} className={catIndex > 0 ? "mt-16" : ""}>
-                  {/* Category header */}
-                  <div className="mb-8">
-                    <p className="text-[12px] font-semibold tracking-[3px] uppercase text-[var(--color-gold)] mb-2 font-[family-name:var(--font-ui)]">
-                      {String(catIndex + 1).padStart(2, "0")}
-                    </p>
-                    <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[var(--color-text-primary)] font-[family-name:var(--font-heading)]">
+                return (
+                  <div key={cat.value}>
+                    {/* Category header */}
+                    <p className="text-[12px] font-semibold tracking-[3px] uppercase text-[var(--color-gold)] mb-6 pb-3 border-b border-[var(--color-border)] font-[family-name:var(--font-ui)]">
                       {cat.label}
-                    </h2>
-                  </div>
+                    </p>
 
-                  {/* Service cards */}
-                  <div className="grid grid-cols-1 gap-6 reveal-stagger">
-                    {items.map((sluzba) => {
-                      const imageUrl = sluzba.heroImage?.image
-                        ? urlForImage(sluzba.heroImage.image)
-                            .width(600)
-                            .height(600)
-                            .fit("crop")
-                            .url()
-                        : null;
-
-                      return (
+                    {/* Services list */}
+                    <div className="space-y-5">
+                      {items.map((sluzba) => (
                         <Link
                           key={sluzba._id}
                           href={`/sluzba/${sluzba.slug}`}
-                          className="
-                            reveal group rounded-[var(--card-radius)] overflow-hidden
-                            border border-[var(--card-border)]
-                            bg-[var(--color-surface-elevated)]
-                            transition-[border-color,box-shadow] duration-[var(--duration-slow)] ease-[var(--ease-spring)]
-                            hover:border-[var(--color-border-accent)] hover:shadow-[var(--shadow-gold-sm)]
-                            no-underline
-                          "
+                          className="group block no-underline"
                         >
-                          <div className="flex flex-col sm:flex-row">
-                            {/* Image */}
-                            {imageUrl && (
-                              <div className="sm:w-[200px] sm:h-[200px] shrink-0 bg-white">
-                                <img
-                                  src={imageUrl}
-                                  alt={sluzba.heroImage?.alt || sluzba.name}
-                                  className="w-full h-full object-cover transition-transform duration-[var(--duration-slow)] group-hover:scale-[1.03]"
-                                  loading="lazy"
-                                />
-                              </div>
-                            )}
-
-                            {/* Content */}
-                            <div className="p-6 sm:p-8 flex flex-col justify-center flex-1">
-                              <h3 className="text-xl sm:text-2xl font-bold text-[var(--color-text-primary)] font-[family-name:var(--font-heading)] tracking-tight mb-2">
-                                {sluzba.heroTitle || sluzba.name}
-                              </h3>
-                              {sluzba.heroSubheadline && (
-                                <p className="text-[15px] text-[var(--color-text-secondary)] font-[family-name:var(--font-body)] leading-[1.6] mb-4 max-w-[600px]">
-                                  {sluzba.heroSubheadline}
-                                </p>
-                              )}
-                              <div className="flex items-center gap-4">
-                                {sluzba.heroPriceLabel && (
-                                  <span className="text-sm font-bold text-[var(--color-gold)] font-[family-name:var(--font-heading)]">
-                                    {sluzba.heroPriceLabel}
-                                  </span>
-                                )}
-                                <span className="inline-flex items-center gap-1 text-sm font-semibold text-[var(--color-forest-mid)] font-[family-name:var(--font-ui)] group-hover:gap-2 transition-all duration-[var(--duration-fast)]">
-                                  Zjistit více
-                                  <ArrowRight size={14} />
-                                </span>
-                              </div>
-                            </div>
-                          </div>
+                          <h3 className="text-[15px] font-semibold text-[var(--color-text-primary)] font-[family-name:var(--font-heading)] tracking-tight leading-snug mb-1.5 group-hover:text-[var(--color-forest-mid)] transition-colors duration-[var(--duration-fast)]">
+                            {sluzba.name}
+                          </h3>
+                          {sluzba.heroPriceLabel && (
+                            <p className="text-[12px] text-[var(--color-text-tertiary)] font-[family-name:var(--font-ui)]">
+                              {sluzba.heroPriceLabel}
+                            </p>
+                          )}
                         </Link>
-                      );
-                    })}
+                      ))}
+                    </div>
                   </div>
-                </div>
-              );
-            })}
-
-            {/* CTA */}
-            <div className="mt-16 text-center">
-              <p className="text-[var(--color-text-secondary)] font-[family-name:var(--font-body)] mb-6">
-                Nemůžete se rozhodnout? Napište mi a&nbsp;společně najdeme to pravé řešení.
-              </p>
-              <Link href="/kontakt">
-                <Button variant="primary" size="lg">
-                  Kontaktujte mě
-                  <ArrowRight size={18} aria-hidden="true" />
-                </Button>
-              </Link>
+                );
+              })}
             </div>
+
           </Container>
         </section>
+
+        <CtaBlock
+          overline="Nevíte, kde začít?"
+          title="Pojďme to řešit společně"
+        />
       </main>
 
       <Footer />
