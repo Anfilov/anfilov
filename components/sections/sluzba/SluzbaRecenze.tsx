@@ -12,8 +12,8 @@ interface Props {
   googleReviewsUrl?: string;
 }
 
-/** Blok — Google Reviews marquee. Animované recenze s Google badge. */
-export function OfferReviews({ reviews, rating, reviewCount, googleReviewsUrl = "#" }: Props) {
+/** Recenze — Google Reviews marquee. Animované recenze s Google badge. */
+export function SluzbaRecenze({ reviews, rating, reviewCount, googleReviewsUrl = "#" }: Props) {
   const [paused, setPaused] = useState(false);
 
   if (!reviews.length) return null;

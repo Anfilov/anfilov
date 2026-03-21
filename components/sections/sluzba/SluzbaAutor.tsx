@@ -54,8 +54,8 @@ function AnimatedNumber({ value, suffix = "" }: { value: number; suffix?: string
   );
 }
 
-/** Blok 9 — Autor / E-E-A-T. Celá šířka, 3 sloupce. */
-export function OfferAuthor() {
+/** Autor — E-E-A-T sekce. */
+export function SluzbaAutor() {
   const [activeImg, setActiveImg] = useState(0);
 
   return (

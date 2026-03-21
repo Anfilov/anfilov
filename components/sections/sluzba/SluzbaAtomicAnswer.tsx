@@ -1,12 +1,12 @@
 import { Container } from "@/components/ui/Container";
-import type { OfferData } from "@/lib/offer-types";
+import type { SluzbaData } from "@/lib/sluzba-types";
 
 interface Props {
-  offer: OfferData;
+  offer: SluzbaData;
 }
 
-/** Blok 0 — Atomic Answer (TL;DR). Max 200 slov čistého textu pro AI extrakci. */
-export function OfferAtomicAnswer({ offer }: Props) {
+/** Hero / Atomic Answer — TL;DR pro AI extrakci. */
+export function SluzbaAtomicAnswer({ offer }: Props) {
   return (
     <section
       aria-label="Shrnutí služby"

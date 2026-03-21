@@ -86,7 +86,7 @@ export function ContactHero() {
 
   return (
     <section className="relative overflow-hidden bg-[var(--color-surface)]">
-      {/* Subtle diagonal pattern — same as OfferHero */}
+      {/* Subtle diagonal pattern — same as SluzbaHero */}
       <div
         aria-hidden="true"
         className="absolute inset-0 pointer-events-none"

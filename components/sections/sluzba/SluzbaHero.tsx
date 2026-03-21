@@ -3,17 +3,17 @@ import { ArrowRight, Star } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Button } from "@/components/ui/Button";
-import type { OfferData } from "@/lib/offer-types";
+import type { SluzbaData } from "@/lib/sluzba-types";
 
 interface Props {
-  offer: OfferData;
+  offer: SluzbaData;
   googleRating?: number;
   googleReviewCount?: number;
   googleReviewsUrl?: string;
 }
 
-/** Blok 0+1 — Hero (includes Atomic Answer). Light surface. */
-export function OfferHero({ offer, googleRating, googleReviewCount, googleReviewsUrl = "#" }: Props) {
+/** Hero — hlavní banner s Atomic Answer. */
+export function SluzbaHero({ offer, googleRating, googleReviewCount, googleReviewsUrl = "#" }: Props) {
   const rating = googleRating ?? offer.rating;
   const reviewCount = googleReviewCount ?? offer.projectCount;
   return (
@@ -24,7 +24,7 @@ export function OfferHero({ offer, googleRating, googleReviewCount, googleReview
         className="absolute inset-0 pointer-events-none"
         style={{
           backgroundImage:
-            "repeating-linear-gradient(45deg, transparent, transparent 24px, rgba(200,168,78,0.025) 24px, rgba(200,168,78,0.025) 25px)",
+            "repeating-linear-gradient(45deg, transparent, transparent 24px, var(--color-glow-subtle) 24px, var(--color-glow-subtle) 25px)",
         }}
       />
 

@@ -1,9 +1,9 @@
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
-import type { OfferData } from "@/lib/offer-types";
+import type { SluzbaData } from "@/lib/sluzba-types";
 
 interface Props {
-  offer: OfferData;
+  offer: SluzbaData;
 }
 
 const funnelColors: Record<string, string> = {
@@ -12,8 +12,8 @@ const funnelColors: Record<string, string> = {
   BOFU: "bg-[var(--color-tag-forest-light)] text-[var(--color-forest-light)]",
 };
 
-/** Blok 11 — Související články. Content cluster propojení. */
-export function OfferArticles({ offer }: Props) {
+/** Články — content cluster propojení. */
+export function SluzbaClanky({ offer }: Props) {
   if (!offer.articles.length) return null;
 
   return (

@@ -35,7 +35,7 @@ export function LegalLayout({
 
   return (
     <>
-      {/* ━━━ Hero — matches OfferHero pattern ━━━ */}
+      {/* ━━━ Hero — matches SluzbaHero pattern ━━━ */}
       <section className="relative overflow-hidden bg-[var(--color-surface)]">
         {/* Subtle diagonal pattern */}
         <div

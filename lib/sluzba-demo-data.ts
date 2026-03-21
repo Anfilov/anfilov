@@ -1,11 +1,11 @@
-import type { OfferData } from "./offer-types";
+import type { SluzbaData } from "./sluzba-types";
 
 // ---------------------------------------------------------------------------
 // Demo data — Tvorba loga
 // Will be replaced by Sanity queries once CMS is connected
 // ---------------------------------------------------------------------------
 
-export const demoOffer: OfferData = {
+export const demoSluzba: SluzbaData = {
   name: "Tvorba loga",
   slug: "tvorba-loga",
   tema: "Tvorba loga",
@@ -24,18 +24,16 @@ export const demoOffer: OfferData = {
   projectCount: 127,
 
   painPoints: [
-    { icon: "Frown", text: "Vaše logo vypadá zastarale a neprofesionálně" },
+    { icon: "Frown", image: "/images/pain-placeholder.webp", text: "Vaše logo vypadá zastarale a neprofesionálně" },
     {
       icon: "Copy",
+      image: "/images/pain-placeholder.webp",
       text: "Logo z Canvy nebo Fiverru vypadá jako tisíc dalších",
     },
     {
       icon: "TrendingDown",
+      image: "/images/pain-placeholder.webp",
       text: "Zákazníci si vaši značku nepamatují",
-    },
-    {
-      icon: "AlertTriangle",
-      text: "Nemáte logo v potřebných formátech pro tisk i web",
     },
   ],
 
@@ -283,14 +281,14 @@ export const demoOffer: OfferData = {
 // Lookup helper — will be replaced by Sanity query
 // ---------------------------------------------------------------------------
 
-const offers: Record<string, OfferData> = {
-  "tvorba-loga": demoOffer,
+const sluzby: Record<string, SluzbaData> = {
+  "tvorba-loga": demoSluzba,
 };
 
-export function getOfferBySlug(slug: string): OfferData | undefined {
-  return offers[slug];
+export function getSluzbaBySlug(slug: string): SluzbaData | undefined {
+  return sluzby[slug];
 }
 
-export function getAllOfferSlugs(): string[] {
-  return Object.keys(offers);
+export function getAllSluzbaSlugs(): string[] {
+  return Object.keys(sluzby);
 }

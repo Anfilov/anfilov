@@ -8,11 +8,12 @@ export interface ToolData {
   logoUrl: string;
 }
 
-interface OfferToolsProps {
+interface SluzbaNastrojeProps {
   tools?: ToolData[];
 }
 
-export function OfferTools({ tools }: OfferToolsProps) {
+/** Nástroje — grid log používaných nástrojů. */
+export function SluzbaNastroje({ tools }: SluzbaNastrojeProps) {
   if (!tools || tools.length === 0) return null;
 
   return (

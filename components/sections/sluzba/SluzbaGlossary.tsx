@@ -1,13 +1,13 @@
 import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/Container";
-import type { OfferData } from "@/lib/offer-types";
+import type { SluzbaData } from "@/lib/sluzba-types";
 
 interface Props {
-  offer: OfferData;
+  offer: SluzbaData;
 }
 
-/** Blok 13 — Slovníkové pojmy. Inline pill tagy. */
-export function OfferGlossary({ offer }: Props) {
+/** Služby a pojmy / Glossary — slovníkové pojmy. */
+export function SluzbaGlossary({ offer }: Props) {
   if (!offer.glossaryTerms.length) return null;
 
   return (

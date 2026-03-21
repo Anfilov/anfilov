@@ -1,35 +1,36 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { siteConfig } from "@/site.config";
-import { getOfferBySlug, getAllOfferSlugs } from "@/lib/offer-demo-data";
+import { getSluzbaBySlug, getAllSluzbaSlugs } from "@/lib/sluzba-demo-data";
 import { fetchGoogleReviews } from "@/lib/google-reviews";
 import { getToolsForPage, getTopProjects } from "@/sanity/lib/queries";
 import { urlForImage } from "@/sanity/lib/image";
-import type { PortfolioProjectView } from "@/components/sections/offer/OfferPortfolio";
-import type { OfferData } from "@/lib/offer-types";
+import type { PortfolioProjectView } from "@/components/sections/sluzba/SluzbaPortfolio";
+import type { SluzbaData } from "@/lib/sluzba-types";
 import { Navbar, Footer } from "@/components/sections";
 import {
-  OfferHero,
-  OfferPainPoints,
-  OfferDeliverables,
-  OfferProcess,
-  OfferPortfolio,
-  OfferPricing,
-  OfferFaq,
-  OfferAuthor,
-  OfferTools,
-  OfferArticles,
-  OfferContact,
-  OfferRelated,
-  OfferReviews,
-} from "@/components/sections/offer";
+  SluzbaHero,
+  SluzbaProblem,
+  SluzbaReseni,
+  SluzbaProces,
+  SluzbaVideo,
+  SluzbaPortfolio,
+  SluzbaRecenze,
+  SluzbaCenik,
+  SluzbaAutor,
+  SluzbaNastroje,
+  SluzbaFaq,
+  SluzbaClanky,
+  SluzbaSluzbyPojmy,
+  SluzbaPoptavka,
+} from "@/components/sections/sluzba";
 
 // ---------------------------------------------------------------------------
 // Static generation
 // ---------------------------------------------------------------------------
 
 export function generateStaticParams() {
-  return getAllOfferSlugs().map((slug) => ({ slug }));
+  return getAllSluzbaSlugs().map((slug) => ({ slug }));
 }
 
 // ---------------------------------------------------------------------------
@@ -40,23 +41,23 @@ type PageProps = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const offer = getOfferBySlug(slug);
-  if (!offer) return {};
+  const sluzba = getSluzbaBySlug(slug);
+  if (!sluzba) return {};
 
-  const url = `${siteConfig.url}/sluzba-template/${offer.slug}`;
-  const ogImage = `${siteConfig.url}/og/${offer.slug}.jpg`;
+  const url = `${siteConfig.url}/sluzba-template/${sluzba.slug}`;
+  const ogImage = `${siteConfig.url}/og/${sluzba.slug}.jpg`;
   const ogFallback = `${siteConfig.url}/og/default-sluzba.jpg`;
 
   return {
-    title: offer.metaTitle,
-    description: offer.metaDescription,
+    title: sluzba.metaTitle,
+    description: sluzba.metaDescription,
     alternates: {
       canonical: url,
       languages: { cs: url },
     },
     openGraph: {
-      title: offer.metaTitle,
-      description: offer.metaDescription,
+      title: sluzba.metaTitle,
+      description: sluzba.metaDescription,
       url,
       siteName: siteConfig.name,
       locale: siteConfig.locale,
@@ -66,14 +67,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
           url: ogImage,
           width: 1200,
           height: 630,
-          alt: offer.metaTitle,
+          alt: sluzba.metaTitle,
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: offer.metaTitle,
-      description: offer.metaDescription,
+      title: sluzba.metaTitle,
+      description: sluzba.metaDescription,
       images: [ogImage, ogFallback],
     },
   };
@@ -83,8 +84,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 // JSON-LD Structured Data (full schema stack)
 // ---------------------------------------------------------------------------
 
-function OfferJsonLd({ offer, googleRating, googleReviewCount }: { offer: OfferData; googleRating?: number; googleReviewCount?: number }) {
-  const url = `${siteConfig.url}/sluzba-template/${offer.slug}`;
+function SluzbaJsonLd({ sluzba, googleRating, googleReviewCount }: { sluzba: SluzbaData; googleRating?: number; googleReviewCount?: number }) {
+  const url = `${siteConfig.url}/sluzba-template/${sluzba.slug}`;
 
   const organization = {
     "@type": "Organization",
@@ -107,8 +108,8 @@ function OfferJsonLd({ offer, googleRating, googleReviewCount }: { offer: OfferD
     {
       "@context": "https://schema.org",
       "@type": "Service",
-      name: offer.name,
-      description: offer.atomicAnswer,
+      name: sluzba.name,
+      description: sluzba.atomicAnswer,
       url,
       provider: organization,
       areaServed: {
@@ -117,8 +118,8 @@ function OfferJsonLd({ offer, googleRating, googleReviewCount }: { offer: OfferD
       },
       hasOfferCatalog: {
         "@type": "OfferCatalog",
-        name: `${offer.name} — služby`,
-        itemListElement: offer.deliverables.map((d, i) => ({
+        name: `${sluzba.name} — služby`,
+        itemListElement: sluzba.deliverables.map((d, i) => ({
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
@@ -134,14 +135,14 @@ function OfferJsonLd({ offer, googleRating, googleReviewCount }: { offer: OfferD
     {
       "@context": "https://schema.org",
       "@type": "Offer",
-      name: offer.name,
+      name: sluzba.name,
       url,
       priceCurrency: "CZK",
-      price: offer.priceFrom,
+      price: sluzba.priceFrom,
       priceSpecification: {
         "@type": "PriceSpecification",
         priceCurrency: "CZK",
-        price: offer.priceFrom,
+        price: sluzba.priceFrom,
         unitText: "od",
       },
       seller: organization,
@@ -151,7 +152,7 @@ function OfferJsonLd({ offer, googleRating, googleReviewCount }: { offer: OfferD
     {
       "@context": "https://schema.org",
       "@type": "FAQPage",
-      mainEntity: offer.faq.map((item) => ({
+      mainEntity: sluzba.faq.map((item) => ({
         "@type": "Question",
         name: item.q,
         acceptedAnswer: {
@@ -165,14 +166,14 @@ function OfferJsonLd({ offer, googleRating, googleReviewCount }: { offer: OfferD
     {
       "@context": "https://schema.org",
       "@type": "HowTo",
-      name: `Jak probíhá ${offer.name.toLowerCase()}`,
-      step: offer.steps.map((s) => ({
+      name: `Jak probíhá ${sluzba.name.toLowerCase()}`,
+      step: sluzba.steps.map((s) => ({
         "@type": "HowToStep",
         name: s.title,
         text: s.desc,
         position: s.num,
       })),
-      totalTime: `P${offer.deliveryDays}D`,
+      totalTime: `P${sluzba.deliveryDays}D`,
     },
 
     // 5. Person (author / E-E-A-T)
@@ -185,12 +186,12 @@ function OfferJsonLd({ offer, googleRating, googleReviewCount }: { offer: OfferD
     {
       "@context": "https://schema.org",
       "@type": "Service",
-      name: offer.name,
+      name: sluzba.name,
       aggregateRating: {
         "@type": "AggregateRating",
-        ratingValue: googleRating ?? offer.rating,
+        ratingValue: googleRating ?? sluzba.rating,
         bestRating: 5,
-        ratingCount: googleReviewCount ?? offer.projectCount,
+        ratingCount: googleReviewCount ?? sluzba.projectCount,
       },
     },
 
@@ -214,7 +215,7 @@ function OfferJsonLd({ offer, googleRating, googleReviewCount }: { offer: OfferD
         {
           "@type": "ListItem",
           position: 3,
-          name: offer.name,
+          name: sluzba.name,
           item: url,
         },
       ],
@@ -238,10 +239,10 @@ function OfferJsonLd({ offer, googleRating, googleReviewCount }: { offer: OfferD
 // Page component
 // ---------------------------------------------------------------------------
 
-export default async function OfferPage({ params }: PageProps) {
+export default async function SluzbaPage({ params }: PageProps) {
   const { slug } = await params;
-  const offer = getOfferBySlug(slug);
-  if (!offer) notFound();
+  const sluzba = getSluzbaBySlug(slug);
+  if (!sluzba) notFound();
 
   // Fetch Google Reviews (ISR cached 1h, falls back to demo data)
   const [googleData, tools, rawProjects] = await Promise.all([
@@ -277,59 +278,76 @@ export default async function OfferPage({ params }: PageProps) {
 
   return (
     <>
-      <OfferJsonLd offer={offer} googleRating={googleData.rating} googleReviewCount={googleData.reviewCount} />
+      <SluzbaJsonLd sluzba={sluzba} googleRating={googleData.rating} googleReviewCount={googleData.reviewCount} />
       <Navbar />
 
       <main>
-        {/* Blok 0+1 — Hero (includes Atomic Answer) */}
-        <OfferHero offer={offer} googleRating={googleData.rating} googleReviewCount={googleData.reviewCount} googleReviewsUrl={`https://search.google.com/local/reviews?placeid=${process.env.GOOGLE_PLACE_ID ?? ""}`} />
+        {/* Hero */}
+        <SluzbaHero offer={sluzba} googleRating={googleData.rating} googleReviewCount={googleData.reviewCount} googleReviewsUrl={`https://search.google.com/local/reviews?placeid=${process.env.GOOGLE_PLACE_ID ?? ""}`} />
 
+        {/* Problém */}
         <div className="reveal">
-          <OfferPainPoints offer={offer} />
+          <SluzbaProblem offer={sluzba} />
         </div>
 
+        {/* Řešení */}
         <div className="reveal">
-          <OfferDeliverables offer={offer} />
+          <SluzbaReseni offer={sluzba} />
         </div>
 
+        {/* Proces */}
         <div className="reveal">
-          <OfferProcess offer={offer} />
+          <SluzbaProces offer={sluzba} />
         </div>
 
+        {/* Video */}
         <div className="reveal">
-          <OfferPortfolio projects={projects} />
+          <SluzbaVideo />
         </div>
 
+        {/* Portfolio */}
         <div className="reveal">
-          <OfferReviews reviews={googleData.reviews} rating={googleData.rating} reviewCount={googleData.reviewCount} googleReviewsUrl={`https://search.google.com/local/reviews?placeid=${process.env.GOOGLE_PLACE_ID ?? ""}`} />
+          <SluzbaPortfolio projects={projects} />
         </div>
 
+        {/* Recenze */}
         <div className="reveal">
-          <OfferPricing offer={offer} />
+          <SluzbaRecenze reviews={googleData.reviews} rating={googleData.rating} reviewCount={googleData.reviewCount} googleReviewsUrl={`https://search.google.com/local/reviews?placeid=${process.env.GOOGLE_PLACE_ID ?? ""}`} />
         </div>
 
+        {/* Ceník */}
         <div className="reveal">
-          <OfferAuthor />
+          <SluzbaCenik offer={sluzba} />
         </div>
 
+        {/* Autor */}
         <div className="reveal">
-          <OfferTools tools={tools} />
+          <SluzbaAutor />
         </div>
 
+        {/* Nástroje */}
         <div className="reveal">
-          <OfferFaq faq={offer.faq} serviceName={offer.name} />
+          <SluzbaNastroje tools={tools} />
         </div>
 
+        {/* FAQ */}
         <div className="reveal">
-          <OfferArticles offer={offer} />
+          <SluzbaFaq faq={sluzba.faq} serviceName={sluzba.name} />
         </div>
 
+        {/* Články */}
         <div className="reveal">
-          <OfferRelated offer={offer} />
+          <SluzbaClanky offer={sluzba} />
         </div>
 
+        {/* Služby a pojmy */}
         <div className="reveal">
-          <OfferContact slug={offer.slug} serviceName={offer.name} />
+          <SluzbaSluzbyPojmy offer={sluzba} />
+        </div>
+
+        {/* Poptávka */}
+        <div className="reveal">
+          <SluzbaPoptavka slug={sluzba.slug} serviceName={sluzba.name} />
         </div>
       </main>
 

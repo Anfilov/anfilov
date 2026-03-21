@@ -1,8 +1,8 @@
 import { Container } from "@/components/ui/Container";
-import type { OfferData } from "@/lib/offer-types";
+import type { SluzbaData } from "@/lib/sluzba-types";
 
 interface Props {
-  offer: OfferData;
+  offer: SluzbaData;
 }
 
 function DotScore({ score, max = 5, highlight = false }: { score: number; max?: number; highlight?: boolean }) {
@@ -31,8 +31,8 @@ const columnLabels = {
   diy: "DIY / Fiverr",
 };
 
-/** Blok 6 — Srovnání přístupů. ANFILOV table spec. */
-export function OfferComparison({ offer }: Props) {
+/** Ceník / Srovnání — tabulka srovnání přístupů. */
+export function SluzbaComparison({ offer }: Props) {
   const { comparison } = offer;
 
   return (
@@ -85,7 +85,7 @@ export function OfferComparison({ offer }: Props) {
                         <td
                           key={col}
                           className={`py-3.5 px-4 text-center ${
-                            col === "anfilov" ? "bg-[rgba(200,168,78,0.04)]" : ""
+                            col === "anfilov" ? "bg-[var(--color-glow)]" : ""
                           }`}
                         >
                           <DotScore

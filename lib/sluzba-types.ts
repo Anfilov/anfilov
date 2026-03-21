@@ -3,49 +3,50 @@
 // Prepared for Sanity CMS integration (types mirror future schema)
 // ---------------------------------------------------------------------------
 
-export interface OfferPainPoint {
-  icon: string; // Lucide icon name
+export interface SluzbaPainPoint {
+  icon: string; // Lucide icon name (legacy, optional)
+  image?: string; // Image URL (takes priority over icon)
   text: string;
 }
 
-export interface OfferDeliverable {
+export interface SluzbaDeliverable {
   title: string;
   benefit: string;
 }
 
-export interface OfferStep {
+export interface SluzbaStep {
   num: number;
   title: string;
   desc: string;
   days: number;
 }
 
-export interface OfferCaseStudy {
+export interface SluzbaCaseStudy {
   client: string;
   image: string;
   result: string;
   quote: string;
 }
 
-export interface OfferPricingExample {
+export interface SluzbaCenikExample {
   name: string;
   price: number;
   scope: string;
 }
 
-export interface OfferPricingFactor {
+export interface SluzbaCenikFactor {
   name: string;
   simple: string;
   complex: string;
 }
 
-export interface OfferPricing {
+export interface SluzbaCenik {
   anchor: number;
-  examples: OfferPricingExample[];
-  factors: OfferPricingFactor[];
+  examples: SluzbaCenikExample[];
+  factors: SluzbaCenikFactor[];
 }
 
-export interface OfferComparison {
+export interface SluzbaComparison {
   criteria: string[];
   columns: {
     anfilov: number[];
@@ -54,18 +55,18 @@ export interface OfferComparison {
   };
 }
 
-export interface OfferFaqItem {
+export interface SluzbaFaqItem {
   q: string;
   a: string;
 }
 
-export interface OfferCrossLink {
+export interface SluzbaCrossLink {
   name: string;
   slug: string;
   description: string;
 }
 
-export interface OfferArticle {
+export interface SluzbaArticle {
   slug: string;
   title: string;
   thumbnail: string;
@@ -73,7 +74,7 @@ export interface OfferArticle {
   type: string;
 }
 
-export interface OfferData {
+export interface SluzbaData {
   name: string;
   slug: string;
   tema: string;
@@ -92,35 +93,35 @@ export interface OfferData {
   projectCount: number;
 
   // Blok 2 — Pain Points
-  painPoints: OfferPainPoint[];
+  painPoints: SluzbaPainPoint[];
 
   // Blok 3 — Deliverables
-  deliverables: OfferDeliverable[];
+  deliverables: SluzbaDeliverable[];
   deliverablesTrustNote: string;
 
   // Blok 4 — Process
-  steps: OfferStep[];
+  steps: SluzbaStep[];
 
   // Blok 5 — Portfolio
-  caseStudies: OfferCaseStudy[];
+  caseStudies: SluzbaCaseStudy[];
   clientLogos: string[];
 
   // Blok 6 — Comparison
-  comparison: OfferComparison;
+  comparison: SluzbaComparison;
 
   // Blok 7 — Pricing
-  pricing: OfferPricing;
+  pricing: SluzbaCenik;
 
   // Blok 8 — FAQ
-  faq: OfferFaqItem[];
+  faq: SluzbaFaqItem[];
 
   // Blok 9 — Author (static, shared across offers)
 
   // Blok 10 — Cross-sell
-  crossLinks: OfferCrossLink[];
+  crossLinks: SluzbaCrossLink[];
 
   // Blok 11 — Articles
-  articles: OfferArticle[];
+  articles: SluzbaArticle[];
 
   // Blok 13 — Glossary
   glossaryTerms: string[];

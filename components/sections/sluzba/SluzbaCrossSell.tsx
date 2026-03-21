@@ -1,13 +1,13 @@
 import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/Container";
-import type { OfferData } from "@/lib/offer-types";
+import type { SluzbaData } from "@/lib/sluzba-types";
 
 interface Props {
-  offer: OfferData;
+  offer: SluzbaData;
 }
 
-/** Blok 10 — Cross-sell. Doporučené související služby. */
-export function OfferCrossSell({ offer }: Props) {
+/** Služby a pojmy / Cross-sell — doporučené služby. */
+export function SluzbaCrossSell({ offer }: Props) {
   if (!offer.crossLinks.length) return null;
 
   return (

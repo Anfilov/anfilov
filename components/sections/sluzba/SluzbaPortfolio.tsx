@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 import { X, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { Container } from "@/components/ui/Container";
@@ -21,8 +22,8 @@ interface Props {
   projects?: PortfolioProjectView[];
 }
 
-/** Blok 5 — Portfolio / Reference. Grid 3 columns, data from Sanity. */
-export function OfferPortfolio({ projects }: Props) {
+/** Portfolio — ukázky prací. Grid 3 sloupce, data ze Sanity. */
+export function SluzbaPortfolio({ projects }: Props) {
   const [lightbox, setLightbox] = useState<{ projectIdx: number; imageIdx: number } | null>(null);
 
   const closeLightbox = useCallback(() => setLightbox(null), []);
@@ -146,8 +147,8 @@ export function OfferPortfolio({ projects }: Props) {
         </Container>
       </section>
 
-      {/* Lightbox */}
-      {lightbox && images.length > 0 && (
+      {/* Lightbox — rendered via portal to escape transform containing blocks */}
+      {lightbox && images.length > 0 && typeof document !== "undefined" && createPortal(
         <div
           className="fixed inset-0 z-50 flex items-center justify-center"
           style={{ backgroundColor: "rgba(0,0,0,0.85)" }}
@@ -180,7 +181,7 @@ export function OfferPortfolio({ projects }: Props) {
           {lightbox.imageIdx === 0 ? (
             <div
               className="w-[85vw] sm:w-[75vw] max-w-[1000px] rounded-[var(--radius-lg)] overflow-hidden"
-              style={{ backgroundColor: "#fff", padding: "clamp(40px, 8vw, 128px)", paddingBottom: "clamp(60px, 10vw, 160px)" }}
+              style={{ backgroundColor: "var(--color-surface-elevated)", padding: "clamp(40px, 8vw, 128px)", paddingBottom: "clamp(60px, 10vw, 160px)" }}
             >
               <img
                 key={`lb-${lightbox.projectIdx}-${lightbox.imageIdx}`}
@@ -222,7 +223,8 @@ export function OfferPortfolio({ projects }: Props) {
               {lightbox.imageIdx + 1} / {images.length}
             </span>
           )}
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );

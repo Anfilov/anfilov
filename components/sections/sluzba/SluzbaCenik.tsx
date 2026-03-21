@@ -5,10 +5,10 @@ import { motion, useInView } from "framer-motion";
 import { ArrowRight, Check } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import type { OfferData } from "@/lib/offer-types";
+import type { SluzbaData } from "@/lib/sluzba-types";
 
 interface Props {
-  offer: OfferData;
+  offer: SluzbaData;
 }
 
 const containerVariants = {
@@ -69,8 +69,8 @@ function DotScore({ score, max = 5, highlight = false }: { score: number; max?: 
   );
 }
 
-/** Blok 6+7 — Ceník & Srovnání. Dvousloupcový: ceník vlevo, srovnání vpravo. */
-export function OfferPricing({ offer }: Props) {
+/** Ceník — cena a srovnání přístupů. */
+export function SluzbaCenik({ offer }: Props) {
   const { pricing, comparison } = offer;
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });

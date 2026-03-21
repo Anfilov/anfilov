@@ -3,10 +3,10 @@
 import { useRef, useState, useEffect, useSyncExternalStore } from "react";
 import { motion, useInView } from "framer-motion";
 import { Container } from "@/components/ui/Container";
-import type { OfferData } from "@/lib/offer-types";
+import type { SluzbaData } from "@/lib/sluzba-types";
 
 interface Props {
-  offer: OfferData;
+  offer: SluzbaData;
 }
 
 function useIsDesktop() {
@@ -21,8 +21,8 @@ function useIsDesktop() {
   );
 }
 
-/** Blok 4 — Proces / Jak to funguje. Horizontální stepper s staggered reveal. */
-export function OfferProcess({ offer }: Props) {
+/** Proces — jak probíhá spolupráce. Horizontální stepper. */
+export function SluzbaProces({ offer }: Props) {
   const totalDays = offer.steps.reduce((sum, s) => sum + s.days, 0);
   const count = offer.steps.length;
   const isDesktop = useIsDesktop();
@@ -35,7 +35,7 @@ export function OfferProcess({ offer }: Props) {
   }, [isInView, hasAnimated]);
 
   return (
-    <section className="bg-[var(--color-surface-sunken)]" style={{ paddingTop: "calc(var(--section-padding-y) / 2)", paddingBottom: "var(--section-padding-y)" }}>
+    <section className="bg-[var(--color-surface-sunken)]" style={{ paddingTop: "calc(var(--section-padding-y) / 2)", paddingBottom: "calc(var(--section-padding-y) / 2)" }}>
       <Container>
         <header className="max-w-[680px] mb-[var(--space-heading-gap)]">
           <p className="text-[12px] font-semibold tracking-[3px] uppercase text-[var(--color-gold)] mb-3 font-[family-name:var(--font-ui)]">
@@ -117,7 +117,7 @@ export function OfferProcess({ offer }: Props) {
                   <h3 className="text-[15px] font-bold text-[var(--color-text-primary)] font-[family-name:var(--font-heading)] tracking-tight" style={{ marginBottom: 6 }}>
                     {step.title}
                   </h3>
-                  <span className="text-[11px] font-semibold text-[var(--color-warm-500)] font-[family-name:var(--font-ui)] bg-[rgba(200,168,78,0.1)] px-2 py-0.5 rounded-[var(--radius-xs)] inline-block" style={{ marginBottom: 8 }}>
+                  <span className="text-[11px] font-semibold text-[var(--color-warm-500)] font-[family-name:var(--font-ui)] bg-[var(--color-tag-gold)] px-2 py-0.5 rounded-[var(--radius-xs)] inline-block" style={{ marginBottom: 8 }}>
                     {step.days === 1 ? "1 den" : `${step.days} dny`}
                   </span>
                   <p className="text-[13px] text-[var(--color-text-secondary)] font-[family-name:var(--font-body)] leading-[1.6]">
@@ -151,7 +151,7 @@ export function OfferProcess({ offer }: Props) {
           animate={hasAnimated ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
           transition={{ duration: 0.4, delay: count * 0.12 + 0.2 }}
         >
-          <span className="inline-flex items-center gap-3 px-5 py-3 rounded-[var(--radius-sm)] bg-[rgba(200,168,78,0.08)] border border-[rgba(200,168,78,0.15)]">
+          <span className="inline-flex items-center gap-3 px-5 py-3 rounded-[var(--radius-sm)] bg-[var(--color-accent-subtle)] border border-[var(--color-border-accent)]">
             <span className="text-base text-[var(--color-text-secondary)] font-[family-name:var(--font-ui)]">
               Celkem cca <strong className="font-bold text-[var(--color-text-primary)]">{totalDays} pracovních dní</strong>
             </span>

@@ -1,9 +1,9 @@
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/site.config";
-import { getAllOfferSlugs } from "@/lib/offer-demo-data";
+import { getAllSluzbaSlugs } from "@/lib/sluzba-demo-data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const offers = getAllOfferSlugs().map((slug) => ({
+  const sluzby = getAllSluzbaSlugs().map((slug) => ({
     url: `${siteConfig.url}/sluzba-template/${slug}`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
@@ -35,6 +35,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "yearly",
       priority: 0.3,
     },
-    ...offers,
+    ...sluzby,
   ];
 }

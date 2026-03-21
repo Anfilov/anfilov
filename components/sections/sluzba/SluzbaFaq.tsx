@@ -1,14 +1,14 @@
 import { Container } from "@/components/ui/Container";
 import { FaqSection } from "@/components/ui/FaqSection";
-import type { OfferFaqItem } from "@/lib/offer-types";
+import type { SluzbaFaqItem } from "@/lib/sluzba-types";
 
 interface Props {
-  faq: OfferFaqItem[];
+  faq: SluzbaFaqItem[];
   serviceName: string;
 }
 
-/** Blok 8 — FAQ. Full width, two columns. */
-export function OfferFaq({ faq, serviceName }: Props) {
+/** FAQ — často kladené otázky. Dvousloupcový accordion. */
+export function SluzbaFaq({ faq, serviceName }: Props) {
   const items = faq.map((f) => ({ question: f.q, answer: f.a }));
   const mid = Math.ceil(items.length / 2);
   const left = items.slice(0, mid);

@@ -1,14 +1,14 @@
 import Image from "next/image";
 import { Check } from "lucide-react";
 import { Container } from "@/components/ui/Container";
-import type { OfferData } from "@/lib/offer-types";
+import type { SluzbaData } from "@/lib/sluzba-types";
 
 interface Props {
-  offer: OfferData;
+  offer: SluzbaData;
 }
 
-/** Blok 3 — Řešení / Co získáte. Dvousloupcový: obrázek vlevo, deliverables vpravo. */
-export function OfferDeliverables({ offer }: Props) {
+/** Řešení — co klient získá. Dvousloupcový layout. */
+export function SluzbaReseni({ offer }: Props) {
   return (
     <section className="bg-[var(--color-surface-sunken)]" style={{ paddingTop: "var(--section-padding-y)", paddingBottom: "calc(var(--section-padding-y) / 2)" }}>
       <Container>

@@ -15,13 +15,13 @@ import { Textarea } from "@/components/ui/Textarea";
 import { Button } from "@/components/ui/Button";
 import { sendInquiry, type InquiryState } from "@/app/actions/send-inquiry";
 
-interface OfferContactProps {
+interface SluzbaPoptavkaProps {
   slug?: string;
   serviceName?: string;
 }
 
-/** Blok 12 — Kontakt / Finální CTA. Light surface. */
-export function OfferContact({ slug, serviceName }: OfferContactProps) {
+/** Poptávka — kontaktní formulář a CTA. */
+export function SluzbaPoptavka({ slug, serviceName }: SluzbaPoptavkaProps) {
   const [state, formAction, isPending] = useActionState<InquiryState, FormData>(
     sendInquiry,
     null,
@@ -214,7 +214,7 @@ function ContactInfo({
       <span
         className="
           flex-shrink-0 w-10 h-10 rounded-[var(--radius-md)]
-          bg-[rgba(200,168,78,0.08)] text-[var(--color-gold)]
+          bg-[var(--color-accent-subtle)] text-[var(--color-gold)]
           inline-flex items-center justify-center
         "
         aria-hidden="true"
