@@ -115,3 +115,94 @@ export async function getAllProjectSlugs(): Promise<string[]> {
     `*[_type == "project"].slug.current`,
   );
 }
+
+// ---------------------------------------------------------------------------
+// Služby (service pages)
+// ---------------------------------------------------------------------------
+
+const sluzbaFields = `
+  _id,
+  name,
+  "slug": slug.current,
+  heroTitle,
+  heroSubheadline,
+  heroMediaType,
+  heroImage {
+    image { asset->, hotspot, crop },
+    alt
+  },
+  heroEmbed,
+  heroPriceLabel,
+  heroProjectsLabel,
+  heroDeliveryLabel,
+  atomicAnswer,
+  metaTitle,
+  metaDescription,
+  problemOverline,
+  problemTitle,
+  problemItems[] {
+    "imageUrl": image.asset->url,
+    text
+  },
+  reseniOverline,
+  reseniTitle,
+  reseniItems[] { title, text },
+  reseniMediaType,
+  reseniImage {
+    image { asset->, hotspot, crop },
+    alt
+  },
+  reseniEmbed,
+  procesOverline,
+  procesTitle,
+  procesSteps[] { title, days, text },
+  videoOverline,
+  videoTitle,
+  videoBody,
+  videoSource,
+  videoUrl,
+  videoEmbed,
+  portfolioOverline,
+  portfolioTitle,
+  portfolioProjects[]-> {
+    _id,
+    title,
+    "slug": slug.current,
+    client,
+    description,
+    result,
+    ${imageFields},
+    gallery[] {
+      image { asset->, hotspot, crop },
+      alt,
+      caption
+    }
+  },
+  cenikOverline,
+  cenikTitle,
+  cenikSubtitle,
+  cenikPriceTitle,
+  cenikPriceLabel,
+  cenikIncludedTitle,
+  cenikIncludedItems[] { name, desc },
+  cenikTableTitle,
+  cenikTableColumns,
+  cenikTableRows[] { criterion, scores },
+  cenikTableNote,
+  faqOverline,
+  faqTitle,
+  faqItems[] { question, answer }
+`;
+
+/** Single služba by slug. */
+export async function getSluzbaBySlug(slug: string) {
+  return client.fetch(
+    `*[_type == "sluzba" && slug.current == $slug][0] { ${sluzbaFields} }`,
+    { slug },
+  );
+}
+
+/** All služba slugs (for static generation). */
+export async function getAllSluzbaSlugs(): Promise<string[]> {
+  return client.fetch(`*[_type == "sluzba"].slug.current`);
+}

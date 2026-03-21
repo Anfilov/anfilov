@@ -18,8 +18,13 @@ export const demoSluzba: SluzbaData = {
   atomicAnswer:
     "Tvorba loga je proces návrhu unikátní vizuální značky, která odráží hodnoty a strategii vaší firmy. Služba je určena podnikatelům, startupům a firmám, které chtějí profesionální logo — ne generický clipart z Canvy. Získáte originální logotyp ve všech potřebných formátech, základní brand manuál a 2 kola revizí. Cena začíná od 15 000 Kč a dodání trvá přibližně 12 pracovních dní. Službu poskytuje Simon Anfilov z ANFILOV Studia v Praze, brand & web designer s 12 lety zkušeností a 200+ dokončenými projekty.",
 
-  heroSubheadline: "Logo, které vaši zákazníci nezapomenou",
+  heroTitle: "Tvorba loga",
+  heroSubheadline: "Získejte důvěru těch správných zákazníků a oslovte je logem sladěným s celým vizuálním stylem. Provedu vás tvorbou firemní identity od strategie po samotný design.",
   heroImage: "https://cdn.sanity.io/images/d8caxrt0/production/5afc7a4b71602bbcfc97a654dd1f365530263352-2560x2560.webp",
+  heroMediaType: "image",
+  heroPriceLabel: "Již od 15 000 Kč",
+  heroProjectsLabel: "100+ projektů",
+  heroDeliveryLabel: "dodání cca 12 dní",
   rating: 4.9,
   projectCount: 127,
 

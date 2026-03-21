@@ -83,14 +83,20 @@ export interface SluzbaData {
   metaTitle: string;
   metaDescription: string;
 
-  // Blok 0 — Atomic Answer
-  atomicAnswer: string;
-
-  // Blok 1 — Hero
+  // Hero
+  heroTitle?: string;
   heroSubheadline: string;
   heroImage: string;
+  heroMediaType?: "image" | "embed";
+  heroEmbed?: string;
+  heroPriceLabel?: string;
+  heroProjectsLabel?: string;
+  heroDeliveryLabel?: string;
   rating: number;
   projectCount: number;
+
+  // Atomic Answer
+  atomicAnswer: string;
 
   // Blok 2 — Pain Points
   painPoints: SluzbaPainPoint[];

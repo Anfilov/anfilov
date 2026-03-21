@@ -5,6 +5,7 @@ import { page } from "./documents/page";
 import { siteSettings } from "./documents/site-settings";
 import { project } from "./documents/project";
 import { tool } from "./documents/tool";
+import { sluzba } from "./documents/sluzba";
 
 // Objects
 import { link } from "./objects/link";
@@ -21,6 +22,7 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   siteSettings,
   project,
   tool,
+  sluzba,
   // Objects
   link,
   imageWithAlt,

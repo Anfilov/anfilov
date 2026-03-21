@@ -42,17 +42,24 @@ export function SluzbaHero({ offer, googleRating, googleReviewCount, googleRevie
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Text column — on mobile appears second (after image) */}
           <div className="order-2 lg:order-1">
-            <h1 className="text-4xl sm:text-5xl lg:text-[3.75rem] leading-[1.06] tracking-[-0.03em] mb-6">
+            <p className="text-[12px] font-semibold tracking-[3px] uppercase text-[var(--color-gold)] mb-3 font-[family-name:var(--font-ui)]">
               {offer.name}
-            </h1>
-            <p className="text-lg sm:text-xl text-[var(--color-text-secondary)] leading-relaxed font-[family-name:var(--font-body)] mb-6 max-w-[520px]">
-              Získejte důvěru těch správných zákazníků a&nbsp;oslovte je logem sladěným s&nbsp;celým vizuálním stylem. Provedu vás tvorbou firemní identity od strategie po samotný design.
             </p>
+            <h1 className="text-4xl sm:text-5xl lg:text-[3.75rem] leading-[1.06] tracking-[-0.03em] mb-6">
+              {offer.heroTitle || offer.name}
+            </h1>
+            {offer.heroSubheadline && (
+              <p className="text-lg sm:text-xl text-[var(--color-text-secondary)] leading-relaxed font-[family-name:var(--font-body)] mb-6 max-w-[520px]">
+                {offer.heroSubheadline}
+              </p>
+            )}
 
             {/* Price anchor */}
-            <p className="text-2xl sm:text-3xl font-bold text-[var(--color-gold)] font-[family-name:var(--font-heading)] tracking-tight mb-6">
-              Již od {offer.priceFrom.toLocaleString("cs-CZ")}&nbsp;Kč
-            </p>
+            {offer.heroPriceLabel && (
+              <p className="text-2xl sm:text-3xl font-bold text-[var(--color-gold)] font-[family-name:var(--font-heading)] tracking-tight mb-6">
+                {offer.heroPriceLabel}
+              </p>
+            )}
 
             {/* CTAs */}
             <div className="flex flex-wrap items-center gap-4 mb-6">
@@ -101,14 +108,22 @@ export function SluzbaHero({ offer, googleRating, googleReviewCount, googleRevie
                   {rating}
                 </span>
               </a>
-              <span className="text-[var(--color-border-strong)]" aria-hidden="true">&middot;</span>
-              <span className="text-base font-bold text-[var(--color-text-primary)] font-[family-name:var(--font-heading)]">
-                100+ projektů
-              </span>
-              <span className="text-[var(--color-border-strong)]" aria-hidden="true">&middot;</span>
-              <span className="text-base font-bold text-[var(--color-text-primary)] font-[family-name:var(--font-heading)]">
-                dodání cca {offer.deliveryDays} dní
-              </span>
+              {offer.heroProjectsLabel && (
+                <>
+                  <span className="text-[var(--color-border-strong)]" aria-hidden="true">&middot;</span>
+                  <span className="text-base font-bold text-[var(--color-text-primary)] font-[family-name:var(--font-heading)]">
+                    {offer.heroProjectsLabel}
+                  </span>
+                </>
+              )}
+              {offer.heroDeliveryLabel && (
+                <>
+                  <span className="text-[var(--color-border-strong)]" aria-hidden="true">&middot;</span>
+                  <span className="text-base font-bold text-[var(--color-text-primary)] font-[family-name:var(--font-heading)]">
+                    {offer.heroDeliveryLabel}
+                  </span>
+                </>
+              )}
             </div>
           </div>
 

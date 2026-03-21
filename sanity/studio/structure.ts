@@ -12,6 +12,9 @@ export const structure: StructureResolver = (S) =>
           S.document().schemaType("siteSettings").documentId("siteSettings"),
         ),
       S.divider(),
+      // Služby
+      S.documentTypeListItem("sluzba").title("Služby"),
+      S.divider(),
       // Projects
       S.documentTypeListItem("project").title("Projekty"),
       // Tools

@@ -21,6 +21,18 @@ function useIsDesktop() {
   );
 }
 
+function dny(n: number): string {
+  if (n === 1) return "1 den";
+  if (n >= 2 && n <= 4) return `${n} dny`;
+  return `${n} dní`;
+}
+
+function pracovnichDni(n: number): string {
+  if (n === 1) return "1 pracovní den";
+  if (n >= 2 && n <= 4) return `${n} pracovní dny`;
+  return `${n} pracovních dní`;
+}
+
 /** Proces — jak probíhá spolupráce. Horizontální stepper. */
 export function SluzbaProces({ offer }: Props) {
   const totalDays = offer.steps.reduce((sum, s) => sum + s.days, 0);
@@ -118,7 +130,7 @@ export function SluzbaProces({ offer }: Props) {
                     {step.title}
                   </h3>
                   <span className="text-[11px] font-semibold text-[var(--color-warm-500)] font-[family-name:var(--font-ui)] bg-[var(--color-tag-gold)] px-2 py-0.5 rounded-[var(--radius-xs)] inline-block" style={{ marginBottom: 8 }}>
-                    {step.days === 1 ? "1 den" : `${step.days} dny`}
+                    {dny(step.days)}
                   </span>
                   <p className="text-[13px] text-[var(--color-text-secondary)] font-[family-name:var(--font-body)] leading-[1.6]">
                     {step.desc}
@@ -153,7 +165,7 @@ export function SluzbaProces({ offer }: Props) {
         >
           <span className="inline-flex items-center gap-3 px-5 py-3 rounded-[var(--radius-sm)] bg-[var(--color-accent-subtle)] border border-[var(--color-border-accent)]">
             <span className="text-base text-[var(--color-text-secondary)] font-[family-name:var(--font-ui)]">
-              Celkem cca <strong className="font-bold text-[var(--color-text-primary)]">{totalDays} pracovních dní</strong>
+              Celkem cca <strong className="font-bold text-[var(--color-text-primary)]">{pracovnichDni(totalDays)}</strong>
             </span>
           </span>
         </motion.div>
