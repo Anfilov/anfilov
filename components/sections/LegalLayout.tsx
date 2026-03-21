@@ -57,9 +57,9 @@ export function LegalLayout({
             className="mb-10"
           />
 
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 reveal-stagger">
             {/* ── Left column (2/5 = 40%) ── */}
-            <div className="lg:col-span-2">
+            <div className="lg:col-span-2 reveal">
               {/* Overline */}
               <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-[var(--color-text-accent)] mb-5 font-[family-name:var(--font-heading)]">
                 Právní informace
@@ -132,7 +132,7 @@ export function LegalLayout({
             </div>
 
             {/* ── Right column (3/5 = 60%) — content ── */}
-            <div className="lg:col-span-3">
+            <div className="lg:col-span-3 reveal">
               <div className="legal-content">{children}</div>
             </div>
           </div>

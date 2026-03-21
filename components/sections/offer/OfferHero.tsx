@@ -33,7 +33,7 @@ export function OfferHero({ offer, googleRating, googleReviewCount, googleReview
         <Breadcrumbs
           items={[
             { label: "Domů", href: "/" },
-            { label: "Služby", href: "/nabidka" },
+            { label: "Služby", href: "/sluzba-template" },
             { label: offer.name },
           ]}
           className="mb-10"
@@ -112,14 +112,14 @@ export function OfferHero({ offer, googleRating, googleReviewCount, googleReview
             </div>
           </div>
 
-          {/* Image column */}
+          {/* Image column — transparent, no frame */}
           <div className="relative order-1 lg:order-2">
-            <div className="relative aspect-[4/3] rounded-[var(--radius-xl)] overflow-hidden shadow-[var(--shadow-xl)]">
+            <div className="relative aspect-[4/3]">
               <Image
                 src={offer.heroImage}
                 alt={`Ukázka služby ${offer.name}`}
                 fill
-                className="object-cover"
+                className="object-contain"
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 priority
               />

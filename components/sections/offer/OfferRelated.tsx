@@ -30,7 +30,7 @@ export function OfferRelated({ offer }: Props) {
             {offer.crossLinks.map((link) => (
               <a
                 key={link.slug}
-                href={`/nabidka/${link.slug}`}
+                href={`/sluzba-template/${link.slug}`}
                 className="
                   group rounded-[var(--card-radius)]
                   border border-[var(--card-border)]
@@ -94,7 +94,7 @@ export function OfferRelated({ offer }: Props) {
         <div className="flex flex-wrap items-center gap-6">
           {hasLinks && (
             <a
-              href="/nabidka"
+              href="/sluzba-template"
               className="
                 inline-flex items-center gap-1.5 text-sm font-semibold
                 text-[var(--color-forest-mid)] hover:text-[var(--color-forest)]

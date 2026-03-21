@@ -7,9 +7,9 @@ interface Props {
 }
 
 const funnelColors: Record<string, string> = {
-  TOFU: "bg-[rgba(26,58,46,0.08)] text-[var(--color-forest-mid)]",
-  MOFU: "bg-[rgba(200,168,78,0.1)] text-[var(--color-warm-600)]",
-  BOFU: "bg-[rgba(46,122,90,0.08)] text-[var(--color-forest-light)]",
+  TOFU: "bg-[var(--color-tag-forest)] text-[var(--color-forest-mid)]",
+  MOFU: "bg-[var(--color-tag-gold)] text-[var(--color-warm-600)]",
+  BOFU: "bg-[var(--color-tag-forest-light)] text-[var(--color-forest-light)]",
 };
 
 /** Blok 11 — Související články. Content cluster propojení. */
@@ -28,13 +28,13 @@ export function OfferArticles({ offer }: Props) {
           </h2>
         </header>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[var(--space-grid)]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[var(--space-grid)] reveal-stagger">
           {offer.articles.map((article) => (
             <a
               key={article.slug}
               href={`/blog/${article.slug}`}
               className="
-                group rounded-[var(--card-radius)]
+                reveal group rounded-[var(--card-radius)]
                 border border-[var(--card-border)]
                 bg-[var(--card-bg)] overflow-hidden
                 transition-[border-color,box-shadow] duration-[var(--duration-slow)] ease-[var(--ease-spring)]

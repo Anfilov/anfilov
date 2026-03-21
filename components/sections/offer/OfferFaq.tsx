@@ -29,9 +29,13 @@ export function OfferFaq({ faq, serviceName }: Props) {
           </h2>
         </header>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-0">
-          <FaqSection items={left} />
-          <FaqSection items={right} />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-0 reveal-stagger">
+          <div className="reveal">
+            <FaqSection items={left} />
+          </div>
+          <div className="reveal">
+            <FaqSection items={right} />
+          </div>
         </div>
       </Container>
     </section>

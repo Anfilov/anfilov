@@ -2,28 +2,61 @@
 
 import { useState, useCallback, useEffect } from "react";
 import Image from "next/image";
-import { X } from "lucide-react";
+import { X, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { Container } from "@/components/ui/Container";
-import type { OfferData } from "@/lib/offer-types";
 
-interface Props {
-  offer: OfferData;
+/** Pre-computed image data (URLs resolved on server) */
+export interface PortfolioProjectView {
+  _id: string;
+  client: string;
+  description?: string;
+  result?: string;
+  thumbUrl: string;
+  thumbAlt: string;
+  /** All images for lightbox: [main, ...gallery] */
+  lightboxImages: { src: string; alt: string }[];
 }
 
-/** Blok 5 — Portfolio / Reference. Square images with lightbox. */
-export function OfferPortfolio({ offer }: Props) {
-  const [lightboxIdx, setLightboxIdx] = useState<number | null>(null);
+interface Props {
+  projects?: PortfolioProjectView[];
+}
 
-  const closeLightbox = useCallback(() => setLightboxIdx(null), []);
+/** Blok 5 — Portfolio / Reference. Grid 3 columns, data from Sanity. */
+export function OfferPortfolio({ projects }: Props) {
+  const [lightbox, setLightbox] = useState<{ projectIdx: number; imageIdx: number } | null>(null);
+
+  const closeLightbox = useCallback(() => setLightbox(null), []);
+
+  const images = lightbox ? projects![lightbox.projectIdx].lightboxImages : [];
+
+  const goNext = useCallback(() => {
+    setLightbox((prev) => {
+      if (!prev || !projects) return null;
+      const len = projects[prev.projectIdx].lightboxImages.length;
+      return { ...prev, imageIdx: (prev.imageIdx + 1) % len };
+    });
+  }, [projects]);
+
+  const goPrev = useCallback(() => {
+    setLightbox((prev) => {
+      if (!prev || !projects) return null;
+      const len = projects[prev.projectIdx].lightboxImages.length;
+      return { ...prev, imageIdx: (prev.imageIdx - 1 + len) % len };
+    });
+  }, [projects]);
 
   useEffect(() => {
-    if (lightboxIdx === null) return;
+    if (!lightbox) return;
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowRight") goNext();
+      if (e.key === "ArrowLeft") goPrev();
     };
     document.addEventListener("keydown", handleKey);
     return () => document.removeEventListener("keydown", handleKey);
-  }, [lightboxIdx, closeLightbox]);
+  }, [lightbox, closeLightbox, goNext, goPrev]);
+
+  if (!projects || projects.length === 0) return null;
 
   return (
     <>
@@ -36,95 +69,159 @@ export function OfferPortfolio({ offer }: Props) {
         }}
       >
         <Container>
-          <header className="max-w-[680px] mb-[var(--space-heading-gap)]">
+          <header className="mb-[var(--space-heading-gap)]">
             <p className="text-[12px] font-semibold tracking-[3px] uppercase text-[var(--color-gold)] mb-3 font-[family-name:var(--font-ui)]">
               Reference
             </p>
-            <h2 className="text-3xl sm:text-4xl lg:text-[2.5rem] leading-[1.12] tracking-[-0.03em]">
-              Ukázky tvorby loga
-            </h2>
+            <div className="flex items-end justify-between gap-6">
+              <h2 className="text-3xl sm:text-4xl lg:text-[2.5rem] leading-[1.12] tracking-[-0.03em]">
+                Ukázky tvorby loga
+              </h2>
+              <a
+                href="/portfolio"
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--color-forest-mid)] hover:text-[var(--color-forest)] transition-colors duration-[var(--duration-fast)] font-[family-name:var(--font-ui)] whitespace-nowrap"
+              >
+                Všechny práce
+                <ArrowRight size={16} />
+              </a>
+            </div>
           </header>
 
-          {/* Portfolio cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-[var(--space-grid)]">
-            {offer.caseStudies.map((study, i) => (
-              <article
-                key={i}
-                className="
-                  group rounded-[var(--card-radius)] overflow-hidden
-                  bg-[var(--color-surface-elevated)] border border-[var(--card-border)]
-                  transition-[border-color,box-shadow] duration-[var(--duration-slow)] ease-[var(--ease-spring)]
-                  hover:border-[var(--color-border-accent)] hover:shadow-[var(--shadow-gold-sm)]
-                  flex flex-col
-                "
-              >
-                {/* Square image — clickable */}
-                <button
-                  type="button"
-                  onClick={() => setLightboxIdx(i)}
-                  className="relative aspect-square bg-[var(--color-surface-sunken)] cursor-zoom-in focus-visible:ring-2 focus-visible:ring-[var(--color-gold)] focus-visible:outline-none"
-                  aria-label={`Zvětšit ukázku: ${study.client}`}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-[var(--space-grid)] reveal-stagger">
+            {projects.map((project, i) => {
+              const galleryCount = project.lightboxImages.length;
+              return (
+                <article
+                  key={project._id}
+                  className="
+                    reveal group rounded-[var(--card-radius)] overflow-hidden
+                    bg-[var(--color-surface-elevated)] border border-[var(--card-border)]
+                    transition-[border-color,box-shadow] duration-[var(--duration-slow)] ease-[var(--ease-spring)]
+                    hover:border-[var(--color-border-accent)] hover:shadow-[var(--shadow-gold-sm)]
+                    flex flex-col
+                  "
                 >
-                  <Image
-                    src={study.image}
-                    alt={`Ukázka loga pro ${study.client}`}
-                    fill
-                    className="object-cover transition-transform duration-[var(--duration-slow)] group-hover:scale-[1.03]"
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    loading="lazy"
-                  />
-                </button>
+                  <button
+                    type="button"
+                    onClick={() => setLightbox({ projectIdx: i, imageIdx: 0 })}
+                    className="relative aspect-square bg-white cursor-pointer focus-visible:ring-2 focus-visible:ring-[var(--color-gold)] focus-visible:outline-none w-full"
+                    aria-label={`Zvětšit ukázku: ${project.client}`}
+                  >
+                    <Image
+                      src={project.thumbUrl}
+                      alt={project.thumbAlt}
+                      fill
+                      className="object-cover transition-transform duration-[var(--duration-slow)] group-hover:scale-[1.03] pointer-events-none"
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      loading="lazy"
+                    />
+                    {galleryCount > 1 && (
+                      <span className="absolute top-6 right-6 text-[11px] font-semibold text-[var(--color-text-secondary)] font-[family-name:var(--font-ui)] bg-[var(--color-tag-gold)] px-2.5 py-1 rounded-[var(--radius-xs)]">
+                        {galleryCount} images
+                      </span>
+                    )}
+                  </button>
 
-                {/* Content */}
-                <div className="p-6 flex flex-col flex-1">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-sm font-bold font-[family-name:var(--font-heading)] text-[var(--color-text-primary)]">
-                      {study.client}
-                    </span>
-                    <span className="text-[11px] font-semibold text-[var(--color-warm-600)] font-[family-name:var(--font-ui)] bg-[rgba(200,168,78,0.1)] px-2.5 py-1 rounded-[var(--radius-xs)]">
-                      {study.result}
-                    </span>
+                  <div className="p-6 flex flex-col flex-1">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-sm font-bold font-[family-name:var(--font-heading)] text-[var(--color-text-primary)]">
+                        {project.client}
+                      </span>
+                      {project.result && (
+                        <span className="text-[11px] font-semibold text-[var(--color-text-secondary)] font-[family-name:var(--font-ui)] bg-[var(--color-tag-gold)] px-2.5 py-1 rounded-[var(--radius-xs)]">
+                          {project.result}
+                        </span>
+                      )}
+                    </div>
+                    {project.description && (
+                      <p className="text-[13px] text-[var(--color-text-primary)] font-[family-name:var(--font-body)] leading-[1.6]">
+                        {project.description}
+                      </p>
+                    )}
                   </div>
-                  <p className="text-[13px] text-[var(--color-text-tertiary)] font-[family-name:var(--font-body)] leading-[1.6]">
-                    {study.quote}
-                  </p>
-                </div>
-              </article>
-            ))}
+                </article>
+              );
+            })}
           </div>
         </Container>
       </section>
 
       {/* Lightbox */}
-      {lightboxIdx !== null && (
+      {lightbox && images.length > 0 && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-[var(--color-surface-overlay)] backdrop-blur-sm"
-          onClick={closeLightbox}
+          className="fixed inset-0 z-50 flex items-center justify-center"
+          style={{ backgroundColor: "rgba(0,0,0,0.85)" }}
+          onClick={(e) => { if (e.target === e.currentTarget) closeLightbox(); }}
           role="dialog"
           aria-modal="true"
-          aria-label={`Ukázka: ${offer.caseStudies[lightboxIdx].client}`}
         >
           <button
             type="button"
             onClick={closeLightbox}
-            className="absolute top-6 right-6 p-2 rounded-[var(--radius-sm)] text-white/70 hover:text-white hover:bg-white/10 transition-colors duration-[var(--duration-fast)] cursor-pointer z-10"
+            className="absolute top-4 right-4 sm:top-6 sm:right-6 w-10 h-10 rounded-full flex items-center justify-center cursor-pointer z-20"
+            style={{ backgroundColor: "rgba(255,255,255,0.15)", color: "#fff" }}
             aria-label="Zavřít"
           >
-            <X size={24} />
+            <X size={20} />
           </button>
-          <div
-            className="relative max-w-[90vw] max-h-[85vh] aspect-square rounded-[var(--radius-lg)] overflow-hidden shadow-[var(--shadow-xl)]"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <Image
-              src={offer.caseStudies[lightboxIdx].image}
-              alt={`Ukázka loga pro ${offer.caseStudies[lightboxIdx].client}`}
-              fill
-              className="object-cover"
-              sizes="90vw"
-              priority
-            />
-          </div>
+
+          {images.length > 1 && (
+            <button
+              type="button"
+              onClick={goPrev}
+              className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center cursor-pointer z-20"
+              style={{ backgroundColor: "rgba(255,255,255,0.15)", color: "#fff" }}
+              aria-label="Předchozí obrázek"
+            >
+              <ChevronLeft size={20} />
+            </button>
+          )}
+
+          {lightbox.imageIdx === 0 ? (
+            <div
+              className="w-[85vw] sm:w-[75vw] max-w-[1000px] rounded-[var(--radius-lg)] overflow-hidden"
+              style={{ backgroundColor: "#fff", padding: "clamp(40px, 8vw, 128px)", paddingBottom: "clamp(60px, 10vw, 160px)" }}
+            >
+              <img
+                key={`lb-${lightbox.projectIdx}-${lightbox.imageIdx}`}
+                src={images[lightbox.imageIdx].src}
+                alt={images[lightbox.imageIdx].alt}
+                style={{ width: "100%", height: "auto", display: "block", objectFit: "contain", maxHeight: "60vh" }}
+              />
+            </div>
+          ) : (
+            <div
+              className="w-[85vw] sm:w-[75vw] max-w-[1000px] rounded-[var(--radius-lg)] overflow-hidden"
+            >
+              <img
+                key={`lb-${lightbox.projectIdx}-${lightbox.imageIdx}`}
+                src={images[lightbox.imageIdx].src}
+                alt={images[lightbox.imageIdx].alt}
+                style={{ width: "100%", height: "auto", display: "block", objectFit: "cover", maxHeight: "75vh" }}
+              />
+            </div>
+          )}
+
+          {images.length > 1 && (
+            <button
+              type="button"
+              onClick={goNext}
+              className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center cursor-pointer z-20"
+              style={{ backgroundColor: "rgba(255,255,255,0.15)", color: "#fff" }}
+              aria-label="Další obrázek"
+            >
+              <ChevronRight size={20} />
+            </button>
+          )}
+
+          {images.length > 1 && (
+            <span
+              className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 text-[12px] font-semibold px-3 py-1.5 rounded-full font-[family-name:var(--font-ui)] z-20"
+              style={{ color: "rgba(255,255,255,0.7)" }}
+            >
+              {lightbox.imageIdx + 1} / {images.length}
+            </span>
+          )}
         </div>
       )}
     </>

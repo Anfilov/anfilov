@@ -35,14 +35,14 @@ export function OfferPainPoints({ offer }: Props) {
           </h2>
         </header>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[var(--space-grid)]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[var(--space-grid)] reveal-stagger">
           {offer.painPoints.map((point, i) => {
             const Icon = iconMap[point.icon] ?? HelpCircle;
             return (
               <article
                 key={i}
                 className="
-                  group rounded-[var(--card-radius)]
+                  reveal group rounded-[var(--card-radius)]
                   border border-[var(--card-border)]
                   bg-[var(--card-bg)] p-[var(--card-padding)]
                   transition-[border-color,box-shadow] duration-[var(--duration-slow)] ease-[var(--ease-spring)]

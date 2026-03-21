@@ -154,8 +154,8 @@ export function ContactHero() {
                   <div key={item.label} className="flex items-center gap-3">
                     <span
                       className="
-                        flex-shrink-0 w-9 h-9 rounded-[var(--radius-sm)]
-                        bg-[var(--color-accent-subtle)] text-[var(--color-gold)]
+                        flex-shrink-0 w-[var(--icon-badge-size)] h-[var(--icon-badge-size)] rounded-[var(--icon-badge-radius)]
+                        bg-[var(--icon-badge-bg)] text-[var(--icon-badge-color)]
                         inline-flex items-center justify-center
                       "
                       aria-hidden="true"

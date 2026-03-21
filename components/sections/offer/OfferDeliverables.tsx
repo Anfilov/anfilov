@@ -12,15 +12,13 @@ export function OfferDeliverables({ offer }: Props) {
   return (
     <section className="bg-[var(--color-surface-sunken)]" style={{ paddingTop: "var(--section-padding-y)", paddingBottom: "calc(var(--section-padding-y) / 2)" }}>
       <Container>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left — image */}
-          <div className="relative aspect-[4/5] rounded-[var(--radius-xl)] overflow-hidden bg-[var(--color-surface-elevated)] shadow-[var(--shadow-md)]">
-            <Image
-              src={offer.heroImage}
+          <div className="flex justify-center">
+            <img
+              src="https://cdn.sanity.io/images/d8caxrt0/production/edae1d0e0b3253db7539c986fa513f760dcc7f6d-2560x2560.webp"
               alt={`${offer.name} — ukázka výstupu`}
-              fill
-              className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="w-full h-auto max-w-[400px]"
               loading="lazy"
             />
           </div>
@@ -36,7 +34,7 @@ export function OfferDeliverables({ offer }: Props) {
               </h2>
             </header>
 
-            <div className="space-y-0 divide-y divide-[var(--color-border)]">
+            <div className="space-y-0 divide-y divide-[var(--color-border)] reveal-stagger">
               {[
                 {
                   title: "Strategicky navržené",
@@ -51,13 +49,13 @@ export function OfferDeliverables({ offer }: Props) {
                   desc: "Potřebujete manuál, šablony pro sociální sítě, nabídky či tiskoviny nebo chcete logo sami co nejsnadněji používat? Každá firma má jiné potřeby a proto výstup musí být na míru. Žádný generický manuál pro všechny.",
                 },
               ].map((item, i) => (
-                <div key={i} className="flex gap-5 py-5">
+                <div key={i} className="reveal flex gap-5 py-5">
                   <span
                     aria-hidden="true"
                     className="
-                      flex-shrink-0 w-9 h-9 mt-0.5
-                      rounded-[var(--avatar-radius)]
-                      bg-[rgba(46,122,90,0.08)] text-[var(--color-forest-mid)]
+                      flex-shrink-0 w-[var(--icon-badge-size)] h-[var(--icon-badge-size)] mt-0.5
+                      rounded-[var(--icon-badge-radius)]
+                      bg-[var(--icon-badge-bg)] text-[var(--icon-badge-color)]
                       inline-flex items-center justify-center
                     "
                   >

@@ -92,8 +92,29 @@
   /* Forest surface tint */
   --color-surface-forest: rgba(26, 58, 46, 0.08);
 
+  /* Tag / badge backgrounds */
+  --color-tag-forest: rgba(26, 58, 46, 0.08);
+  --color-tag-forest-light: rgba(46, 122, 90, 0.08);
+  --color-tag-gold: rgba(200, 168, 78, 0.10);
+
   /* Toggle knob */
   --color-toggle-knob: #FFFFFF;
+
+  /* Icon badge — inline icon inside tinted circle (contact info, check lists, etc.) */
+  --icon-badge-size: 36px;
+  --icon-badge-radius: var(--radius-sm);
+  --icon-badge-bg: var(--color-accent-subtle);
+  --icon-badge-color: var(--color-gold);
+
+  /* Button semantic tokens */
+  --btn-primary-bg: var(--color-forest-mid);
+  --btn-primary-text: var(--color-cream);
+  --btn-primary-hover: var(--color-forest);
+  --btn-primary-shadow: var(--shadow-forest-md);
+  --btn-secondary-bg: var(--color-gold);
+  --btn-secondary-text: var(--color-forest);
+  --btn-secondary-border: transparent;
+  --btn-secondary-hover-border: transparent;
 
   /* ===== SPACING — 8pt Grid ===== */
   --space-unit: 8px;
@@ -159,6 +180,12 @@
   --duration-fast: 120ms;
   --duration-normal: 200ms;
   --duration-slow: 350ms;
+
+  /* Scroll reveal tokens */
+  --reveal-distance: 32px;
+  --reveal-duration: 0.7s;
+  --reveal-stagger: 0.12s;
+  --reveal-easing: cubic-bezier(0.16, 1, 0.3, 1);
 
   /* ===== LAYER 3: COMPONENT TOKENS ===== */
   --btn-radius: var(--radius-sm);
@@ -468,6 +495,22 @@
   --color-accent-light: #E8D9A0;
   --color-accent-subtle: rgba(200, 168, 78, 0.10);
 
+  /* Forest → Gold swap for dark mode readability (links, icons, tags) */
+  --color-forest: #C8A84E;
+  --color-forest-mid: #C8A84E;
+  --color-forest-light: #E8D9A0;
+
+  /* Button — primary flips to gold bg + forest text in dark mode */
+  --btn-primary-bg: var(--color-gold);
+  --btn-primary-text: #1A3A2E;
+  --btn-primary-hover: var(--color-gold-hover);
+  --btn-primary-shadow: var(--shadow-gold-md);
+  /* Button — secondary stays gold in dark mode (valid per guidelines) */
+  --btn-secondary-bg: var(--color-gold);
+  --btn-secondary-text: #1A3A2E;
+  --btn-secondary-border: transparent;
+  --btn-secondary-hover-border: transparent;
+
   /* Surfaces — warm-900 base, NEVER #000 */
   --color-surface: #1C1C1C;
   --color-surface-elevated: #242018;
@@ -494,6 +537,16 @@
 
   /* Surfaces */
   --color-surface-forest: rgba(36, 92, 70, 0.12);
+
+  /* Tag / badge backgrounds — gold-based in dark mode */
+  --color-tag-forest: rgba(200, 168, 78, 0.10);
+  --color-tag-forest-light: rgba(200, 168, 78, 0.08);
+  --color-tag-gold: rgba(200, 168, 78, 0.12);
+
+  /* Warm neutrals — remap for dark readability */
+  --color-warm-600: #A89E8C;
+  --color-warm-700: #A89E8C;
+  --color-warm-800: #F5F0E6;
 
   /* Shadows — dark mode uses deeper shadows */
   --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.20);
@@ -682,6 +735,28 @@
   .animate-fade-up {
     animation: fadeUp 0.7s var(--ease-smooth) both;
   }
+
+  /* ===== SCROLL REVEAL ===== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(var(--reveal-distance));
+    transition:
+      opacity var(--reveal-duration) var(--reveal-easing),
+      transform var(--reveal-duration) var(--reveal-easing);
+    will-change: opacity, transform;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  /* Stagger children: apply .reveal-stagger on parent, .reveal on children */
+  .reveal-stagger > .reveal:nth-child(1) { transition-delay: 0s; }
+  .reveal-stagger > .reveal:nth-child(2) { transition-delay: var(--reveal-stagger); }
+  .reveal-stagger > .reveal:nth-child(3) { transition-delay: calc(var(--reveal-stagger) * 2); }
+  .reveal-stagger > .reveal:nth-child(4) { transition-delay: calc(var(--reveal-stagger) * 3); }
+  .reveal-stagger > .reveal:nth-child(5) { transition-delay: calc(var(--reveal-stagger) * 4); }
+  .reveal-stagger > .reveal:nth-child(6) { transition-delay: calc(var(--reveal-stagger) * 5); }
+  .reveal-stagger > .reveal:nth-child(n+7) { transition-delay: calc(var(--reveal-stagger) * 6); }
 
   /* ===== LAYOUT-AWARE UTILITIES ===== */
   .layout-text { text-align: var(--layout-text, center); }

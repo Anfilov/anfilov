@@ -26,7 +26,7 @@ export function OfferCrossSell({ offer }: Props) {
           {offer.crossLinks.map((link) => (
             <a
               key={link.slug}
-              href={`/nabidka/${link.slug}`}
+              href={`/sluzba-template/${link.slug}`}
               className="
                 group rounded-[var(--card-radius)]
                 border border-[var(--card-border)]

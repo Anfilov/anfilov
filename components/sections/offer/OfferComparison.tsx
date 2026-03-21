@@ -52,7 +52,7 @@ export function OfferComparison({ offer }: Props) {
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b-2 border-[var(--color-border)]">
-                  <th className="text-left py-4 px-5 font-semibold text-[13px] uppercase tracking-[1.5px] text-[var(--color-warm-700)] font-[family-name:var(--font-ui)] w-[28%]">
+                  <th className="text-left py-4 px-5 font-semibold text-[13px] uppercase tracking-[1.5px] text-[var(--color-text-secondary)] font-[family-name:var(--font-ui)] w-[28%]">
                     Kritérium
                   </th>
                   {(Object.keys(columnLabels) as Array<keyof typeof columnLabels>).map(
@@ -61,7 +61,7 @@ export function OfferComparison({ offer }: Props) {
                         key={key}
                         className={`py-4 px-4 font-semibold text-[13px] uppercase tracking-[1.5px] font-[family-name:var(--font-ui)] text-center w-[24%] ${
                           key === "anfilov"
-                            ? "text-[var(--color-gold)] bg-[rgba(200,168,78,0.04)]"
+                            ? "text-[var(--color-gold)] bg-[var(--color-accent-subtle)]"
                             : "text-[var(--color-warm-500)]"
                         }`}
                       >
@@ -77,7 +77,7 @@ export function OfferComparison({ offer }: Props) {
                     key={criterion}
                     className="border-b border-[var(--color-border)] last:border-0"
                   >
-                    <td className="py-3.5 px-5 text-[14px] font-semibold text-[var(--color-warm-800)] font-[family-name:var(--font-ui)]">
+                    <td className="py-3.5 px-5 text-[14px] font-semibold text-[var(--color-text-primary)] font-[family-name:var(--font-ui)]">
                       {criterion}
                     </td>
                     {(Object.keys(comparison.columns) as Array<keyof typeof comparison.columns>).map(

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { fontVariables } from "@/lib/fonts";
 import { ThemeProvider } from "@/components/ui/ThemeProvider";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { siteConfig } from "@/site.config";
 import "./globals.css";
 
@@ -156,7 +157,10 @@ export default function RootLayout({
         )}
       </head>
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <ScrollReveal />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

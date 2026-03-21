@@ -25,7 +25,7 @@ function AnimatedNumber({ value, suffix = "" }: { value: number; suffix?: string
   const animate = useCallback(() => {
     if (hasAnimated.current) return;
     hasAnimated.current = true;
-    const duration = 1200;
+    const duration = 4000;
     const start = performance.now();
     const step = (now: number) => {
       const progress = Math.min((now - start) / duration, 1);
@@ -73,9 +73,9 @@ export function OfferAuthor() {
 
         {/* 3 columns: 10 / 30 / 60 */}
         <div className="flex flex-col md:flex-row gap-8 lg:gap-12 items-start">
-          {/* 1 — Photo (square, fixed size) */}
+          {/* 1 — Photo (square, no frame) */}
           <div className="shrink-0">
-            <div className="w-[80px] h-[80px] lg:w-[100px] lg:h-[100px] rounded-[22%] overflow-hidden bg-[var(--color-surface-elevated)] border border-[var(--color-border)]">
+            <div className="w-[80px] h-[80px] lg:w-[100px] lg:h-[100px] rounded-[22%] overflow-hidden">
               <Image
                 src="/simon-anfilov.webp"
                 alt="Simon Anfilov — Brand Designer"

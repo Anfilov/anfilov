@@ -19,9 +19,9 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    "bg-[var(--color-forest-mid)] text-[var(--color-cream)] hover:bg-[var(--color-forest)] active:scale-[0.98] shadow-[var(--shadow-forest-md)] hover:shadow-[var(--shadow-forest-md)]",
+    "bg-[var(--btn-primary-bg)] text-[var(--btn-primary-text)] hover:bg-[var(--btn-primary-hover)] active:scale-[0.98] shadow-[var(--btn-primary-shadow)] hover:shadow-[var(--btn-primary-shadow)]",
   secondary:
-    "bg-[var(--color-gold)] text-[var(--color-forest)] hover:bg-[var(--color-gold-hover)] active:scale-[0.98] shadow-[var(--shadow-gold-sm)] hover:shadow-[var(--shadow-gold-md)]",
+    "bg-[var(--btn-secondary-bg)] text-[var(--btn-secondary-text)] border-[1.5px] border-[var(--btn-secondary-border)] hover:bg-[var(--color-gold-hover)] active:scale-[0.98] shadow-[var(--shadow-gold-sm)] hover:shadow-[var(--shadow-gold-md)]",
   outline:
     "border-[1.5px] border-[var(--color-border-strong)] text-[var(--color-text-primary)] bg-transparent hover:bg-[var(--color-surface-sunken)] hover:border-[var(--color-forest-mid)] hover:text-[var(--color-forest-mid)] active:scale-[0.98]",
   ghost:

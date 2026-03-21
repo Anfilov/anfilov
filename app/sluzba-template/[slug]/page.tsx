@@ -3,6 +3,9 @@ import { notFound } from "next/navigation";
 import { siteConfig } from "@/site.config";
 import { getOfferBySlug, getAllOfferSlugs } from "@/lib/offer-demo-data";
 import { fetchGoogleReviews } from "@/lib/google-reviews";
+import { getToolsForPage, getTopProjects } from "@/sanity/lib/queries";
+import { urlForImage } from "@/sanity/lib/image";
+import type { PortfolioProjectView } from "@/components/sections/offer/OfferPortfolio";
 import type { OfferData } from "@/lib/offer-types";
 import { Navbar, Footer } from "@/components/sections";
 import {
@@ -40,9 +43,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const offer = getOfferBySlug(slug);
   if (!offer) return {};
 
-  const url = `${siteConfig.url}/nabidka/${offer.slug}`;
+  const url = `${siteConfig.url}/sluzba-template/${offer.slug}`;
   const ogImage = `${siteConfig.url}/og/${offer.slug}.jpg`;
-  const ogFallback = `${siteConfig.url}/og/default-nabidka.jpg`;
+  const ogFallback = `${siteConfig.url}/og/default-sluzba.jpg`;
 
   return {
     title: offer.metaTitle,
@@ -81,7 +84,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 // ---------------------------------------------------------------------------
 
 function OfferJsonLd({ offer, googleRating, googleReviewCount }: { offer: OfferData; googleRating?: number; googleReviewCount?: number }) {
-  const url = `${siteConfig.url}/nabidka/${offer.slug}`;
+  const url = `${siteConfig.url}/sluzba-template/${offer.slug}`;
 
   const organization = {
     "@type": "Organization",
@@ -206,7 +209,7 @@ function OfferJsonLd({ offer, googleRating, googleReviewCount }: { offer: OfferD
           "@type": "ListItem",
           position: 2,
           name: "Služby",
-          item: `${siteConfig.url}/nabidka`,
+          item: `${siteConfig.url}/sluzba-template`,
         },
         {
           "@type": "ListItem",
@@ -241,7 +244,36 @@ export default async function OfferPage({ params }: PageProps) {
   if (!offer) notFound();
 
   // Fetch Google Reviews (ISR cached 1h, falls back to demo data)
-  const googleData = await fetchGoogleReviews();
+  const [googleData, tools, rawProjects] = await Promise.all([
+    fetchGoogleReviews(),
+    getToolsForPage(slug),
+    getTopProjects(6),
+  ]);
+
+  // Pre-compute image URLs on server so client component doesn't need urlForImage
+  const projects: PortfolioProjectView[] = (rawProjects ?? []).map((p: Record<string, unknown>) => {
+    const img = p.image as { image: Record<string, unknown>; alt?: string };
+    const gallery = (p.gallery ?? []) as { image: Record<string, unknown>; alt?: string }[];
+    const lightboxImages: { src: string; alt: string }[] = [
+      {
+        src: urlForImage(img.image).width(1400).height(1400).fit("max").url(),
+        alt: img.alt || (p.client as string),
+      },
+      ...gallery.map((g) => ({
+        src: urlForImage(g.image).width(1400).fit("max").url(),
+        alt: g.alt || (p.client as string),
+      })),
+    ];
+    return {
+      _id: p._id as string,
+      client: p.client as string,
+      description: p.description as string | undefined,
+      result: p.result as string | undefined,
+      thumbUrl: urlForImage(img.image).width(600).height(600).fit("crop").url(),
+      thumbAlt: img.alt || `Ukázka loga pro ${p.client}`,
+      lightboxImages,
+    };
+  });
 
   return (
     <>
@@ -252,41 +284,53 @@ export default async function OfferPage({ params }: PageProps) {
         {/* Blok 0+1 — Hero (includes Atomic Answer) */}
         <OfferHero offer={offer} googleRating={googleData.rating} googleReviewCount={googleData.reviewCount} googleReviewsUrl={`https://search.google.com/local/reviews?placeid=${process.env.GOOGLE_PLACE_ID ?? ""}`} />
 
-        {/* Blok 2 — Pain Points */}
-        <OfferPainPoints offer={offer} />
+        <div className="reveal">
+          <OfferPainPoints offer={offer} />
+        </div>
 
-        {/* Blok 3 — Deliverables */}
-        <OfferDeliverables offer={offer} />
+        <div className="reveal">
+          <OfferDeliverables offer={offer} />
+        </div>
 
-        {/* Blok 4 — Process */}
-        <OfferProcess offer={offer} />
+        <div className="reveal">
+          <OfferProcess offer={offer} />
+        </div>
 
-        {/* Blok 5 — Portfolio */}
-        <OfferPortfolio offer={offer} />
+        <div className="reveal">
+          <OfferPortfolio projects={projects} />
+        </div>
 
-        {/* Google Reviews Marquee */}
-        <OfferReviews reviews={googleData.reviews} rating={googleData.rating} reviewCount={googleData.reviewCount} googleReviewsUrl={`https://search.google.com/local/reviews?placeid=${process.env.GOOGLE_PLACE_ID ?? ""}`} />
+        <div className="reveal">
+          <OfferReviews reviews={googleData.reviews} rating={googleData.rating} reviewCount={googleData.reviewCount} googleReviewsUrl={`https://search.google.com/local/reviews?placeid=${process.env.GOOGLE_PLACE_ID ?? ""}`} />
+        </div>
 
-        {/* Blok 6+7 — Pricing & Comparison */}
-        <OfferPricing offer={offer} />
+        <div className="reveal">
+          <OfferPricing offer={offer} />
+        </div>
 
-        {/* Blok 9 — Author / E-E-A-T */}
-        <OfferAuthor />
+        <div className="reveal">
+          <OfferAuthor />
+        </div>
 
-        {/* Blok — Nástroje */}
-        <OfferTools />
+        <div className="reveal">
+          <OfferTools tools={tools} />
+        </div>
 
-        {/* Blok 8 — FAQ */}
-        <OfferFaq faq={offer.faq} serviceName={offer.name} />
+        <div className="reveal">
+          <OfferFaq faq={offer.faq} serviceName={offer.name} />
+        </div>
 
-        {/* Blok 11 — Articles */}
-        <OfferArticles offer={offer} />
+        <div className="reveal">
+          <OfferArticles offer={offer} />
+        </div>
 
-        {/* Blok 10+13 — Související služby a pojmy */}
-        <OfferRelated offer={offer} />
+        <div className="reveal">
+          <OfferRelated offer={offer} />
+        </div>
 
-        {/* Blok 12 — Contact */}
-        <OfferContact slug={offer.slug} serviceName={offer.name} />
+        <div className="reveal">
+          <OfferContact slug={offer.slug} serviceName={offer.name} />
+        </div>
       </main>
 
       <Footer />

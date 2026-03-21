@@ -142,7 +142,7 @@ export function OfferPricing({ offer }: Props) {
                       variants={listItemVariants}
                       className="flex items-start gap-3"
                     >
-                      <span className="flex-shrink-0 w-9 h-9 mt-0.5 rounded-[var(--avatar-radius)] bg-[rgba(46,122,90,0.08)] text-[var(--color-forest-mid)] inline-flex items-center justify-center">
+                      <span className="flex-shrink-0 w-[var(--icon-badge-size)] h-[var(--icon-badge-size)] mt-0.5 rounded-[var(--icon-badge-radius)] bg-[var(--icon-badge-bg)] text-[var(--icon-badge-color)] inline-flex items-center justify-center">
                         <Check size={16} strokeWidth={2.5} />
                       </span>
                       <div>
@@ -177,10 +177,10 @@ export function OfferPricing({ offer }: Props) {
               <table className="w-full text-[14px]">
                 <thead>
                   <tr className="border-b-2 border-[var(--color-border)]">
-                    <th className="text-left py-4 px-5 font-semibold text-[13px] uppercase tracking-[1.5px] text-[var(--color-warm-700)] font-[family-name:var(--font-ui)]">
+                    <th className="text-left py-4 px-5 font-semibold text-[13px] uppercase tracking-[1.5px] text-[var(--color-text-secondary)] font-[family-name:var(--font-ui)]">
                       Kritérium
                     </th>
-                    <th className="py-4 px-4 font-semibold text-[13px] uppercase tracking-[1.5px] font-[family-name:var(--font-ui)] text-center text-[var(--color-gold)] bg-[rgba(200,168,78,0.04)]">
+                    <th className="py-4 px-4 font-semibold text-[13px] uppercase tracking-[1.5px] font-[family-name:var(--font-ui)] text-center text-[var(--color-gold)] bg-[var(--color-accent-subtle)]">
                       ANFILOV
                     </th>
                     <th className="py-4 px-4 font-semibold text-[13px] uppercase tracking-[1.5px] font-[family-name:var(--font-ui)] text-center text-[var(--color-warm-500)]">
@@ -197,10 +197,10 @@ export function OfferPricing({ offer }: Props) {
                       key={criterion}
                       className="border-b border-[var(--color-border)] last:border-0"
                     >
-                      <td className="py-3.5 px-5 font-semibold text-[var(--color-warm-800)] font-[family-name:var(--font-ui)]">
+                      <td className="py-3.5 px-5 font-semibold text-[var(--color-text-primary)] font-[family-name:var(--font-ui)]">
                         {criterion}
                       </td>
-                      <td className="py-3.5 px-4 text-center bg-[rgba(200,168,78,0.04)]">
+                      <td className="py-3.5 px-4 text-center bg-[var(--color-accent-subtle)]">
                         <DotScore score={comparison.columns.anfilov[i]} highlight />
                       </td>
                       <td className="py-3.5 px-4 text-center">

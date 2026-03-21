@@ -27,6 +27,14 @@ export const page = defineType({
       type: "seo",
     }),
     defineField({
+      name: "tools",
+      title: "Nástroje",
+      type: "array",
+      description: "Aplikace a nástroje používané u této služby (max 5)",
+      of: [{ type: "reference", to: [{ type: "tool" }] }],
+      validation: (r) => r.max(5),
+    }),
+    defineField({
       name: "sections",
       title: "Page sections",
       type: "array",

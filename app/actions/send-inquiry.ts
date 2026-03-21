@@ -36,7 +36,7 @@ export async function sendInquiry(
   }
 
   const pageUrl = slug
-    ? `https://anfilov.cz/nabidka/${slug}`
+    ? `https://anfilov.cz/sluzba-template/${slug}`
     : "https://anfilov.cz";
 
   const subject = serviceName

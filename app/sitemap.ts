@@ -4,7 +4,7 @@ import { getAllOfferSlugs } from "@/lib/offer-demo-data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const offers = getAllOfferSlugs().map((slug) => ({
-    url: `${siteConfig.url}/nabidka/${slug}`,
+    url: `${siteConfig.url}/sluzba-template/${slug}`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.8,
