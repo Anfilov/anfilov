@@ -87,8 +87,10 @@ export interface SluzbaData {
   heroTitle?: string;
   heroSubheadline: string;
   heroImage: string;
-  heroMediaType?: "image" | "embed";
+  heroVideoUrl?: string;
+  heroMediaType?: "image" | "video" | "embed";
   heroEmbed?: string;
+  heroBackgroundColor?: string;
   heroPriceLabel?: string;
   heroProjectsLabel?: string;
   heroDeliveryLabel?: string;

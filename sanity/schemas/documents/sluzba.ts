@@ -33,7 +33,7 @@ export const sluzba = defineType({
       title: "URL slug",
       type: "slug",
       options: { source: "name" },
-      description: "Bude v URL: /sluzba-template/{slug}",
+      description: "Bude v URL: /sluzba/{slug}",
       validation: (r) => r.required(),
       group: "hero",
     }),
@@ -91,6 +91,7 @@ export const sluzba = defineType({
       options: {
         list: [
           { title: "Obrázek", value: "image" },
+          { title: "Video (MP4 / WebM)", value: "video" },
           { title: "Embed kód (iframe / script / Lottie)", value: "embed" },
         ],
         layout: "radio",
@@ -106,6 +107,16 @@ export const sluzba = defineType({
       group: "hero",
     }),
     defineField({
+      name: "heroVideo",
+      title: "Hero video",
+      type: "file",
+      options: { accept: "video/mp4,video/webm" },
+      description:
+        "Krátké video (5–15 s, max 5 MB). Bude přehráváno automaticky, bez zvuku, ve smyčce.",
+      hidden: ({ document }) => document?.heroMediaType !== "video",
+      group: "hero",
+    }),
+    defineField({
       name: "heroEmbed",
       title: "Hero embed kód",
       type: "text",
@@ -113,6 +124,14 @@ export const sluzba = defineType({
       description:
         "Celý HTML snippet — iframe, script, Lottie player, animovaný SVG. Bude vložen do stránky tak jak je.",
       hidden: ({ document }) => document?.heroMediaType !== "embed",
+      group: "hero",
+    }),
+    defineField({
+      name: "heroBackgroundColor",
+      title: "Barva pozadí hero",
+      type: "string",
+      description:
+        "HEX barva pozadí hero sekce (např. #f1eee5). Pokud nevyplníte, použije se výchozí barva webu.",
       group: "hero",
     }),
 
@@ -659,7 +678,7 @@ export const sluzba = defineType({
     },
     prepare: ({ title, slug, media }) => ({
       title: title || "Bez názvu",
-      subtitle: slug ? `/sluzba-template/${slug}` : "",
+      subtitle: slug ? `/sluzba/${slug}` : "",
       media,
     }),
   },

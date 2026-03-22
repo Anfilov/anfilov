@@ -133,7 +133,9 @@ const sluzbaFields = `
     image { asset->, hotspot, crop },
     alt
   },
+  heroVideo { asset-> { url } },
   heroEmbed,
+  heroBackgroundColor,
   heroPriceLabel,
   heroProjectsLabel,
   heroDeliveryLabel,

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 
 export interface ToolData {
@@ -37,13 +36,17 @@ export function SluzbaNastroje({ tools }: SluzbaNastrojeProps) {
               rel="noopener noreferrer"
               className="group flex flex-col items-start gap-3"
             >
-              <div className="w-full h-[48px] relative">
-                <Image
+              <div style={{ width: 160, height: 40, display: "flex", alignItems: "center" }}>
+                <img
                   src={tool.logoUrl}
                   alt={tool.name}
-                  fill
-                  className="object-contain object-left"
-                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
+                  loading="lazy"
+                  style={{
+                    width: 160,
+                    height: 40,
+                    objectFit: "contain",
+                    objectPosition: "left center",
+                  }}
                 />
               </div>
               <span className="text-[13px] font-semibold text-[var(--color-text-tertiary)] group-hover:text-[var(--color-text-primary)] transition-colors duration-[var(--duration-slow)] font-[family-name:var(--font-ui)]">

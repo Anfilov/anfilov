@@ -154,41 +154,40 @@ export default async function SluzbyPage() {
         {/* Service cards grouped by category — 3 columns */}
         <section className="bg-[var(--color-surface)] pb-[var(--section-padding-y)]">
           <Container>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-14">
-              {CATEGORIES.map((cat) => {
-                const items = grouped.get(cat.value);
-                if (!items || items.length === 0) return null;
+            {[CATEGORIES.slice(0, 4), CATEGORIES.slice(4)].map((row, rowIndex) => (
+              <div key={rowIndex} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-14" style={rowIndex > 0 ? { marginTop: 48 } : undefined}>
+                {row.map((cat) => {
+                  const items = grouped.get(cat.value);
+                  if (!items || items.length === 0) return null;
 
-                return (
-                  <div key={cat.value}>
-                    {/* Category header */}
-                    <p className="text-[12px] font-semibold tracking-[3px] uppercase text-[var(--color-gold)] mb-6 pb-3 border-b border-[var(--color-border)] font-[family-name:var(--font-ui)]">
-                      {cat.label}
-                    </p>
-
-                    {/* Services list */}
-                    <div className="space-y-5">
-                      {items.map((sluzba) => (
-                        <Link
-                          key={sluzba._id}
-                          href={`/sluzba/${sluzba.slug}`}
-                          className="group block no-underline"
-                        >
-                          <h3 className="text-[15px] font-semibold text-[var(--color-text-primary)] font-[family-name:var(--font-heading)] tracking-tight leading-snug mb-1.5 group-hover:text-[var(--color-forest-mid)] transition-colors duration-[var(--duration-fast)]">
-                            {sluzba.name}
-                          </h3>
-                          {sluzba.heroPriceLabel && (
-                            <p className="text-[12px] text-[var(--color-text-tertiary)] font-[family-name:var(--font-ui)]">
-                              {sluzba.heroPriceLabel}
-                            </p>
-                          )}
-                        </Link>
-                      ))}
+                  return (
+                    <div key={cat.value}>
+                      <p className="text-[12px] font-semibold tracking-[3px] uppercase text-[var(--color-gold)] mb-6 pb-3 border-b border-[var(--color-border)] font-[family-name:var(--font-ui)]">
+                        {cat.label}
+                      </p>
+                      <div className="space-y-5">
+                        {items.map((sluzba) => (
+                          <Link
+                            key={sluzba._id}
+                            href={`/sluzba/${sluzba.slug}`}
+                            className="group block no-underline"
+                          >
+                            <h3 className="text-[15px] font-semibold text-[var(--color-text-primary)] font-[family-name:var(--font-heading)] tracking-tight leading-snug mb-1.5 group-hover:text-[var(--color-forest-mid)] transition-colors duration-[var(--duration-fast)]">
+                              {sluzba.name}
+                            </h3>
+                            {sluzba.heroPriceLabel && (
+                              <p className="text-[12px] text-[var(--color-text-tertiary)] font-[family-name:var(--font-ui)]">
+                                {sluzba.heroPriceLabel}
+                              </p>
+                            )}
+                          </Link>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
-            </div>
+                  );
+                })}
+              </div>
+            ))}
 
           </Container>
         </section>

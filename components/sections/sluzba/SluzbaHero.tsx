@@ -17,23 +17,17 @@ export function SluzbaHero({ offer, googleRating, googleReviewCount, googleRevie
   const rating = googleRating ?? offer.rating;
   const reviewCount = googleReviewCount ?? offer.projectCount;
   return (
-    <section className="relative overflow-hidden bg-[var(--color-surface)]">
-      {/* Subtle diagonal pattern */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage:
-            "repeating-linear-gradient(45deg, transparent, transparent 24px, var(--color-glow-subtle) 24px, var(--color-glow-subtle) 25px)",
-        }}
-      />
+    <section
+      className="relative overflow-hidden"
+      style={{ backgroundColor: offer.heroBackgroundColor ?? "var(--color-surface)" }}
+    >
 
       <Container className="relative pt-20 sm:pt-28 lg:pt-32 pb-10 sm:pb-14">
         {/* Breadcrumb */}
         <Breadcrumbs
           items={[
             { label: "Domů", href: "/" },
-            { label: "Služby", href: "/sluzba-template" },
+            { label: "Služby", href: "/sluzba" },
             { label: offer.name },
           ]}
           className="mb-10"
@@ -127,24 +121,46 @@ export function SluzbaHero({ offer, googleRating, googleReviewCount, googleRevie
             </div>
           </div>
 
-          {/* Image column — transparent, no frame */}
-          <div className="relative order-1 lg:order-2">
-            <div className="relative aspect-[4/3]">
-              <Image
-                src={offer.heroImage}
-                alt={`Ukázka služby ${offer.name}`}
-                fill
-                className="object-contain"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                priority
+          {/* Media column — image or video */}
+          {offer.heroMediaType === "video" && offer.heroVideoUrl ? (
+            <div className="relative order-1 lg:order-2 flex items-center justify-center">
+              <video
+                src={offer.heroVideoUrl}
+                poster={offer.heroImage || undefined}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="auto"
+                style={{
+                  width: "100%",
+                  height: "auto",
+                  maxHeight: 560,
+                  objectFit: "contain",
+                }}
               />
             </div>
-          </div>
+          ) : offer.heroImage ? (
+            <div className="relative order-1 lg:order-2 flex items-center justify-center">
+              <img
+                src={offer.heroImage}
+                alt={`Ukázka služby ${offer.name}`}
+                style={{
+                  width: "100%",
+                  height: "auto",
+                  maxHeight: 560,
+                  objectFit: "contain",
+                }}
+              />
+            </div>
+          ) : (
+            <div className="order-1 lg:order-2" />
+          )}
         </div>
       </Container>
 
       {/* ── Atomic Answer — SEO-rich summary, visually subtle ── */}
-      <Container className="relative pt-10 sm:pt-14 pb-4 sm:pb-6">
+      <Container className="relative pt-2 sm:pt-3 pb-[var(--section-padding-y)]">
         <section
           role="doc-abstract"
           aria-label="Shrnutí služby"

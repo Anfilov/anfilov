@@ -4,7 +4,7 @@ import { getAllSluzbaSlugs } from "@/lib/sluzba-demo-data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const sluzby = getAllSluzbaSlugs().map((slug) => ({
-    url: `${siteConfig.url}/sluzba-template/${slug}`,
+    url: `${siteConfig.url}/sluzba/${slug}`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.8,

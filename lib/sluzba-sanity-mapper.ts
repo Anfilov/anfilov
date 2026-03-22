@@ -14,9 +14,11 @@ export interface SanitySluzba {
   categoryOrder?: number;
   heroTitle?: string;
   heroSubheadline?: string;
-  heroMediaType?: "image" | "embed";
+  heroMediaType?: "image" | "video" | "embed";
   heroImage?: { image: any; alt?: string };
+  heroVideo?: { asset: { url: string } };
   heroEmbed?: string;
+  heroBackgroundColor?: string;
   heroPriceLabel?: string;
   heroProjectsLabel?: string;
   heroDeliveryLabel?: string;
@@ -135,8 +137,10 @@ export function mapSanityToSluzbaData(raw: SanitySluzba): SluzbaData {
     heroTitle: raw.heroTitle,
     heroSubheadline: raw.heroSubheadline ?? "",
     heroImage: heroImageUrl,
+    heroVideoUrl: raw.heroVideo?.asset?.url ?? "",
     heroMediaType: raw.heroMediaType,
     heroEmbed: raw.heroEmbed,
+    heroBackgroundColor: raw.heroBackgroundColor || undefined,
     heroPriceLabel: raw.heroPriceLabel,
     heroProjectsLabel: raw.heroProjectsLabel,
     heroDeliveryLabel: raw.heroDeliveryLabel,

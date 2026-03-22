@@ -26,7 +26,7 @@ export function SluzbaCrossSell({ offer }: Props) {
           {offer.crossLinks.map((link) => (
             <a
               key={link.slug}
-              href={`/sluzba-template/${link.slug}`}
+              href={`/sluzba/${link.slug}`}
               className="
                 group rounded-[var(--card-radius)]
                 border border-[var(--card-border)]
