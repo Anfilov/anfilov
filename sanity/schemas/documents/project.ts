@@ -38,10 +38,11 @@ export const project = defineType({
       type: "string",
       options: {
         list: [
-          { title: "Logo", value: "logo" },
+          { title: "Logo Design", value: "logo" },
           { title: "Brand identita", value: "brand-identity" },
           { title: "Webdesign", value: "webdesign" },
           { title: "Grafický design", value: "graphic-design" },
+          { title: "Obalový design", value: "packaging-design" },
         ],
         layout: "radio",
       },

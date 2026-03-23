@@ -17,13 +17,20 @@ export function SluzbaReseni({ offer }: Props) {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           {/* Left — image */}
           <div className="flex justify-center">
-            {offer.heroImage ? (
-              <img
-                src={offer.heroImage}
-                alt={`${offer.name} — ukázka výstupu`}
-                className="w-full h-auto max-w-[400px] rounded-[var(--card-radius)]"
-                loading="lazy"
-              />
+            {offer.reseniImageUrl ? (
+              <figure className="w-full">
+                <img
+                  src={offer.reseniImageUrl}
+                  alt={`${offer.name} — ukázka výstupu`}
+                  className="w-full h-auto rounded-[var(--card-radius)]"
+                  loading="lazy"
+                />
+                {offer.reseniImageCaption && (
+                  <figcaption className="mt-3 text-center text-[15px] italic text-[var(--color-text-tertiary)] font-[family-name:var(--font-body)]">
+                    {offer.reseniImageCaption}
+                  </figcaption>
+                )}
+              </figure>
             ) : (
               <div className="w-full max-w-[400px] aspect-square rounded-[var(--card-radius)] bg-[var(--color-surface)] flex items-center justify-center">
                 <span className="text-[var(--color-text-tertiary)] text-sm font-[family-name:var(--font-ui)]">
@@ -37,10 +44,10 @@ export function SluzbaReseni({ offer }: Props) {
           <div>
             <header className="mb-8">
               <p className="text-[12px] font-semibold tracking-[3px] uppercase text-[var(--color-gold)] mb-3 font-[family-name:var(--font-ui)]">
-                Řešení
+                {offer.reseniOverline || "Řešení"}
               </p>
               <h2 className="text-3xl sm:text-4xl lg:text-[2.5rem] leading-[1.12] tracking-[-0.03em]">
-                {offer.name} — co získáte
+                {offer.reseniTitle || `${offer.name} — co získáte`}
               </h2>
             </header>
 

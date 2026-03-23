@@ -93,14 +93,16 @@ export function SluzbaCenik({ offer }: Props) {
           {/* Header */}
           <motion.header className="mb-[var(--space-heading-gap)]" variants={itemVariants}>
             <p className="text-[12px] font-semibold tracking-[3px] uppercase text-[var(--color-gold)] mb-3 font-[family-name:var(--font-ui)]">
-              Ceník a srovnání
+              {offer.cenikOverline || "Ceník a srovnání"}
             </p>
             <h2 className="text-3xl sm:text-4xl lg:text-[2.5rem] leading-[1.12] tracking-[-0.03em] mb-5">
-              {offer.name} — ceník
+              {offer.cenikTitle || `${offer.name} — ceník`}
             </h2>
-            <p className="text-lg sm:text-xl text-[var(--color-text-secondary)] leading-relaxed font-[family-name:var(--font-body)] max-w-2xl text-balance">
-              Cenu vám připravím vždy na míru na&nbsp;základě konkrétní specifikace zadání a&nbsp;rozsahu zakázky.
-            </p>
+            {(offer.cenikSubtitle) && (
+              <p className="text-lg sm:text-xl text-[var(--color-text-secondary)] leading-relaxed font-[family-name:var(--font-body)] max-w-2xl text-balance">
+                {offer.cenikSubtitle}
+              </p>
+            )}
           </motion.header>
 
           {/* Two-column layout */}
@@ -116,27 +118,28 @@ export function SluzbaCenik({ offer }: Props) {
             <motion.div
               variants={itemVariants}
             >
-              <h3 className="text-lg font-bold text-[var(--color-text-primary)] font-[family-name:var(--font-heading)] tracking-tight mb-4">
-                Cena za návrh loga
-              </h3>
+              {offer.cenikPriceTitle && (
+                <h3 className="text-lg font-bold text-[var(--color-text-primary)] font-[family-name:var(--font-heading)] tracking-tight mb-4">
+                  {offer.cenikPriceTitle}
+                </h3>
+              )}
 
-              <motion.div variants={itemVariants} className="mb-8">
-                <span className="text-3xl sm:text-4xl font-bold text-[var(--color-gold)] font-[family-name:var(--font-heading)] tracking-tight leading-none">
-                  od {pricing.anchor.toLocaleString("cs-CZ")}<span className="text-xl sm:text-2xl">&nbsp;Kč</span>
-                </span>
-              </motion.div>
+              {offer.cenikPriceLabel && (
+                <motion.div variants={itemVariants} className="mb-8">
+                  <span className="text-3xl sm:text-4xl font-bold text-[var(--color-gold)] font-[family-name:var(--font-heading)] tracking-tight leading-none">
+                    {offer.cenikPriceLabel}
+                  </span>
+                </motion.div>
+              )}
 
               {/* Co vše je v ceně */}
+              {offer.cenikIncludedItems && offer.cenikIncludedItems.length > 0 && (
               <div className="mb-8">
                 <h3 className="text-base font-bold text-[var(--color-text-primary)] font-[family-name:var(--font-heading)] tracking-tight mb-4">
-                  Co vše je v ceně
+                  {offer.cenikIncludedTitle || "Co vše je v ceně"}
                 </h3>
                 <div className="space-y-4">
-                  {[
-                    { name: "Grafické návrhy", desc: "3 grafické návrhy loga v online prezentaci s ukázkami aplikace a doporučením" },
-                    { name: "Licence na užití", desc: "Neomezená a výhradní licence na užití loga" },
-                    { name: "Zdrojové soubory", desc: "Vektorové soubory loga pro rozvíjení vizuální identity značky" },
-                  ].map((item, i) => (
+                  {offer.cenikIncludedItems.map((item, i) => (
                     <motion.div
                       key={i}
                       variants={listItemVariants}
@@ -157,6 +160,7 @@ export function SluzbaCenik({ offer }: Props) {
                   ))}
                 </div>
               </div>
+              )}
 
               <a href="#konzultace">
                 <Button variant="primary" size="lg">
@@ -171,7 +175,7 @@ export function SluzbaCenik({ offer }: Props) {
               variants={itemVariants}
             >
               <h3 className="text-lg font-bold text-[var(--color-text-primary)] font-[family-name:var(--font-heading)] tracking-tight mb-4">
-                Proč je to se mnou výhodnější
+                {offer.cenikTableTitle || "Proč je to se mnou výhodnější"}
               </h3>
               <div className="rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface-elevated)] overflow-hidden">
               <table className="w-full text-[14px]">
@@ -215,7 +219,7 @@ export function SluzbaCenik({ offer }: Props) {
               </table>
 
               <p className="px-5 py-3 text-[11px] text-[var(--color-text-tertiary)] font-[family-name:var(--font-ui)] border-t border-[var(--color-border)]">
-                Srovnání vychází z průměrných zkušeností klientů.
+                {offer.cenikTableNote || "Srovnání vychází z průměrných zkušeností klientů."}
               </p>
               </div>
             </motion.div>

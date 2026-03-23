@@ -249,9 +249,11 @@ export default async function SluzbaPage({ params }: PageProps) {
       ];
       return {
         _id: p._id as string,
+        title: p.title as string | undefined,
         client: p.client as string,
         description: p.description as string | undefined,
         result: p.result as string | undefined,
+        externalUrl: p.externalUrl as string | undefined,
         thumbUrl: urlForImage(img.image)
           .width(600)
           .height(600)
@@ -309,7 +311,7 @@ export default async function SluzbaPage({ params }: PageProps) {
 
         {/* Portfolio */}
         <div className="reveal">
-          <SluzbaPortfolio projects={projects} serviceName={sluzba.name} />
+          <SluzbaPortfolio projects={projects} serviceName={sluzba.name} overline={sluzba.portfolioOverline} title={sluzba.portfolioTitle} />
         </div>
 
         {/* Recenze */}
@@ -334,12 +336,12 @@ export default async function SluzbaPage({ params }: PageProps) {
 
         {/* Nástroje */}
         <div className="reveal">
-          <SluzbaNastroje tools={tools} />
+          <SluzbaNastroje tools={tools} overline={sluzba.nastrojeOverline} title={sluzba.nastrojeTitle} />
         </div>
 
         {/* FAQ */}
         <div className="reveal">
-          <SluzbaFaq faq={sluzba.faq} serviceName={sluzba.name} />
+          <SluzbaFaq faq={sluzba.faq} serviceName={sluzba.name} overline={sluzba.faqOverline} title={sluzba.faqTitle} />
         </div>
 
         {/* Články */}

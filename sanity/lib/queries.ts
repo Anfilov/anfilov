@@ -154,7 +154,8 @@ const sluzbaFields = `
   reseniMediaType,
   reseniImage {
     image { asset->, hotspot, crop },
-    alt
+    alt,
+    caption
   },
   reseniEmbed,
   procesOverline,
@@ -175,6 +176,7 @@ const sluzbaFields = `
     client,
     description,
     result,
+    externalUrl,
     ${imageFields},
     gallery[] {
       image { asset->, hotspot, crop },

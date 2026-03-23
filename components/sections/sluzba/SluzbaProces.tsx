@@ -53,10 +53,10 @@ export function SluzbaProces({ offer }: Props) {
       <Container>
         <header className="max-w-[680px] mb-[var(--space-heading-gap)]">
           <p className="text-[12px] font-semibold tracking-[3px] uppercase text-[var(--color-gold)] mb-3 font-[family-name:var(--font-ui)]">
-            Proces
+            {offer.procesOverline || "Proces"}
           </p>
           <h2 className="text-3xl sm:text-4xl lg:text-[2.5rem] leading-[1.12] tracking-[-0.03em]">
-            Jak probíhá spolupráce
+            {offer.procesTitle || "Jak probíhá spolupráce"}
           </h2>
         </header>
 

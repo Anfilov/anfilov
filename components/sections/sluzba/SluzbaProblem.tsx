@@ -13,10 +13,10 @@ export function SluzbaProblem({ offer }: Props) {
       <Container>
         <header className="max-w-[680px] mb-[var(--space-heading-gap)]">
           <p className="text-[12px] font-semibold tracking-[3px] uppercase text-[var(--color-gold)] mb-3 font-[family-name:var(--font-ui)]">
-            Problém
+            {offer.problemOverline || "Problém"}
           </p>
           <h2 className="text-3xl sm:text-4xl lg:text-[2.5rem] leading-[1.12] tracking-[-0.03em]">
-            Poznáváte některý z&nbsp;těchto problémů?
+            {offer.problemTitle || "Poznáváte některý z\u00a0těchto problémů?"}
           </h2>
         </header>
 
@@ -33,7 +33,7 @@ export function SluzbaProblem({ offer }: Props) {
                     alt=""
                     width={96}
                     height={96}
-                    className="object-contain"
+                    className="object-contain rounded-[var(--radius-md)]"
                     aria-hidden="true"
                   />
                 </div>

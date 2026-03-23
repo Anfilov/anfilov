@@ -102,27 +102,57 @@ export interface SluzbaData {
   atomicAnswer: string;
 
   // Blok 2 — Pain Points
+  problemOverline?: string;
+  problemTitle?: string;
   painPoints: SluzbaPainPoint[];
 
   // Blok 3 — Deliverables
+  reseniOverline?: string;
+  reseniTitle?: string;
   deliverables: SluzbaDeliverable[];
   deliverablesTrustNote: string;
+  reseniImageUrl?: string;
+  reseniImageCaption?: string;
 
   // Blok 4 — Process
+  procesOverline?: string;
+  procesTitle?: string;
   steps: SluzbaStep[];
 
+  // Blok 4b — Video
+  videoOverline?: string;
+  videoTitle?: string;
+  videoBody?: string;
+  videoUrl?: string;
+  videoEmbed?: string;
+
   // Blok 5 — Portfolio
+  portfolioOverline?: string;
+  portfolioTitle?: string;
   caseStudies: SluzbaCaseStudy[];
   clientLogos: string[];
 
-  // Blok 6 — Comparison
+  // Blok 6 — Comparison + Pricing
+  cenikOverline?: string;
+  cenikTitle?: string;
+  cenikSubtitle?: string;
+  cenikPriceTitle?: string;
+  cenikPriceLabel?: string;
+  cenikIncludedTitle?: string;
+  cenikIncludedItems?: { name: string; desc: string }[];
+  cenikTableTitle?: string;
+  cenikTableNote?: string;
   comparison: SluzbaComparison;
-
-  // Blok 7 — Pricing
   pricing: SluzbaCenik;
 
-  // Blok 8 — FAQ
+  // Blok 7 — FAQ
+  faqOverline?: string;
+  faqTitle?: string;
   faq: SluzbaFaqItem[];
+
+  // Blok 8 — Nástroje
+  nastrojeOverline?: string;
+  nastrojeTitle?: string;
 
   // Blok 9 — Author (static, shared across offers)
 

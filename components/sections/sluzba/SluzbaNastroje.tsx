@@ -9,10 +9,12 @@ export interface ToolData {
 
 interface SluzbaNastrojeProps {
   tools?: ToolData[];
+  overline?: string;
+  title?: string;
 }
 
 /** Nástroje — grid log používaných nástrojů. */
-export function SluzbaNastroje({ tools }: SluzbaNastrojeProps) {
+export function SluzbaNastroje({ tools, overline, title }: SluzbaNastrojeProps) {
   if (!tools || tools.length === 0) return null;
 
   return (
@@ -20,10 +22,10 @@ export function SluzbaNastroje({ tools }: SluzbaNastrojeProps) {
       <Container>
         <header className="mb-[var(--space-heading-gap)]">
           <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-[var(--color-text-accent)] mb-5 font-[family-name:var(--font-heading)]">
-            Aplikace &amp; nástroje
+            {overline || "Nástroje"}
           </p>
           <h2 className="text-3xl sm:text-4xl lg:text-[2.5rem] leading-[1.12] tracking-[-0.03em]">
-            Jaké nástroje při tvorbě používám
+            {title || "S čím pracuji"}
           </h2>
         </header>
 

@@ -5,10 +5,12 @@ import type { SluzbaFaqItem } from "@/lib/sluzba-types";
 interface Props {
   faq: SluzbaFaqItem[];
   serviceName: string;
+  overline?: string;
+  title?: string;
 }
 
 /** FAQ — často kladené otázky. Dvousloupcový accordion. */
-export function SluzbaFaq({ faq, serviceName }: Props) {
+export function SluzbaFaq({ faq, serviceName, overline, title }: Props) {
   const items = faq.map((f) => ({ question: f.q, answer: f.a }));
   const mid = Math.ceil(items.length / 2);
   const left = items.slice(0, mid);
@@ -22,10 +24,10 @@ export function SluzbaFaq({ faq, serviceName }: Props) {
       <Container>
         <header className="mb-[var(--space-heading-gap)]">
           <p className="text-[12px] font-semibold tracking-[3px] uppercase text-[var(--color-gold)] mb-3 font-[family-name:var(--font-ui)]">
-            FAQ
+            {overline || "FAQ"}
           </p>
           <h2 className="text-3xl sm:text-4xl lg:text-[2.5rem] leading-[1.12] tracking-[-0.03em]">
-            Často kladené otázky — {serviceName}
+            {title || `Často kladené otázky — ${serviceName}`}
           </h2>
         </header>
 

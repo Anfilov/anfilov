@@ -9,9 +9,11 @@ import { Container } from "@/components/ui/Container";
 /** Pre-computed image data (URLs resolved on server) */
 export interface PortfolioProjectView {
   _id: string;
+  title?: string;
   client: string;
   description?: string;
   result?: string;
+  externalUrl?: string;
   thumbUrl: string;
   thumbAlt: string;
   /** All images for lightbox: [main, ...gallery] */
@@ -21,10 +23,12 @@ export interface PortfolioProjectView {
 interface Props {
   projects?: PortfolioProjectView[];
   serviceName?: string;
+  overline?: string;
+  title?: string;
 }
 
 /** Portfolio — ukázky prací. Grid 3 sloupce, data ze Sanity. */
-export function SluzbaPortfolio({ projects, serviceName }: Props) {
+export function SluzbaPortfolio({ projects, serviceName, overline, title }: Props) {
   const [lightbox, setLightbox] = useState<{ projectIdx: number; imageIdx: number } | null>(null);
 
   const closeLightbox = useCallback(() => setLightbox(null), []);
@@ -73,11 +77,11 @@ export function SluzbaPortfolio({ projects, serviceName }: Props) {
         <Container>
           <header className="mb-[var(--space-heading-gap)]">
             <p className="text-[12px] font-semibold tracking-[3px] uppercase text-[var(--color-gold)] mb-3 font-[family-name:var(--font-ui)]">
-              Reference
+              {overline || "Reference"}
             </p>
             <div className="flex items-end justify-between gap-6">
               <h2 className="text-3xl sm:text-4xl lg:text-[2.5rem] leading-[1.12] tracking-[-0.03em]">
-                Ukázky — {serviceName || "Portfolio"}
+                {title || `Ukázky — ${serviceName || "Portfolio"}`}
               </h2>
               <a
                 href="/portfolio"
@@ -126,9 +130,20 @@ export function SluzbaPortfolio({ projects, serviceName }: Props) {
 
                   <div className="p-6 flex flex-col flex-1">
                     <div className="flex items-center justify-between mb-2">
-                      <span className="text-sm font-bold font-[family-name:var(--font-heading)] text-[var(--color-text-primary)]">
-                        {project.client}
-                      </span>
+                      {project.externalUrl ? (
+                        <a
+                          href={project.externalUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-sm font-bold font-[family-name:var(--font-heading)] text-[var(--color-text-primary)] hover:text-[var(--color-gold)] transition-colors duration-[var(--duration-fast)]"
+                        >
+                          {project.title || project.client}
+                        </a>
+                      ) : (
+                        <span className="text-sm font-bold font-[family-name:var(--font-heading)] text-[var(--color-text-primary)]">
+                          {project.title || project.client}
+                        </span>
+                      )}
                       {project.result && (
                         <span className="text-[11px] font-semibold text-[var(--color-text-secondary)] font-[family-name:var(--font-ui)] bg-[var(--color-tag-gold)] px-2.5 py-1 rounded-[var(--radius-xs)]">
                           {project.result}
@@ -151,8 +166,8 @@ export function SluzbaPortfolio({ projects, serviceName }: Props) {
       {/* Lightbox — rendered via portal to escape transform containing blocks */}
       {lightbox && images.length > 0 && typeof document !== "undefined" && createPortal(
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center"
-          style={{ backgroundColor: "rgba(0,0,0,0.85)" }}
+          className="flex items-center justify-center"
+          style={{ position: "fixed", top: 0, left: 0, right: 0, bottom: 0, zIndex: 9999, backgroundColor: "rgba(0,0,0,0.85)" }}
           onClick={(e) => { if (e.target === e.currentTarget) closeLightbox(); }}
           role="dialog"
           aria-modal="true"
@@ -181,14 +196,14 @@ export function SluzbaPortfolio({ projects, serviceName }: Props) {
 
           {lightbox.imageIdx === 0 ? (
             <div
-              className="w-[85vw] sm:w-[75vw] max-w-[1000px] rounded-[var(--radius-lg)] overflow-hidden"
-              style={{ backgroundColor: "var(--color-surface-elevated)", padding: "clamp(40px, 8vw, 128px)", paddingBottom: "clamp(60px, 10vw, 160px)" }}
+              className="w-[90vmin] h-[90vmin] max-w-[700px] max-h-[700px] rounded-[var(--radius-lg)] overflow-hidden flex items-center justify-center p-[clamp(24px,5vw,64px)]"
+              style={{ backgroundColor: "#fff" }}
             >
               <img
                 key={`lb-${lightbox.projectIdx}-${lightbox.imageIdx}`}
                 src={images[lightbox.imageIdx].src}
                 alt={images[lightbox.imageIdx].alt}
-                style={{ width: "100%", height: "auto", display: "block", objectFit: "contain", maxHeight: "60vh" }}
+                className="block w-full h-full object-contain"
               />
             </div>
           ) : (

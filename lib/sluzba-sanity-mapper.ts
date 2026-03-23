@@ -35,7 +35,7 @@ export interface SanitySluzba {
   reseniTitle?: string;
   reseniItems?: { title: string; text: string }[];
   reseniMediaType?: "image" | "embed";
-  reseniImage?: { image: any; alt?: string };
+  reseniImage?: { image: any; alt?: string; caption?: string };
   reseniEmbed?: string;
 
   procesOverline?: string;
@@ -153,30 +153,56 @@ export function mapSanityToSluzbaData(raw: SanitySluzba): SluzbaData {
     atomicAnswer: raw.atomicAnswer ?? "",
 
     // Pain Points
+    problemOverline: raw.problemOverline,
+    problemTitle: raw.problemTitle,
     painPoints: (raw.problemItems ?? []).map((item) => ({
       icon: "",
       image: item.imageUrl,
       text: item.text,
     })),
 
-    // Deliverables (mapped from reseniItems)
+    // Řešení
+    reseniOverline: raw.reseniOverline,
+    reseniTitle: raw.reseniTitle,
     deliverables: (raw.reseniItems ?? []).map((item) => ({
       title: item.title,
       benefit: item.text,
     })),
     deliverablesTrustNote: "",
+    reseniImageUrl: raw.reseniImage?.image
+      ? (() => { try { return urlForImage(raw.reseniImage.image).width(800).height(800).fit("max").url(); } catch { return ""; } })()
+      : "",
+    reseniImageCaption: raw.reseniImage?.caption ?? "",
 
-    // Process
+    // Proces
+    procesOverline: raw.procesOverline,
+    procesTitle: raw.procesTitle,
     steps,
 
-    // Portfolio (not used directly — projects are handled separately in page)
+    // Video
+    videoOverline: raw.videoOverline,
+    videoTitle: raw.videoTitle,
+    videoBody: raw.videoBody,
+    videoUrl: raw.videoUrl,
+    videoEmbed: raw.videoEmbed,
+
+    // Portfolio
+    portfolioOverline: raw.portfolioOverline,
+    portfolioTitle: raw.portfolioTitle,
     caseStudies: [],
     clientLogos: [],
 
-    // Comparison
+    // Ceník
+    cenikOverline: raw.cenikOverline,
+    cenikTitle: raw.cenikTitle,
+    cenikSubtitle: raw.cenikSubtitle,
+    cenikPriceTitle: raw.cenikPriceTitle,
+    cenikPriceLabel: raw.cenikPriceLabel,
+    cenikIncludedTitle: raw.cenikIncludedTitle,
+    cenikIncludedItems: raw.cenikIncludedItems,
+    cenikTableTitle: raw.cenikTableTitle,
+    cenikTableNote: raw.cenikTableNote,
     comparison,
-
-    // Pricing
     pricing: {
       anchor: parsePrice(raw.cenikPriceLabel ?? raw.heroPriceLabel),
       examples: [],
@@ -184,10 +210,16 @@ export function mapSanityToSluzbaData(raw: SanitySluzba): SluzbaData {
     },
 
     // FAQ
+    faqOverline: raw.faqOverline,
+    faqTitle: raw.faqTitle,
     faq: (raw.faqItems ?? []).map((item) => ({
       q: item.question,
       a: item.answer,
     })),
+
+    // Nástroje
+    nastrojeOverline: raw.nastrojeOverline,
+    nastrojeTitle: raw.nastrojeTitle,
 
     // Cross-links based on category (dynamically resolved)
     crossLinks: getCrossLinks(raw.category, raw.slug),
