@@ -88,6 +88,7 @@ export interface SluzbaData {
   heroSubheadline: string;
   heroImage: string;
   heroVideoUrl?: string;
+  heroVideoLoop?: boolean;
   heroMediaType?: "image" | "video" | "embed";
   heroEmbed?: string;
   heroBackgroundColor?: string;

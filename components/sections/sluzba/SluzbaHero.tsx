@@ -3,6 +3,7 @@ import { ArrowRight, Star } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Button } from "@/components/ui/Button";
+import { SluzbaHeroVideo } from "./SluzbaHeroVideo";
 import type { SluzbaData } from "@/lib/sluzba-types";
 
 interface Props {
@@ -123,23 +124,12 @@ export function SluzbaHero({ offer, googleRating, googleReviewCount, googleRevie
 
           {/* Media column — image or video */}
           {offer.heroMediaType === "video" && offer.heroVideoUrl ? (
-            <div className="relative order-1 lg:order-2 flex items-center justify-center">
-              <video
-                src={offer.heroVideoUrl}
-                poster={offer.heroImage || undefined}
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="auto"
-                style={{
-                  width: "100%",
-                  height: "auto",
-                  maxHeight: 560,
-                  objectFit: "contain",
-                }}
-              />
-            </div>
+            <SluzbaHeroVideo
+              src={offer.heroVideoUrl}
+              poster={offer.heroImage || undefined}
+              loop={offer.heroVideoLoop ?? false}
+              alt={`Ukázka služby ${offer.name}`}
+            />
           ) : offer.heroImage ? (
             <div className="relative order-1 lg:order-2 flex items-center justify-center">
               <img

@@ -102,9 +102,23 @@ export const sluzba = defineType({
     defineField({
       name: "heroImage",
       title: "Hero obrázek",
-      type: "imageWithAlt",
+      type: "object",
       hidden: ({ document }) => document?.heroMediaType !== "image",
       group: "hero",
+      fields: [
+        defineField({
+          name: "image",
+          title: "Obrázek",
+          type: "image",
+          options: { hotspot: true },
+        }),
+        defineField({
+          name: "alt",
+          title: "Alt text",
+          type: "string",
+          description: "Popis obrázku pro přístupnost.",
+        }),
+      ],
     }),
     defineField({
       name: "heroVideo",
@@ -112,7 +126,16 @@ export const sluzba = defineType({
       type: "file",
       options: { accept: "video/mp4,video/webm" },
       description:
-        "Krátké video (5–15 s, max 5 MB). Bude přehráváno automaticky, bez zvuku, ve smyčce.",
+        "Krátké video (5–15 s, max 5 MB). Přehrává se automaticky, bez zvuku. Při hoveru se restartuje.",
+      hidden: ({ document }) => document?.heroMediaType !== "video",
+      group: "hero",
+    }),
+    defineField({
+      name: "heroVideoLoop",
+      title: "Smyčka videa",
+      type: "boolean",
+      description: "Zapnout = video se opakuje ve smyčce. Vypnout = přehraje se jednou, při hoveru se restartuje.",
+      initialValue: false,
       hidden: ({ document }) => document?.heroMediaType !== "video",
       group: "hero",
     }),
