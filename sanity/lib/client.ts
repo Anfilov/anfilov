@@ -7,10 +7,10 @@ export const apiVersion =
 
 /**
  * Sanity client for fetching data.
- * Returns empty results when env vars are not configured (template mode).
+ * Uses a dummy projectId when env vars are missing to prevent build errors.
  */
 export const client = createClient({
-  projectId,
+  projectId: projectId || "dummy",
   dataset,
   apiVersion,
   useCdn: true,
