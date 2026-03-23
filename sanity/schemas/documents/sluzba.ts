@@ -149,14 +149,6 @@ export const sluzba = defineType({
       hidden: ({ document }) => document?.heroMediaType !== "embed",
       group: "hero",
     }),
-    defineField({
-      name: "heroBackgroundColor",
-      title: "Barva pozadí hero",
-      type: "string",
-      description:
-        "HEX barva pozadí hero sekce (např. #f1eee5). Pokud nevyplníte, použije se výchozí barva webu.",
-      group: "hero",
-    }),
 
     // ── Trust signály (volné texty) ─────────────────────────────────
     defineField({

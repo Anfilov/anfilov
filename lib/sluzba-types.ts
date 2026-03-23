@@ -91,7 +91,7 @@ export interface SluzbaData {
   heroVideoLoop?: boolean;
   heroMediaType?: "image" | "video" | "embed";
   heroEmbed?: string;
-  heroBackgroundColor?: string;
+
   heroPriceLabel?: string;
   heroProjectsLabel?: string;
   heroDeliveryLabel?: string;

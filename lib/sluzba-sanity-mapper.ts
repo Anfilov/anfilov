@@ -19,7 +19,7 @@ export interface SanitySluzba {
   heroVideo?: { asset: { url: string } };
   heroVideoLoop?: boolean;
   heroEmbed?: string;
-  heroBackgroundColor?: string;
+
   heroPriceLabel?: string;
   heroProjectsLabel?: string;
   heroDeliveryLabel?: string;
@@ -142,7 +142,7 @@ export function mapSanityToSluzbaData(raw: SanitySluzba): SluzbaData {
     heroVideoLoop: raw.heroVideoLoop ?? false,
     heroMediaType: raw.heroMediaType,
     heroEmbed: raw.heroEmbed,
-    heroBackgroundColor: raw.heroBackgroundColor || undefined,
+
     heroPriceLabel: raw.heroPriceLabel,
     heroProjectsLabel: raw.heroProjectsLabel,
     heroDeliveryLabel: raw.heroDeliveryLabel,

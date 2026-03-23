@@ -41,12 +41,10 @@ export function Navbar() {
 
     if (currentY < 40) {
       setVisibility("visible");
-    } else if (scrollingDown && currentY < 800 && delta > 8) {
-      setVisibility("pill");
-    } else if (scrollingDown && currentY >= 800 && delta > 8) {
+    } else if (scrollingDown) {
       setVisibility("hidden");
       setMobileOpen(false);
-    } else if (!scrollingDown && delta > 8) {
+    } else if (!scrollingDown && delta > 4) {
       setVisibility("pill");
     }
 
@@ -80,11 +78,16 @@ export function Navbar() {
         aria-label="Main navigation"
       >
         <div className="mx-auto mt-2 max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className={cn(
+            "transition-[max-width] duration-[350ms] ease-[var(--ease-spring)]",
+            isPill ? "mx-auto max-w-3xl" : "max-w-none"
+          )}>
           <div
             className={cn(
-              "transition-all duration-[350ms]",
-              isPill &&
-                "rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--nav-bg)] backdrop-blur-[20px] px-5 shadow-[var(--shadow-md)]"
+              "rounded-[var(--radius-lg)] border px-5 transition-[background-color,box-shadow,border-color,backdrop-filter] duration-[350ms]",
+              isPill
+                ? "border-[var(--color-border)] bg-[var(--nav-bg)] backdrop-blur-[20px] shadow-[var(--shadow-md)]"
+                : "border-transparent bg-transparent backdrop-blur-0 shadow-none"
             )}
           >
             <div className="relative flex flex-wrap items-center justify-between gap-6 py-3 lg:gap-0 lg:py-4">
@@ -186,6 +189,7 @@ export function Navbar() {
                 </div>
               </div>
             </div>
+          </div>
           </div>
         </div>
       </nav>

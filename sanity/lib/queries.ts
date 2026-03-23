@@ -136,7 +136,6 @@ const sluzbaFields = `
   heroVideo { asset-> { url } },
   heroVideoLoop,
   heroEmbed,
-  heroBackgroundColor,
   heroPriceLabel,
   heroProjectsLabel,
   heroDeliveryLabel,

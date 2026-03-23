@@ -23,12 +23,8 @@ export function SluzbaHeroVideo({ src, poster, loop = false, alt = "Video" }: Pr
 
   return (
     <div
-      className="relative order-1 lg:order-2 flex items-center justify-center cursor-pointer"
+      className="relative order-1 lg:order-2 flex items-center justify-center cursor-pointer rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[#FAF8F4] shadow-[var(--shadow-md)] overflow-hidden"
       onMouseEnter={handleMouseEnter}
-      style={{
-        maskImage: "radial-gradient(circle closest-side at center, black 80%, transparent 100%)",
-        WebkitMaskImage: "radial-gradient(circle closest-side at center, black 80%, transparent 100%)",
-      }}
     >
       <video
         ref={videoRef}
@@ -40,12 +36,7 @@ export function SluzbaHeroVideo({ src, poster, loop = false, alt = "Video" }: Pr
         playsInline
         preload="auto"
         aria-label={alt}
-        style={{
-          width: "100%",
-          height: "auto",
-          maxHeight: 560,
-          objectFit: "contain",
-        }}
+        className="block w-full h-auto"
       />
     </div>
   );

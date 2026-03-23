@@ -20,7 +20,7 @@ export function SluzbaHero({ offer, googleRating, googleReviewCount, googleRevie
   return (
     <section
       className="relative overflow-hidden"
-      style={{ backgroundColor: offer.heroBackgroundColor ?? "var(--color-surface)" }}
+      style={{ backgroundColor: "var(--color-surface)" }}
     >
 
       <Container className="relative pt-20 sm:pt-28 lg:pt-32 pb-10 sm:pb-14">
@@ -131,16 +131,11 @@ export function SluzbaHero({ offer, googleRating, googleReviewCount, googleRevie
               alt={`Ukázka služby ${offer.name}`}
             />
           ) : offer.heroImage ? (
-            <div className="relative order-1 lg:order-2 flex items-center justify-center">
+            <div className="relative order-1 lg:order-2 flex items-center justify-center rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[#FAF8F4] shadow-[var(--shadow-md)] overflow-hidden">
               <img
                 src={offer.heroImage}
                 alt={`Ukázka služby ${offer.name}`}
-                style={{
-                  width: "100%",
-                  height: "auto",
-                  maxHeight: 560,
-                  objectFit: "contain",
-                }}
+                className="block w-full h-auto"
               />
             </div>
           ) : (
