@@ -129,7 +129,7 @@ function PortfolioJsonLd({ categories }: { categories: PortfolioCategory[] }) {
     mainEntity: {
       "@type": "ItemList",
       numberOfItems: unique.length,
-      itemListElement: unique.slice(0, 50).map((p, i) => ({
+      itemListElement: unique.map((p, i) => ({
         "@type": "ListItem",
         position: i + 1,
         name: p.title || p.client,
@@ -189,7 +189,7 @@ export default async function PortfolioPage() {
       <Navbar />
       <PortfolioJsonLd categories={categories} />
 
-      <main>
+      <main id="main">
         {/* Hero */}
         <section className="relative overflow-hidden bg-[var(--color-surface)]">
 

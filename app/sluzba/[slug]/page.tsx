@@ -276,13 +276,13 @@ export default async function SluzbaPage({ params }: PageProps) {
       />
       <Navbar />
 
-      <main>
+      <main id="main">
         {/* Hero */}
         <SluzbaHero
           offer={sluzba}
           googleRating={googleData.rating}
           googleReviewCount={googleData.reviewCount}
-          googleReviewsUrl={`https://search.google.com/local/reviews?placeid=${process.env.GOOGLE_PLACE_ID ?? ""}`}
+          googleReviewsUrl={process.env.GOOGLE_PLACE_ID ? `https://search.google.com/local/reviews?placeid=${process.env.GOOGLE_PLACE_ID}` : undefined}
         />
 
         {/* Problém */}
@@ -324,7 +324,7 @@ export default async function SluzbaPage({ params }: PageProps) {
             reviews={googleData.reviews}
             rating={googleData.rating}
             reviewCount={googleData.reviewCount}
-            googleReviewsUrl={`https://search.google.com/local/reviews?placeid=${process.env.GOOGLE_PLACE_ID ?? ""}`}
+            googleReviewsUrl={process.env.GOOGLE_PLACE_ID ? `https://search.google.com/local/reviews?placeid=${process.env.GOOGLE_PLACE_ID}` : undefined}
           />
         </div>
 

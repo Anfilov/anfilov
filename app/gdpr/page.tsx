@@ -18,7 +18,7 @@ export default function GdprPage() {
   return (
     <>
       <Navbar />
-      <main>
+      <main id="main">
         <LegalLayout title="Zásady ochrany osobních údajů">
           <h3>Správce osobních údajů</h3>
           <p>

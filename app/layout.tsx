@@ -157,6 +157,12 @@ export default function RootLayout({
         )}
       </head>
       <body>
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-[var(--radius-sm)] focus:bg-[var(--color-forest-mid)] focus:text-[var(--color-cream)] focus:text-sm focus:font-semibold focus:outline-none"
+        >
+          Přeskočit na obsah
+        </a>
         <ThemeProvider>
           <ScrollReveal />
           {children}

@@ -166,6 +166,7 @@ export function GlossaryHub({ terms }: { terms: GlossaryTermListItem[] }) {
       <div className="sticky top-0 z-10 bg-[var(--color-surface)] pt-4 pb-5">
         {/* Search */}
         <div style={{ position: "relative", maxWidth: 360, marginBottom: 16 }}>
+          <label htmlFor="glossary-search" className="sr-only">Hledat pojem</label>
           <svg
             width="16"
             height="16"
@@ -189,6 +190,7 @@ export function GlossaryHub({ terms }: { terms: GlossaryTermListItem[] }) {
             <path d="m21 21-4.3-4.3" />
           </svg>
           <input
+            id="glossary-search"
             type="text"
             inputMode="search"
             autoComplete="off"
@@ -226,6 +228,8 @@ export function GlossaryHub({ terms }: { terms: GlossaryTermListItem[] }) {
               <a
                 key={letter}
                 href={active ? `#letter-${letter}` : undefined}
+                aria-disabled={!active || undefined}
+                tabIndex={active ? undefined : -1}
                 className={`
                   inline-flex items-center justify-center w-8 h-8 rounded-[var(--radius-xs)]
                   text-[13px] font-semibold font-[family-name:var(--font-ui)]

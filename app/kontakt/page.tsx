@@ -18,7 +18,7 @@ export default function ContactPage() {
   return (
     <>
       <Navbar />
-      <main>
+      <main id="main">
         <ContactHero />
       </main>
       <Footer />

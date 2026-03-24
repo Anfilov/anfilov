@@ -16,7 +16,7 @@ export default function CookiesPage() {
   return (
     <>
       <Navbar />
-      <main>
+      <main id="main">
         <LegalLayout title="Zásady používání souborů cookies">
           <h3>Co jsou soubory cookies</h3>
           <p>

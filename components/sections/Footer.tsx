@@ -57,7 +57,6 @@ const footerLinks = [
   {
     title: "Zdroje",
     links: [
-      { label: "Články", href: "#" },
       { label: "Slovník", href: "/slovnik" },
     ],
   },

@@ -94,7 +94,7 @@ export default async function SluzbyPage() {
       <Navbar />
       <SluzbyJsonLd categories={categories} />
 
-      <main>
+      <main id="main">
         {/* Hero */}
         <section className="relative overflow-hidden bg-[var(--color-surface)]">
 

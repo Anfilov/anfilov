@@ -15,7 +15,7 @@ export default function HomePage() {
   return (
     <>
       <Navbar />
-      <main>
+      <main id="main">
         <HeroCentered />
         {/* Add more sections here — browse /showcase for the full catalogue */}
       </main>

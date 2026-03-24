@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useMemo, useCallback, useEffect, useRef } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
-import type { PortfolioItem, PortfolioCategory } from "./page";
+import type { PortfolioCategory } from "./page";
 
 // ---------------------------------------------------------------------------
 // Constants
@@ -40,13 +40,11 @@ export function PortfolioGrid({
     imageIdx: number;
   } | null>(null);
 
-  // Reset visible count when tab or search changes
-  useEffect(() => {
-    setVisibleCount(PAGE_SIZE);
-  }, [activeTab, query]);
-
   // Current category projects
-  const categoryProjects = categories[activeTab]?.projects ?? [];
+  const categoryProjects = useMemo(
+    () => categories[activeTab]?.projects ?? [],
+    [categories, activeTab],
+  );
 
   // Filtered by search
   const filtered = useMemo(() => {
@@ -69,59 +67,56 @@ export function PortfolioGrid({
   // ── Lightbox navigation ─────────────────────────────────────────
   const images = lightbox ? visible[lightbox.projectIdx]?.lightboxImages ?? [] : [];
 
-  const closeLightbox = useCallback(() => setLightbox(null), []);
+  const closeLightbox = () => setLightbox(null);
 
-  const goNext = useCallback(() => {
+  const goNext = () => {
     setLightbox((prev) => {
       if (!prev) return null;
       const len = visible[prev.projectIdx]?.lightboxImages.length ?? 0;
       if (len === 0) return null;
       return { ...prev, imageIdx: (prev.imageIdx + 1) % len };
     });
-  }, [visible]);
+  };
 
-  const goPrev = useCallback(() => {
+  const goPrev = () => {
     setLightbox((prev) => {
       if (!prev) return null;
       const len = visible[prev.projectIdx]?.lightboxImages.length ?? 0;
       if (len === 0) return null;
       return { ...prev, imageIdx: (prev.imageIdx - 1 + len) % len };
     });
-  }, [visible]);
+  };
 
   // Keyboard
   useEffect(() => {
     if (!lightbox) return;
     const handleKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") closeLightbox();
+      if (e.key === "Escape") setLightbox(null);
       if (e.key === "ArrowRight") goNext();
       if (e.key === "ArrowLeft") goPrev();
     };
     document.addEventListener("keydown", handleKey);
     return () => document.removeEventListener("keydown", handleKey);
-  }, [lightbox, closeLightbox, goNext, goPrev]);
+  }, [lightbox]);
 
   // Touch swipe
   const touchStart = useRef<{ x: number; y: number } | null>(null);
-  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+  const handleTouchStart = (e: React.TouchEvent) => {
     touchStart.current = {
       x: e.touches[0].clientX,
       y: e.touches[0].clientY,
     };
-  }, []);
-  const handleTouchEnd = useCallback(
-    (e: React.TouchEvent) => {
-      if (!touchStart.current) return;
-      const dx = e.changedTouches[0].clientX - touchStart.current.x;
-      const dy = e.changedTouches[0].clientY - touchStart.current.y;
-      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 50) {
-        if (dx < 0) goNext();
-        else goPrev();
-      }
-      touchStart.current = null;
-    },
-    [goNext, goPrev],
-  );
+  };
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (!touchStart.current) return;
+    const dx = e.changedTouches[0].clientX - touchStart.current.x;
+    const dy = e.changedTouches[0].clientY - touchStart.current.y;
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 50) {
+      if (dx < 0) goNext();
+      else goPrev();
+    }
+    touchStart.current = null;
+  };
 
   // ── Count label ─────────────────────────────────────────────────
   const countLabel = (() => {
@@ -162,6 +157,7 @@ export function PortfolioGrid({
         </div>
 
         <div className="relative w-[220px] sm:w-[260px] shrink-0">
+          <label htmlFor="portfolio-search" className="sr-only">Hledat projekt</label>
           <svg
             width="16"
             height="16"
@@ -183,6 +179,7 @@ export function PortfolioGrid({
             autoComplete="off"
             autoCorrect="off"
             spellCheck={false}
+            id="portfolio-search"
             placeholder="Hledat..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
@@ -236,7 +233,7 @@ export function PortfolioGrid({
                   />
                   {galleryCount > 1 && (
                     <span className="absolute top-6 right-6 text-[11px] font-semibold font-[family-name:var(--font-ui)] px-2.5 py-1 rounded-[var(--radius-xs)] bg-[#F5F0E6] text-[#8B7D5E]">
-                      {galleryCount} images
+                      {galleryCount} fotek
                     </span>
                   )}
                 </button>
@@ -351,34 +348,38 @@ export function PortfolioGrid({
               </button>
             )}
 
-            {/\.(svg|png)/.test(images[lightbox.imageIdx].src) ? (
-              <div
-                className="w-[min(700px,90vmin)] h-[min(700px,90vmin)] rounded-[var(--radius-lg)] overflow-hidden flex items-center justify-center p-[clamp(24px,5vw,64px)]"
-                style={{ backgroundColor: "#fff" }}
-              >
-                <img
-                  key={`lb-${lightbox.projectIdx}-${lightbox.imageIdx}`}
-                  src={images[lightbox.imageIdx].src}
-                  alt={images[lightbox.imageIdx].alt}
-                  className="block max-w-full max-h-full"
-                  style={{ objectFit: "contain", width: "100%", height: "100%" }}
-                />
+            <div className="flex items-center justify-center relative">
+              {/* Spinner — visible until image loads */}
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div className="w-8 h-8 border-2 border-white/20 border-t-white/70 rounded-full animate-spin" />
               </div>
-            ) : (
-              <div className="flex items-center justify-center">
+              {/\.(svg|png)/.test(images[lightbox.imageIdx].src) ? (
+                <div
+                  className="w-[min(700px,90vmin)] h-[min(700px,90vmin)] rounded-[var(--radius-lg)] overflow-hidden flex items-center justify-center p-[clamp(24px,5vw,64px)] relative z-10"
+                  style={{ backgroundColor: "#fff" }}
+                >
+                  <img
+                    key={`lb-${lightbox.projectIdx}-${lightbox.imageIdx}`}
+                    src={images[lightbox.imageIdx].src}
+                    alt={images[lightbox.imageIdx].alt}
+                    className="block max-w-full max-h-full"
+                    style={{ objectFit: "contain", width: "100%", height: "100%" }}
+                  />
+                </div>
+              ) : (
                 <img
                   key={`lb-${lightbox.projectIdx}-${lightbox.imageIdx}`}
                   src={images[lightbox.imageIdx].src}
                   alt={images[lightbox.imageIdx].alt}
-                  className="block rounded-[var(--radius-lg)]"
+                  className="block rounded-[var(--radius-lg)] relative z-10"
                   style={{
                     maxWidth: "min(1000px, 85vw)",
                     maxHeight: "85vh",
                     objectFit: "contain",
                   }}
                 />
-              </div>
-            )}
+              )}
+            </div>
 
             {images.length > 1 && (
               <button

@@ -132,8 +132,8 @@ export function SluzbaAutor() {
             </div>
 
             {/* Workshop gallery — inside bio column so it aligns perfectly */}
-            <div className="mt-8" style={{ position: "relative", paddingBottom: "56.25%" }}>
-              <div style={{ position: "absolute", inset: 0, display: "flex", gap: 6 }}>
+            <div className="mt-8 relative pb-[56.25%]">
+              <div className="absolute inset-0 flex gap-1.5">
                 {workshopImages.map((img, i) => (
                   <div
                     key={img.id}
@@ -143,38 +143,16 @@ export function SluzbaAutor() {
                     onMouseEnter={() => setActiveImg(i)}
                     onClick={() => setActiveImg(i)}
                     onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setActiveImg(i); } }}
-                    style={{
-                      flex: i === activeImg ? "4 1 0%" : "0.4 1 0%",
-                      transition: "flex var(--duration-slow, 350ms) var(--easing-default, cubic-bezier(0.4, 0, 0.2, 1))",
-                      position: "relative",
-                      borderRadius: "var(--r-lg, 22px)",
-                      overflow: "hidden",
-                      cursor: "pointer",
-                      minWidth: 36,
-                    }}
+                    className="relative rounded-[var(--radius-lg)] overflow-hidden cursor-pointer min-w-[36px] transition-[flex] duration-[var(--duration-slow)] ease-[var(--ease-spring)]"
+                    style={{ flex: i === activeImg ? "4 1 0%" : "0.4 1 0%" }}
                   >
                     <div
-                      style={{
-                        position: "absolute",
-                        inset: 0,
-                        backgroundImage: `url(${img.src})`,
-                        backgroundSize: "cover",
-                        backgroundPosition: "center",
-                      }}
+                      className="absolute inset-0 bg-cover bg-center"
+                      style={{ backgroundImage: `url(${img.src})` }}
                     />
-                    <div style={{ position: "absolute", inset: 0, background: "rgba(28,28,28,0.15)" }} />
+                    <div className="absolute inset-0 bg-[var(--color-surface-dark)]/15" />
                     {i === activeImg && (
-                      <span
-                        style={{
-                          position: "absolute",
-                          bottom: 16,
-                          left: 20,
-                          color: "var(--color-cream, #F5F0E6)",
-                          fontSize: 14,
-                          fontWeight: 600,
-                          whiteSpace: "nowrap",
-                        }}
-                      >
+                      <span className="absolute bottom-4 left-5 text-sm font-semibold text-[var(--color-cream)] whitespace-nowrap font-[family-name:var(--font-ui)]">
                         {img.title}
                       </span>
                     )}

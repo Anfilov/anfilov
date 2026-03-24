@@ -4,7 +4,7 @@ export const siteConfig = {
   url: "https://anfilov.cz",
   locale: "cs",
   title: "Anfilov",
-  description: "",
+  description: "Simon Anfilov — brand & web designer. Tvorba loga, vizuální identita, webdesign a grafický design pro firmy a podnikatele.",
   ogImage: "/og.jpg",
 
   // Design dimensions (applied to <html> data-attributes)
@@ -33,17 +33,17 @@ export const siteConfig = {
 
   seo: {
     organization: {
-      name: "Anfilov",
+      name: "ANFILOV Studio",
       logo: "/logo.svg",
-      phone: "",
-      email: "",
+      phone: "+420602262633",
+      email: "simon@anfilov.cz",
     },
     localBusiness: {
-      type: "",
-      streetAddress: "",
-      city: "",
-      postalCode: "",
-      country: "",
+      type: "ProfessionalService",
+      streetAddress: "Krhanice 275",
+      city: "Krhanice",
+      postalCode: "257 42",
+      country: "CZ",
     },
   },
 } as const;

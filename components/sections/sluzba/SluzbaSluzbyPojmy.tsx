@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import type { SluzbaData } from "@/lib/sluzba-types";
@@ -93,7 +94,7 @@ export function SluzbaSluzbyPojmy({ offer }: Props) {
         {/* Links side by side */}
         <div className="flex flex-wrap items-center gap-6">
           {hasLinks && (
-            <a
+            <Link
               href="/sluzba"
               className="
                 inline-flex items-center gap-1.5 text-sm font-semibold
@@ -104,10 +105,10 @@ export function SluzbaSluzbyPojmy({ offer }: Props) {
             >
               Všechny služby
               <ArrowRight size={14} aria-hidden="true" />
-            </a>
+            </Link>
           )}
           {hasTerms && (
-            <a
+            <Link
               href="/slovnik"
               className="
                 inline-flex items-center gap-1.5 text-sm font-semibold
@@ -118,7 +119,7 @@ export function SluzbaSluzbyPojmy({ offer }: Props) {
             >
               Všechny pojmy
               <ArrowRight size={14} aria-hidden="true" />
-            </a>
+            </Link>
           )}
         </div>
       </Container>

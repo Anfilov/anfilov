@@ -182,7 +182,7 @@ export default async function GlossaryDetailPage({ params }: PageProps) {
       <Navbar />
       <TermJsonLd term={term} />
 
-      <main>
+      <main id="main">
         {/* BLOK 1 — Hero */}
         <section className="bg-[var(--color-surface)] pt-20 sm:pt-28 lg:pt-32 pb-[var(--section-padding-y)]">
           <Container>

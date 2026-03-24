@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-// import { ArrowRight } from "lucide-react";
 import { siteConfig } from "@/site.config";
 import { getAllGlossaryTerms } from "@/sanity/lib/queries";
 import { Navbar, Footer } from "@/components/sections";
@@ -92,7 +91,7 @@ export default async function SlovnikPage() {
       <Navbar />
       <GlossaryJsonLd terms={terms} />
 
-      <main>
+      <main id="main">
         {/* Hero */}
         <section className="relative overflow-hidden bg-[var(--color-surface)]">
           <Container className="relative pt-20 sm:pt-28 lg:pt-32 pb-10 sm:pb-14">

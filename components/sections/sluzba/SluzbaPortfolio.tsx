@@ -140,7 +140,7 @@ export function SluzbaPortfolio({ projects, serviceName, overline, title }: Prop
                     />
                     {galleryCount > 1 && (
                       <span className="absolute top-6 right-6 text-[11px] font-semibold font-[family-name:var(--font-ui)] px-2.5 py-1 rounded-[var(--radius-xs)] bg-[#F5F0E6] text-[#8B7D5E]">
-                        {galleryCount} images
+                        {galleryCount} fotek
                       </span>
                     )}
                   </button>
@@ -213,30 +213,34 @@ export function SluzbaPortfolio({ projects, serviceName, overline, title }: Prop
             </button>
           )}
 
-          {/\.(svg|png)/.test(images[lightbox.imageIdx].src) ? (
-            <div
-              className="w-[min(700px,90vmin)] h-[min(700px,90vmin)] rounded-[var(--radius-lg)] overflow-hidden flex items-center justify-center p-[clamp(24px,5vw,64px)]"
-              style={{ backgroundColor: "#fff" }}
-            >
-              <img
-                key={`lb-${lightbox.projectIdx}-${lightbox.imageIdx}`}
-                src={images[lightbox.imageIdx].src}
-                alt={images[lightbox.imageIdx].alt}
-                className="block max-w-full max-h-full"
-                style={{ objectFit: "contain", width: "100%", height: "100%" }}
-              />
+          <div className="flex items-center justify-center relative">
+            {/* Spinner — visible until image loads */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <div className="w-8 h-8 border-2 border-white/20 border-t-white/70 rounded-full animate-spin" />
             </div>
-          ) : (
-            <div className="flex items-center justify-center">
+            {/\.(svg|png)/.test(images[lightbox.imageIdx].src) ? (
+              <div
+                className="w-[min(700px,90vmin)] h-[min(700px,90vmin)] rounded-[var(--radius-lg)] overflow-hidden flex items-center justify-center p-[clamp(24px,5vw,64px)] relative z-10"
+                style={{ backgroundColor: "#fff" }}
+              >
+                <img
+                  key={`lb-${lightbox.projectIdx}-${lightbox.imageIdx}`}
+                  src={images[lightbox.imageIdx].src}
+                  alt={images[lightbox.imageIdx].alt}
+                  className="block max-w-full max-h-full"
+                  style={{ objectFit: "contain", width: "100%", height: "100%" }}
+                />
+              </div>
+            ) : (
               <img
                 key={`lb-${lightbox.projectIdx}-${lightbox.imageIdx}`}
                 src={images[lightbox.imageIdx].src}
                 alt={images[lightbox.imageIdx].alt}
-                className="block rounded-[var(--radius-lg)]"
+                className="block rounded-[var(--radius-lg)] relative z-10"
                 style={{ maxWidth: "min(1000px, 85vw)", maxHeight: "85vh", objectFit: "contain" }}
               />
-            </div>
-          )}
+            )}
+          </div>
 
           {images.length > 1 && (
             <button

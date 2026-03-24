@@ -105,7 +105,6 @@ export function mapSanityToSluzbaData(raw: SanitySluzba): SluzbaData {
   const deliveryDays = steps.reduce((sum, s) => sum + s.days, 0);
 
   // Build comparison from Sanity table data
-  const tableColumns = raw.cenikTableColumns ?? ["ANFILOV", "Agentura", "Svépomocí"];
   const tableRows = raw.cenikTableRows ?? [];
   const comparison = {
     criteria: tableRows.map((r) => r.criterion),
