@@ -128,6 +128,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
+      style={{ overflowX: "hidden" }}
       lang={siteConfig.locale}
       suppressHydrationWarning
       data-layout={siteConfig.layout}

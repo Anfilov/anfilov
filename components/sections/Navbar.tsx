@@ -86,7 +86,7 @@ export function Navbar() {
             className={cn(
               "transition-[background-color,box-shadow,border-color,backdrop-filter,padding,border-radius] duration-[350ms]",
               isPill
-                ? "rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--nav-bg)] backdrop-blur-[20px] shadow-[var(--shadow-md)] px-5"
+                ? "rounded-[12px] border border-[var(--color-border)] bg-[var(--nav-bg)] backdrop-blur-[20px] shadow-[var(--shadow-md)] px-5"
                 : "border border-transparent bg-transparent backdrop-blur-0 shadow-none px-0"
             )}
           >

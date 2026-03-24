@@ -178,19 +178,19 @@ export function SluzbaCenik({ offer }: Props) {
                 {offer.cenikTableTitle || "Proč je to se mnou výhodnější"}
               </h3>
               <div className="rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface-elevated)] overflow-x-auto">
-              <table className="w-full text-[14px]">
+              <table className="w-full text-[12px] sm:text-[14px]" style={{ minWidth: 480 }}>
                 <thead>
                   <tr className="border-b-2 border-[var(--color-border)]">
-                    <th className="text-left py-4 px-5 font-semibold text-[13px] uppercase tracking-[1.5px] text-[var(--color-text-secondary)] font-[family-name:var(--font-ui)]">
+                    <th className="text-left py-3 px-3 sm:py-4 sm:px-5 font-semibold text-[11px] sm:text-[13px] uppercase tracking-[1px] sm:tracking-[1.5px] text-[var(--color-text-secondary)] font-[family-name:var(--font-ui)]">
                       Kritérium
                     </th>
-                    <th className="py-4 px-4 font-semibold text-[13px] uppercase tracking-[1.5px] font-[family-name:var(--font-ui)] text-center text-[var(--color-gold)] bg-[var(--color-accent-subtle)]">
+                    <th className="py-3 px-2 sm:py-4 sm:px-4 font-semibold text-[11px] sm:text-[13px] uppercase tracking-[1px] sm:tracking-[1.5px] font-[family-name:var(--font-ui)] text-center text-[var(--color-gold)] bg-[var(--color-accent-subtle)]">
                       ANFILOV
                     </th>
-                    <th className="py-4 px-4 font-semibold text-[13px] uppercase tracking-[1.5px] font-[family-name:var(--font-ui)] text-center text-[var(--color-warm-500)]">
+                    <th className="py-3 px-2 sm:py-4 sm:px-4 font-semibold text-[11px] sm:text-[13px] uppercase tracking-[1px] sm:tracking-[1.5px] font-[family-name:var(--font-ui)] text-center text-[var(--color-warm-500)]">
                       Agentura
                     </th>
-                    <th className="py-4 px-4 font-semibold text-[13px] uppercase tracking-[1.5px] font-[family-name:var(--font-ui)] text-center text-[var(--color-warm-500)]">
+                    <th className="py-3 px-2 sm:py-4 sm:px-4 font-semibold text-[11px] sm:text-[13px] uppercase tracking-[1px] sm:tracking-[1.5px] font-[family-name:var(--font-ui)] text-center text-[var(--color-warm-500)]">
                       Svépomocí
                     </th>
                   </tr>
@@ -201,16 +201,16 @@ export function SluzbaCenik({ offer }: Props) {
                       key={criterion}
                       className="border-b border-[var(--color-border)] last:border-0"
                     >
-                      <td className="py-3.5 px-5 font-semibold text-[var(--color-text-primary)] font-[family-name:var(--font-ui)]">
+                      <td className="py-3 px-3 sm:py-3.5 sm:px-5 font-semibold text-[var(--color-text-primary)] font-[family-name:var(--font-ui)]">
                         {criterion}
                       </td>
-                      <td className="py-3.5 px-4 text-center bg-[var(--color-accent-subtle)]">
+                      <td className="py-3 px-2 sm:py-3.5 sm:px-4 text-center bg-[var(--color-accent-subtle)]">
                         <DotScore score={comparison.columns.anfilov[i]} highlight />
                       </td>
-                      <td className="py-3.5 px-4 text-center">
+                      <td className="py-3 px-2 sm:py-3.5 sm:px-4 text-center">
                         <DotScore score={comparison.columns.agentura[i]} />
                       </td>
-                      <td className="py-3.5 px-4 text-center">
+                      <td className="py-3 px-2 sm:py-3.5 sm:px-4 text-center">
                         <DotScore score={comparison.columns.diy[i]} />
                       </td>
                     </tr>
