@@ -32,8 +32,10 @@ import {
 } from "@/components/sections/sluzba";
 
 // ---------------------------------------------------------------------------
-// Static generation
+// Revalidation — refresh data from Sanity every 60 seconds
 // ---------------------------------------------------------------------------
+
+export const revalidate = 60;
 
 export async function generateStaticParams() {
   const slugs = await getAllSluzbaSlugs();
