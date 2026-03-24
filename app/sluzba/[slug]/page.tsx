@@ -300,7 +300,8 @@ export default async function SluzbaPage({ params }: PageProps) {
           <SluzbaProces offer={sluzba} />
         </div>
 
-        {/* Video */}
+        {/* Video — only if URL or embed is set */}
+        {(raw.videoUrl || raw.videoEmbed) && (
         <div className="reveal">
           <SluzbaVideo
             overline={raw.videoOverline}
@@ -310,6 +311,7 @@ export default async function SluzbaPage({ params }: PageProps) {
             videoEmbed={raw.videoSource === "embed" ? raw.videoEmbed : undefined}
           />
         </div>
+        )}
 
         {/* Portfolio */}
         <div className="reveal">
