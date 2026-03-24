@@ -144,7 +144,10 @@ export function Navbar() {
               {/* ── Right side: theme toggle + CTA ── */}
               <div
                 className={cn(
-                  "mb-6 hidden w-full flex-wrap items-center justify-end space-y-8 rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-surface-elevated)] p-6 shadow-[var(--shadow-lg)] md:flex-nowrap",
+                  "mb-6 hidden w-full flex-wrap items-center justify-end space-y-8 p-6 md:flex-nowrap",
+                  isPill
+                    ? "bg-transparent border-0 shadow-none rounded-none"
+                    : "rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-surface-elevated)] shadow-[var(--shadow-lg)]",
                   "lg:m-0 lg:flex lg:w-fit lg:space-y-0 lg:border-transparent lg:bg-transparent lg:p-0 lg:shadow-none",
                   "group-data-[state=active]:block lg:group-data-[state=active]:flex"
                 )}
