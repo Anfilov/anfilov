@@ -77,7 +77,7 @@ export function Navbar() {
         )}
         aria-label="Main navigation"
       >
-        <div className="mx-auto mt-2 max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" style={{ marginTop: "max(0.5rem, env(safe-area-inset-top))" }}>
           <div className={cn(
             "transition-[max-width] duration-[350ms] ease-[var(--ease-spring)]",
             isPill ? "mx-auto max-w-3xl" : "max-w-none"

@@ -38,17 +38,12 @@ export function SluzbaNastroje({ tools, overline, title }: SluzbaNastrojeProps) 
               rel="noopener noreferrer"
               className="group flex flex-col items-start gap-3"
             >
-              <div style={{ width: 160, height: 40, display: "flex", alignItems: "center" }}>
+              <div className="w-[100px] h-[28px] sm:w-[160px] sm:h-[40px] flex items-center">
                 <img
                   src={tool.logoUrl}
                   alt={tool.name}
                   loading="lazy"
-                  style={{
-                    width: 160,
-                    height: 40,
-                    objectFit: "contain",
-                    objectPosition: "left center",
-                  }}
+                  className="w-full h-full object-contain object-left"
                 />
               </div>
               <span className="text-[13px] font-semibold text-[var(--color-text-tertiary)] group-hover:text-[var(--color-text-primary)] transition-colors duration-[var(--duration-slow)] font-[family-name:var(--font-ui)]">

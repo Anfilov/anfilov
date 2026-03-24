@@ -51,6 +51,7 @@ export function SluzbaPortfolio({ projects, serviceName, overline, title }: Prop
     });
   }, [projects]);
 
+  // Keyboard navigation
   useEffect(() => {
     if (!lightbox) return;
     const handleKey = (e: KeyboardEvent) => {
@@ -61,6 +62,22 @@ export function SluzbaPortfolio({ projects, serviceName, overline, title }: Prop
     document.addEventListener("keydown", handleKey);
     return () => document.removeEventListener("keydown", handleKey);
   }, [lightbox, closeLightbox, goNext, goPrev]);
+
+  // Touch swipe navigation
+  const touchStart = useRef<{ x: number; y: number } | null>(null);
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    touchStart.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+  }, []);
+  const handleTouchEnd = useCallback((e: React.TouchEvent) => {
+    if (!touchStart.current) return;
+    const dx = e.changedTouches[0].clientX - touchStart.current.x;
+    const dy = e.changedTouches[0].clientY - touchStart.current.y;
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 50) {
+      if (dx < 0) goNext();
+      else goPrev();
+    }
+    touchStart.current = null;
+  }, [goNext, goPrev]);
 
   if (!projects || projects.length === 0) return null;
 
@@ -169,6 +186,8 @@ export function SluzbaPortfolio({ projects, serviceName, overline, title }: Prop
           className="flex items-center justify-center"
           style={{ position: "fixed", top: 0, left: 0, right: 0, bottom: 0, zIndex: 9999, backgroundColor: "rgba(0,0,0,0.85)" }}
           onClick={(e) => { if (e.target === e.currentTarget) closeLightbox(); }}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
           role="dialog"
           aria-modal="true"
         >

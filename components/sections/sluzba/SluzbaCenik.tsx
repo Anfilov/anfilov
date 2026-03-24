@@ -177,7 +177,7 @@ export function SluzbaCenik({ offer }: Props) {
               <h3 className="text-lg font-bold text-[var(--color-text-primary)] font-[family-name:var(--font-heading)] tracking-tight mb-4">
                 {offer.cenikTableTitle || "Proč je to se mnou výhodnější"}
               </h3>
-              <div className="rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface-elevated)] overflow-hidden">
+              <div className="rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface-elevated)] overflow-x-auto">
               <table className="w-full text-[14px]">
                 <thead>
                   <tr className="border-b-2 border-[var(--color-border)]">
