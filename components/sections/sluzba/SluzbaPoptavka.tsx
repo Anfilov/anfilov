@@ -49,6 +49,14 @@ export function SluzbaPoptavka({ slug, serviceName }: SluzbaPoptavkaProps) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
 
+  // Scroll to success message after form submission
+  const successRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (state?.success && successRef.current) {
+      successRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  }, [state?.success]);
+
   return (
     <section
       ref={sectionRef}
@@ -109,7 +117,7 @@ export function SluzbaPoptavka({ slug, serviceName }: SluzbaPoptavkaProps) {
 
           {/* Right column — form */}
           {state?.success ? (
-            <div className="lg:col-span-3 flex flex-col items-center justify-center gap-4 p-6 sm:p-8 rounded-[var(--card-radius)] bg-[var(--color-surface-elevated)] border border-[var(--card-border)] text-center">
+            <div ref={successRef} className="lg:col-span-3 flex flex-col items-center justify-center gap-4 p-6 sm:p-8 rounded-[var(--card-radius)] bg-[var(--color-surface-elevated)] border border-[var(--card-border)] text-center">
               <CheckCircle2 size={48} className="text-[var(--color-gold)]" />
               <h3 className="text-xl font-bold">Děkuji za poptávku!</h3>
               <p className="text-[15px] text-[var(--color-text-secondary)] font-[family-name:var(--font-body)]">

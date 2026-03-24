@@ -14,31 +14,27 @@ export function SluzbaReseni({ offer }: Props) {
   return (
     <section className="bg-[var(--color-surface-sunken)]" style={{ paddingTop: "var(--section-padding-y)", paddingBottom: "calc(var(--section-padding-y) / 2)" }}>
       <Container>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-          {/* Left — image */}
-          <div className="flex justify-center">
-            {offer.reseniImageUrl ? (
+        <div className={`${offer.reseniImageUrl ? "grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start" : "max-w-2xl"}`}>
+          {/* Left — image (only if present) */}
+          {offer.reseniImageUrl && (
+            <div className="flex justify-center">
               <figure className="w-full">
-                <img
-                  src={offer.reseniImageUrl}
-                  alt={`${offer.name} — ukázka výstupu`}
-                  className="w-full h-auto rounded-[var(--card-radius)]"
-                  loading="lazy"
-                />
+                <div className="rounded-[var(--radius-lg)] bg-[#FAF8F4] shadow-[var(--shadow-md)] overflow-hidden">
+                  <img
+                    src={offer.reseniImageUrl}
+                    alt={`${offer.name} — ukázka výstupu`}
+                    className="block w-full h-auto"
+                    loading="lazy"
+                  />
+                </div>
                 {offer.reseniImageCaption && (
                   <figcaption className="mt-3 text-center text-[15px] italic text-[var(--color-text-tertiary)] font-[family-name:var(--font-body)]">
                     {offer.reseniImageCaption}
                   </figcaption>
                 )}
               </figure>
-            ) : (
-              <div className="w-full max-w-[400px] aspect-square rounded-[var(--card-radius)] bg-[var(--color-surface)] flex items-center justify-center">
-                <span className="text-[var(--color-text-tertiary)] text-sm font-[family-name:var(--font-ui)]">
-                  {offer.name}
-                </span>
-              </div>
-            )}
-          </div>
+            </div>
+          )}
 
           {/* Right — content */}
           <div>
