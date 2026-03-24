@@ -23,7 +23,7 @@ export function SluzbaHeroVideo({ src, poster, loop = false, alt = "Video" }: Pr
 
   return (
     <div
-      className="relative order-1 lg:order-2 flex items-center justify-center cursor-pointer rounded-[var(--radius-lg)] bg-[#FAF8F4] shadow-[var(--shadow-md)] overflow-hidden"
+      className="relative order-1 lg:order-2 flex items-center justify-center cursor-pointer rounded-[var(--radius-lg)] overflow-hidden"
       onMouseEnter={handleMouseEnter}
     >
       <video

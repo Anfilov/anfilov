@@ -29,14 +29,14 @@ export interface SanitySluzba {
 
   problemOverline?: string;
   problemTitle?: string;
-  problemItems?: { imageUrl?: string; text: string }[];
+  problemItems?: { icon?: string; text: string }[];
 
   reseniOverline?: string;
   reseniTitle?: string;
   reseniItems?: { title: string; text: string }[];
   reseniMediaType?: "image" | "icon" | "embed" | "none";
   reseniImage?: { image: any; alt?: string; caption?: string };
-  reseniIcon?: { provider: string; name: string };
+  reseniIcon?: string;
   reseniEmbed?: string;
 
   procesOverline?: string;
@@ -157,8 +157,7 @@ export function mapSanityToSluzbaData(raw: SanitySluzba): SluzbaData {
     problemOverline: raw.problemOverline,
     problemTitle: raw.problemTitle,
     painPoints: (raw.problemItems ?? []).map((item) => ({
-      icon: "",
-      image: item.imageUrl,
+      icon: item.icon ?? "",
       text: item.text,
     })),
 
@@ -175,7 +174,7 @@ export function mapSanityToSluzbaData(raw: SanitySluzba): SluzbaData {
       : "",
     reseniImageCaption: raw.reseniImage?.caption ?? "",
     reseniMediaType: raw.reseniMediaType,
-    reseniIconName: raw.reseniIcon?.name,
+    reseniIconName: raw.reseniIcon,
 
     // Proces
     procesOverline: raw.procesOverline,

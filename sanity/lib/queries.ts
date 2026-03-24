@@ -145,7 +145,7 @@ const sluzbaFields = `
   problemOverline,
   problemTitle,
   problemItems[] {
-    "imageUrl": image.asset->url,
+    icon,
     text
   },
   reseniOverline,

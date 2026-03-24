@@ -4,8 +4,7 @@
 // ---------------------------------------------------------------------------
 
 export interface SluzbaPainPoint {
-  icon: string; // Lucide icon name (legacy, optional)
-  image?: string; // Image URL (takes priority over icon)
+  icon: string; // Lucide icon name
   text: string;
 }
 

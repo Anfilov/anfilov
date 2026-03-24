@@ -29,17 +29,9 @@ export const demoSluzba: SluzbaData = {
   projectCount: 127,
 
   painPoints: [
-    { icon: "Frown", image: "/images/pain-placeholder.webp", text: "Vaše logo vypadá zastarale a neprofesionálně" },
-    {
-      icon: "Copy",
-      image: "/images/pain-placeholder.webp",
-      text: "Logo z Canvy nebo Fiverru vypadá jako tisíc dalších",
-    },
-    {
-      icon: "TrendingDown",
-      image: "/images/pain-placeholder.webp",
-      text: "Zákazníci si vaši značku nepamatují",
-    },
+    { icon: "Frown", text: "Vaše logo vypadá zastarale a neprofesionálně" },
+    { icon: "Copy", text: "Logo z Canvy nebo Fiverru vypadá jako tisíc dalších" },
+    { icon: "TrendingDown", text: "Zákazníci si vaši značku nepamatují" },
   ],
 
   deliverables: [

@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { icons } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import type { SluzbaData } from "@/lib/sluzba-types";
 
@@ -26,23 +26,19 @@ export function SluzbaProblem({ offer }: Props) {
               key={i}
               className="reveal group"
             >
-              {point.image ? (
-                <div className="mb-5 w-[96px] h-[96px] relative">
-                  <Image
-                    src={point.image}
-                    alt=""
-                    width={96}
-                    height={96}
-                    className="object-contain rounded-[var(--radius-md)]"
-                    aria-hidden="true"
-                  />
-                </div>
-              ) : (
-                <div
-                  className="mb-5 w-[96px] h-[96px] rounded-[var(--radius-md)] bg-[var(--color-error-subtle)]"
-                  aria-hidden="true"
-                />
-              )}
+              {point.icon && icons[point.icon as keyof typeof icons] ? (
+                (() => {
+                  const LucideIcon = icons[point.icon as keyof typeof icons];
+                  return (
+                    <div
+                      className="mb-5 w-[64px] h-[64px] rounded-[var(--radius-md)] bg-[var(--color-accent-subtle)] flex items-center justify-center"
+                      aria-hidden="true"
+                    >
+                      <LucideIcon size={28} strokeWidth={1.5} className="text-[var(--color-gold)]" />
+                    </div>
+                  );
+                })()
+              ) : null}
               <p className="text-lg font-medium text-[var(--color-text-primary)] font-[family-name:var(--font-body)] leading-[1.5] max-w-[280px]">
                 {point.text}
               </p>
