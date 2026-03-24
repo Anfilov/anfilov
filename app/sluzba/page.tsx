@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-// import { ArrowRight } from "lucide-react";
 import { siteConfig } from "@/site.config";
-import { client } from "@/sanity/lib/client";
-// import { urlForImage } from "@/sanity/lib/image";
+import { getSluzbyPage } from "@/sanity/lib/queries";
 import { Navbar, Footer } from "@/components/sections";
 import { Container } from "@/components/ui/Container";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
@@ -29,67 +27,36 @@ export const metadata: Metadata = {
 };
 
 // ---------------------------------------------------------------------------
-// Categories definition
-// ---------------------------------------------------------------------------
-
-const CATEGORIES = [
-  { value: "znacka-identita", label: "Značka & identita" },
-  { value: "webdesign", label: "Webdesign" },
-  { value: "firemni-tiskoviny", label: "Propagační tiskoviny" },
-  { value: "digitalni-design", label: "Digitální design" },
-  { value: "online-prodej", label: "Online prodej" },
-  { value: "socialni-media", label: "Sociální média" },
-  { value: "obalovy-design", label: "Obalový design" },
-] as const;
-
-// ---------------------------------------------------------------------------
-// Data fetching
+// Types
 // ---------------------------------------------------------------------------
 
 interface SluzbaListItem {
   _id: string;
   name: string;
   slug: string;
-  category?: string;
-  categoryOrder?: number;
   heroTitle?: string;
-  heroSubheadline?: string;
-  heroImage?: { image: Record<string, unknown>; alt?: string };
   heroPriceLabel?: string;
 }
 
-async function getAllSluzby(): Promise<SluzbaListItem[]> {
-  return client.fetch(
-    `*[_type == "sluzba"] | order(categoryOrder asc, name asc) {
-      _id,
-      name,
-      "slug": slug.current,
-      category,
-      categoryOrder,
-      heroTitle,
-      heroSubheadline,
-      heroImage {
-        image { asset->, hotspot, crop },
-        alt
-      },
-      heroPriceLabel
-    }`,
-  );
+interface Category {
+  label: string;
+  services: SluzbaListItem[];
 }
 
 // ---------------------------------------------------------------------------
 // JSON-LD ItemList for SEO
 // ---------------------------------------------------------------------------
 
-function SluzbyJsonLd({ sluzby }: { sluzby: SluzbaListItem[] }) {
+function SluzbyJsonLd({ categories }: { categories: Category[] }) {
+  const allServices = categories.flatMap((c) => c.services);
   const schema = {
     "@context": "https://schema.org",
     "@type": "ItemList",
     name: "Služby — ANFILOV Studio",
     description:
       "Kompletní nabídka designových služeb od Simona Anfilova: branding, webdesign, tiskoviny, obalový design, sociální média a online prodej.",
-    numberOfItems: sluzby.length,
-    itemListElement: sluzby.map((s, i) => ({
+    numberOfItems: allServices.length,
+    itemListElement: allServices.map((s, i) => ({
       "@type": "ListItem",
       position: i + 1,
       name: s.heroTitle || s.name,
@@ -110,20 +77,22 @@ function SluzbyJsonLd({ sluzby }: { sluzby: SluzbaListItem[] }) {
 // ---------------------------------------------------------------------------
 
 export default async function SluzbyPage() {
-  const sluzby = await getAllSluzby();
+  const data = await getSluzbyPage();
+  const categories: Category[] = (data?.categories ?? []).filter(
+    (c: Category) => c.services && c.services.length > 0,
+  );
 
-  // Group services by category
-  const grouped = new Map<string, SluzbaListItem[]>();
-  for (const s of sluzby) {
-    const cat = s.category || "other";
-    if (!grouped.has(cat)) grouped.set(cat, []);
-    grouped.get(cat)!.push(s);
+  // Split into rows of 4 for the grid
+  const ROW_SIZE = 4;
+  const rows: Category[][] = [];
+  for (let i = 0; i < categories.length; i += ROW_SIZE) {
+    rows.push(categories.slice(i, i + ROW_SIZE));
   }
 
   return (
     <>
       <Navbar />
-      <SluzbyJsonLd sluzby={sluzby} />
+      <SluzbyJsonLd categories={categories} />
 
       <main>
         {/* Hero */}
@@ -157,44 +126,42 @@ export default async function SluzbyPage() {
           </Container>
         </section>
 
-        {/* Service cards grouped by category — 3 columns */}
+        {/* Service cards grouped by category — 4 columns per row */}
         <section className="bg-[var(--color-surface)] pb-[var(--section-padding-y)]">
           <Container>
-            {[CATEGORIES.slice(0, 4), CATEGORIES.slice(4)].map((row, rowIndex) => (
-              <div key={rowIndex} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-14" style={rowIndex > 0 ? { marginTop: 48 } : undefined}>
-                {row.map((cat) => {
-                  const items = grouped.get(cat.value);
-                  if (!items || items.length === 0) return null;
-
-                  return (
-                    <div key={cat.value}>
-                      <p className="text-[12px] font-semibold tracking-[3px] uppercase text-[var(--color-gold)] mb-6 pb-3 border-b border-[var(--color-border)] font-[family-name:var(--font-ui)]">
-                        {cat.label}
-                      </p>
-                      <div className="space-y-5">
-                        {items.map((sluzba) => (
-                          <Link
-                            key={sluzba._id}
-                            href={`/sluzba/${sluzba.slug}`}
-                            className="group block no-underline"
-                          >
-                            <h3 className="text-[15px] font-semibold text-[var(--color-text-primary)] font-[family-name:var(--font-heading)] tracking-tight leading-snug mb-1.5 group-hover:text-[var(--color-forest-mid)] transition-colors duration-[var(--duration-fast)]">
-                              {sluzba.name}
-                            </h3>
-                            {sluzba.heroPriceLabel && (
-                              <p className="text-[12px] text-[var(--color-text-tertiary)] font-[family-name:var(--font-ui)]">
-                                {sluzba.heroPriceLabel}
-                              </p>
-                            )}
-                          </Link>
-                        ))}
-                      </div>
+            {rows.map((row, rowIndex) => (
+              <div
+                key={rowIndex}
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-14"
+                style={rowIndex > 0 ? { marginTop: 48 } : undefined}
+              >
+                {row.map((cat, catIndex) => (
+                  <div key={catIndex}>
+                    <p className="text-[12px] font-semibold tracking-[3px] uppercase text-[var(--color-gold)] mb-6 pb-3 border-b border-[var(--color-border)] font-[family-name:var(--font-ui)]">
+                      {cat.label}
+                    </p>
+                    <div className="space-y-5">
+                      {cat.services.map((sluzba) => (
+                        <Link
+                          key={sluzba._id}
+                          href={`/sluzba/${sluzba.slug}`}
+                          className="group block no-underline"
+                        >
+                          <h3 className="text-[15px] font-semibold text-[var(--color-text-primary)] font-[family-name:var(--font-heading)] tracking-tight leading-snug mb-1.5 group-hover:text-[var(--color-forest-mid)] transition-colors duration-[var(--duration-fast)]">
+                            {sluzba.name}
+                          </h3>
+                          {sluzba.heroPriceLabel && (
+                            <p className="text-[12px] text-[var(--color-text-tertiary)] font-[family-name:var(--font-ui)]">
+                              {sluzba.heroPriceLabel}
+                            </p>
+                          )}
+                        </Link>
+                      ))}
                     </div>
-                  );
-                })}
+                  </div>
+                ))}
               </div>
             ))}
-
           </Container>
         </section>
 

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight } from "lucide-react";
 import { PortableText } from "next-sanity";
+import { portableTextComponents } from "@/components/portable-text-components";
 import { siteConfig } from "@/site.config";
 import {
   getGlossaryTermBySlug,
@@ -225,7 +226,7 @@ export default async function GlossaryDetailPage({ params }: PageProps) {
                   Co je {term.term}
                 </h2>
                 <div className="prose prose-lg text-[var(--color-text-secondary)] font-[family-name:var(--font-body)] leading-[1.7]">
-                  <PortableText value={term.extendedDescription} />
+                  <PortableText value={term.extendedDescription} components={portableTextComponents} />
                 </div>
               </div>
             </Container>
@@ -241,7 +242,7 @@ export default async function GlossaryDetailPage({ params }: PageProps) {
                   {term.term} v praxi
                 </h2>
                 <div className="prose prose-lg text-[var(--color-text-secondary)] font-[family-name:var(--font-body)] leading-[1.7]">
-                  <PortableText value={term.practicalUse} />
+                  <PortableText value={term.practicalUse} components={portableTextComponents} />
                 </div>
               </div>
             </Container>

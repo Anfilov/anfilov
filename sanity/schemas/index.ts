@@ -7,6 +7,8 @@ import { project } from "./documents/project";
 import { tool } from "./documents/tool";
 import { sluzba } from "./documents/sluzba";
 import { glossaryTerm } from "./documents/glossary-term";
+import { sluzbyPage } from "./documents/sluzby-page";
+import { portfolioPage } from "./documents/portfolio-page";
 
 // Objects
 import { link } from "./objects/link";
@@ -25,6 +27,8 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   tool,
   sluzba,
   glossaryTerm,
+  sluzbyPage,
+  portfolioPage,
   // Objects
   link,
   imageWithAlt,

@@ -139,7 +139,7 @@ export function SluzbaPortfolio({ projects, serviceName, overline, title }: Prop
                       loading="lazy"
                     />
                     {galleryCount > 1 && (
-                      <span className="absolute top-6 right-6 text-[11px] font-semibold text-[var(--color-text-secondary)] font-[family-name:var(--font-ui)] bg-[var(--color-tag-gold)] px-2.5 py-1 rounded-[var(--radius-xs)]">
+                      <span className="absolute top-6 right-6 text-[11px] font-semibold font-[family-name:var(--font-ui)] px-2.5 py-1 rounded-[var(--radius-xs)] bg-[#F5F0E6] text-[#8B7D5E]">
                         {galleryCount} images
                       </span>
                     )}
@@ -162,7 +162,7 @@ export function SluzbaPortfolio({ projects, serviceName, overline, title }: Prop
                         </span>
                       )}
                       {project.result && (
-                        <span className="text-[11px] font-semibold text-[var(--color-text-secondary)] font-[family-name:var(--font-ui)] bg-[var(--color-tag-gold)] px-2.5 py-1 rounded-[var(--radius-xs)]">
+                        <span className="text-[11px] font-semibold font-[family-name:var(--font-ui)] px-2.5 py-1 rounded-[var(--radius-xs)] bg-[var(--color-tag-gold)] text-[var(--color-text-secondary)]">
                           {project.result}
                         </span>
                       )}
@@ -213,27 +213,27 @@ export function SluzbaPortfolio({ projects, serviceName, overline, title }: Prop
             </button>
           )}
 
-          {lightbox.imageIdx === 0 ? (
+          {/\.(svg|png)/.test(images[lightbox.imageIdx].src) ? (
             <div
-              className="w-[90vmin] h-[90vmin] max-w-[700px] max-h-[700px] rounded-[var(--radius-lg)] overflow-hidden flex items-center justify-center p-[clamp(24px,5vw,64px)]"
+              className="w-[min(700px,90vmin)] h-[min(700px,90vmin)] rounded-[var(--radius-lg)] overflow-hidden flex items-center justify-center p-[clamp(24px,5vw,64px)]"
               style={{ backgroundColor: "#fff" }}
             >
               <img
                 key={`lb-${lightbox.projectIdx}-${lightbox.imageIdx}`}
                 src={images[lightbox.imageIdx].src}
                 alt={images[lightbox.imageIdx].alt}
-                className="block w-full h-full object-contain"
+                className="block max-w-full max-h-full"
+                style={{ objectFit: "contain", width: "100%", height: "100%" }}
               />
             </div>
           ) : (
-            <div
-              className="w-[85vw] sm:w-[75vw] max-w-[1000px] rounded-[var(--radius-lg)] overflow-hidden"
-            >
+            <div className="flex items-center justify-center">
               <img
                 key={`lb-${lightbox.projectIdx}-${lightbox.imageIdx}`}
                 src={images[lightbox.imageIdx].src}
                 alt={images[lightbox.imageIdx].alt}
-                style={{ width: "100%", height: "auto", display: "block", objectFit: "cover", maxHeight: "75vh" }}
+                className="block rounded-[var(--radius-lg)]"
+                style={{ maxWidth: "min(1000px, 85vw)", maxHeight: "85vh", objectFit: "contain" }}
               />
             </div>
           )}

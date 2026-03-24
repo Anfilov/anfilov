@@ -201,7 +201,16 @@ const sluzbaFields = `
   nastrojeItems[]-> { ${toolFields} },
   faqOverline,
   faqTitle,
-  faqItems[] { question, answer }
+  faqItems[] { question, answer },
+  crossLinks[]-> { _id, name, "slug": slug.current, heroTitle, heroSubheadline },
+  glossaryTerms[]-> { _id, term, "slug": slug.current, hasDetailPage },
+  articles[] {
+    title,
+    slug,
+    "thumbnailUrl": thumbnail.asset->url,
+    funnelTag,
+    type
+  }
 `;
 
 /** Single služba by slug. */
@@ -215,6 +224,51 @@ export async function getSluzbaBySlug(slug: string) {
 /** All služba slugs (for static generation). */
 export async function getAllSluzbaSlugs(): Promise<string[]> {
   return client.fetch(`*[_type == "sluzba"].slug.current`);
+}
+
+/** Stránka služby (rozcestník) — kategorie s řazenými službami. */
+export async function getSluzbyPage() {
+  return client.fetch(
+    `*[_type == "sluzbyPage" && _id == "sluzbyPage"][0] {
+      categories[] {
+        label,
+        services[]-> {
+          _id,
+          name,
+          "slug": slug.current,
+          heroTitle,
+          heroPriceLabel
+        }
+      }
+    }`,
+  );
+}
+
+/** Stránka portfolia — kategorie s řazenými projekty. */
+export async function getPortfolioPage() {
+  return client.fetch(
+    `*[_type == "portfolioPage" && _id == "portfolioPage"][0] {
+      categories[] {
+        label,
+        projects[]-> {
+          _id,
+          title,
+          "slug": slug.current,
+          client,
+          description,
+          result,
+          externalUrl,
+          tags,
+          ${imageFields},
+          gallery[] {
+            image { asset->, hotspot, crop },
+            alt,
+            caption
+          }
+        }
+      }
+    }`,
+  );
 }
 
 // ---------------------------------------------------------------------------

@@ -73,6 +73,10 @@ export interface SanitySluzba {
   faqOverline?: string;
   faqTitle?: string;
   faqItems?: { question: string; answer: string }[];
+
+  crossLinks?: { _id: string; name: string; slug: string; heroTitle?: string; heroSubheadline?: string }[];
+  glossaryTerms?: { _id: string; term: string; slug: string; hasDetailPage?: boolean }[];
+  articles?: { title: string; slug: string; thumbnailUrl?: string; funnelTag?: string; type?: string }[];
 }
 /* eslint-enable @typescript-eslint/no-explicit-any */
 
@@ -223,108 +227,25 @@ export function mapSanityToSluzbaData(raw: SanitySluzba): SluzbaData {
     nastrojeOverline: raw.nastrojeOverline,
     nastrojeTitle: raw.nastrojeTitle,
 
-    // Cross-links based on category (dynamically resolved)
-    crossLinks: getCrossLinks(raw.category, raw.slug),
-    articles: getArticles(raw.category),
-    glossaryTerms: getGlossaryTerms(raw.category),
+    // Cross-links from Sanity references
+    crossLinks: (raw.crossLinks ?? [])
+      .filter((link) => link.slug !== raw.slug)
+      .map((link) => ({
+        name: link.name,
+        slug: link.slug,
+        description: link.heroSubheadline ?? "",
+      })),
+
+    // Articles from Sanity
+    articles: (raw.articles ?? []).map((a) => ({
+      slug: a.slug,
+      title: a.title,
+      thumbnail: a.thumbnailUrl ?? "",
+      funnelTag: (a.funnelTag as "TOFU" | "MOFU" | "BOFU") ?? "TOFU",
+      type: a.type ?? "know-how",
+    })),
+
+    // Glossary terms from Sanity references
+    glossaryTerms: (raw.glossaryTerms ?? []).map((t) => t.term),
   };
-}
-
-// ---------------------------------------------------------------------------
-// Category-aware cross-links, articles & glossary
-// ---------------------------------------------------------------------------
-
-type CrossLink = { name: string; slug: string; description: string };
-type Article = { slug: string; title: string; thumbnail: string; funnelTag: "TOFU" | "MOFU" | "BOFU"; type: string };
-
-const CROSS_LINKS: Record<string, CrossLink[]> = {
-  "znacka-identita": [
-    { name: "Brand manuál", slug: "brand-manual", description: "Pravidla pro konzistentní používání vaší značky." },
-    { name: "Vizuální identita", slug: "vizualni-identita", description: "Kompletní vizuální systém — barvy, typografie, šablony." },
-    { name: "Tvorba webu", slug: "tvorba-webu", description: "Web, který vaši novou značku představí světu." },
-  ],
-  webdesign: [
-    { name: "Vizuální identita", slug: "vizualni-identita", description: "Web potřebuje silnou značku — identita je základ." },
-    { name: "Prodejní stránky", slug: "prodejni-stranky", description: "Landing page zaměřená na konverze a prodej." },
-    { name: "UI kit / Design systém", slug: "ui-kit-design-system", description: "Jednotný designový systém pro rychlejší vývoj." },
-  ],
-  "firemni-tiskoviny": [
-    { name: "Brand manuál", slug: "brand-manual", description: "Pravidla, aby všechny tiskoviny vypadaly konzistentně." },
-    { name: "Vizuální identita", slug: "vizualni-identita", description: "Tiskoviny fungují nejlépe jako součást uceleného vizuálního stylu." },
-    { name: "Moderní vizitka", slug: "moderni-vizitka", description: "Vizitka, která udělá první dojem za vás." },
-  ],
-  "obalovy-design": [
-    { name: "Vizuální identita", slug: "vizualni-identita", description: "Obal by měl být součástí vizuálního systému vaší značky." },
-    { name: "Katalog / Brožura", slug: "katalog-brozura", description: "Představte své produkty v profesionálním katalogu." },
-    { name: "POS materiály", slug: "pos-materialy", description: "Doplňte obaly o POS materiály v místě prodeje." },
-  ],
-  "socialni-media": [
-    { name: "Šablony pro Canva", slug: "sablony-canva", description: "Brandované šablony, které váš tým snadno upraví." },
-    { name: "Design sociálních médií", slug: "design-socialnich-medii", description: "Kompletní vizuální systém pro vaše sociální sítě." },
-    { name: "Vizuální identita", slug: "vizualni-identita", description: "Sociální sítě jsou součástí značky — identita je základ." },
-  ],
-  "digitalni-design": [
-    { name: "Newsletter design", slug: "newsletter-design", description: "E-mailové šablony, které lidé otevírají a proklikávají." },
-    { name: "Prezentace a pitch decky", slug: "prezentace-pitch-decky", description: "Prezentace, která přesvědčí investory i klienty." },
-    { name: "Infografiky", slug: "infografiky", description: "Složitá data v přehledné vizuální podobě." },
-  ],
-  "online-prodej": [
-    { name: "Prodejní stránky", slug: "prodejni-stranky", description: "Landing page zaměřená čistě na konverze." },
-    { name: "Konverzní trychtýř", slug: "konverzni-trychtyr", description: "Kompletní prodejní systém od prvního kontaktu po nákup." },
-    { name: "Email marketing", slug: "email-marketing-automatizace", description: "Automatizované e-maily, které prodávají za vás." },
-  ],
-};
-
-const ARTICLES: Record<string, Article[]> = {
-  "znacka-identita": [
-    { slug: "proc-investovat-do-brandingu", title: "Proč investovat do brandingu: 5 důvodů, které přesvědčí i skeptiky", thumbnail: "https://placehold.co/400x240/C8A84E/1C1C1C?text=Branding", funnelTag: "TOFU", type: "know-how" },
-    { slug: "brand-strategie-krok-za-krokem", title: "Brand strategie krok za krokem: Průvodce pro malé firmy", thumbnail: "https://placehold.co/400x240/245C46/F5F0E6?text=Strategie", funnelTag: "MOFU", type: "how-to" },
-  ],
-  webdesign: [
-    { slug: "kolik-stoji-web-2026", title: "Kolik stojí tvorba webu v roce 2026? Přehled cen", thumbnail: "https://placehold.co/400x240/C8A84E/1C1C1C?text=Cena+webu", funnelTag: "MOFU", type: "know-how" },
-    { slug: "rychlost-webu-a-konverze", title: "Jak rychlost webu ovlivňuje konverze a tržby", thumbnail: "https://placehold.co/400x240/245C46/F5F0E6?text=Web+speed", funnelTag: "TOFU", type: "know-how" },
-  ],
-  "firemni-tiskoviny": [
-    { slug: "firemni-tiskoviny-pruvodce", title: "Firemní tiskoviny v digitální době: Průvodce pro firmy", thumbnail: "https://placehold.co/400x240/C8A84E/1C1C1C?text=Tiskoviny", funnelTag: "TOFU", type: "know-how" },
-    { slug: "vizitka-ktera-zaujme", title: "Jak by měla vypadat vizitka, která zaujme na první pohled", thumbnail: "https://placehold.co/400x240/245C46/F5F0E6?text=Vizitky", funnelTag: "MOFU", type: "how-to" },
-  ],
-  "obalovy-design": [
-    { slug: "obalovy-design-trendy", title: "Trendy v obalovém designu: Co funguje na regále", thumbnail: "https://placehold.co/400x240/C8A84E/1C1C1C?text=Obaly", funnelTag: "TOFU", type: "know-how" },
-    { slug: "etiketa-design-pravidla", title: "Pravidla designu etiket: Zákonné požadavky a estetika", thumbnail: "https://placehold.co/400x240/245C46/F5F0E6?text=Etikety", funnelTag: "MOFU", type: "how-to" },
-  ],
-  "socialni-media": [
-    { slug: "vizualni-obsah-socialni-site", title: "Vizuální obsah na sociální sítě: Formáty a rozměry 2026", thumbnail: "https://placehold.co/400x240/C8A84E/1C1C1C?text=Social", funnelTag: "TOFU", type: "know-how" },
-    { slug: "canva-sablony-vs-designer", title: "Canva šablony vs. designér: Kdy stačí Canva a kdy ne", thumbnail: "https://placehold.co/400x240/245C46/F5F0E6?text=Canva", funnelTag: "MOFU", type: "know-how" },
-  ],
-  "digitalni-design": [
-    { slug: "newsletter-design-best-practices", title: "Newsletter design: Jak zvýšit open rate vizuálním designem", thumbnail: "https://placehold.co/400x240/C8A84E/1C1C1C?text=Newsletter", funnelTag: "TOFU", type: "how-to" },
-    { slug: "pitch-deck-co-obsahuje", title: "Pitch deck: Co musí obsahovat a jak ho navrhnout", thumbnail: "https://placehold.co/400x240/245C46/F5F0E6?text=Pitch+deck", funnelTag: "MOFU", type: "how-to" },
-  ],
-  "online-prodej": [
-    { slug: "landing-page-konverze", title: "Landing page: 7 prvků, které zvyšují konverze", thumbnail: "https://placehold.co/400x240/C8A84E/1C1C1C?text=Landing", funnelTag: "MOFU", type: "how-to" },
-    { slug: "sales-funnel-pruvodce", title: "Sales funnel: Kompletní průvodce konverzním trychtýřem", thumbnail: "https://placehold.co/400x240/245C46/F5F0E6?text=Funnel", funnelTag: "TOFU", type: "know-how" },
-  ],
-};
-
-const GLOSSARY: Record<string, string[]> = {
-  "znacka-identita": ["Branding", "Brand identita", "Brand manuál", "Vizuální identita", "Naming", "Brand strategie", "Rebranding", "Tone of voice"],
-  webdesign: ["UX design", "UI design", "Wireframe", "Prototyp", "Responzivní design", "Design systém", "CMS", "SEO"],
-  "firemni-tiskoviny": ["CMYK", "DPI", "Spadávka", "Rastr", "Tiskový arch", "Laminace", "Papír gramáž", "Perforační zlom"],
-  "obalovy-design": ["Packaging", "Label design", "POS", "Shelf appeal", "Die-cut", "Prepress", "Pantone", "Mockup"],
-  "socialni-media": ["Feed layout", "Carousel", "Story", "Reels", "Content pillar", "Engagement rate", "Brand voice", "Visual identity"],
-  "digitalni-design": ["Newsletter", "Open rate", "CTR", "Infografika", "Pitch deck", "Slide master", "Ikonografie", "AI prompt engineering"],
-  "online-prodej": ["Landing page", "Konverze", "Funnel", "Lead magnet", "Email automatizace", "A/B testování", "CTA", "Opt-in"],
-};
-
-function getCrossLinks(category: string | undefined, currentSlug: string): CrossLink[] {
-  const links = CROSS_LINKS[category ?? ""] ?? CROSS_LINKS["znacka-identita"];
-  return links.filter((l) => l.slug !== currentSlug);
-}
-
-function getArticles(category: string | undefined): Article[] {
-  return ARTICLES[category ?? ""] ?? ARTICLES["znacka-identita"];
-}
-
-function getGlossaryTerms(category: string | undefined): string[] {
-  return GLOSSARY[category ?? ""] ?? GLOSSARY["znacka-identita"];
 }

@@ -712,6 +712,108 @@ export const sluzba = defineType({
       ],
     }),
 
+    // ── Související služby (cross-sell) ────────────────────────────
+    defineField({
+      name: "crossLinks",
+      title: "Související služby",
+      type: "array",
+      description:
+        'Vyberte 2–3 služby, které se zobrazí dole na stránce v sekci "Mohlo by se hodit".',
+      group: "seo",
+      validation: (r) => r.max(3),
+      of: [
+        {
+          type: "reference",
+          to: [{ type: "sluzba" }],
+        },
+      ],
+    }),
+
+    // ── Související pojmy (slovník) ────────────────────────────────
+    defineField({
+      name: "glossaryTerms",
+      title: "Související pojmy ze slovníku",
+      type: "array",
+      description:
+        'Vyberte pojmy ze slovníku, které se zobrazí jako "pilulky" pod souvisejícími službami.',
+      group: "seo",
+      of: [
+        {
+          type: "reference",
+          to: [{ type: "glossaryTerm" }],
+        },
+      ],
+    }),
+
+    // ── Související články ─────────────────────────────────────────
+    defineField({
+      name: "articles",
+      title: "Související články",
+      type: "array",
+      description:
+        'Články zobrazené v sekci "Přečtěte si více". Dokud nebude blog v Sanity, vyplňte ručně.',
+      group: "seo",
+      of: [
+        {
+          type: "object",
+          fields: [
+            defineField({
+              name: "title",
+              title: "Název článku",
+              type: "string",
+              validation: (r) => r.required(),
+            }),
+            defineField({
+              name: "slug",
+              title: "Slug (URL)",
+              type: "string",
+              description: 'Část URL článku, např. "jak-vybrat-barvy-pro-logo"',
+              validation: (r) => r.required(),
+            }),
+            defineField({
+              name: "thumbnail",
+              title: "Náhledový obrázek",
+              type: "image",
+              options: { hotspot: true },
+            }),
+            defineField({
+              name: "funnelTag",
+              title: "Fáze funnelu",
+              type: "string",
+              options: {
+                list: [
+                  { title: "TOFU — vzdělávací", value: "TOFU" },
+                  { title: "MOFU — rozhodovací", value: "MOFU" },
+                  { title: "BOFU — akční", value: "BOFU" },
+                ],
+              },
+              initialValue: "TOFU",
+            }),
+            defineField({
+              name: "type",
+              title: "Typ článku",
+              type: "string",
+              options: {
+                list: [
+                  { title: "Know-how", value: "know-how" },
+                  { title: "How-to", value: "how-to" },
+                  { title: "Případová studie", value: "case-study" },
+                ],
+              },
+              initialValue: "know-how",
+            }),
+          ],
+          preview: {
+            select: { title: "title", tag: "funnelTag" },
+            prepare: ({ title, tag }) => ({
+              title: title || "Článek",
+              subtitle: tag,
+            }),
+          },
+        },
+      ],
+    }),
+
     // ── Bloky budou přidávány postupně ──────────────────────────────
   ],
   orderings: [

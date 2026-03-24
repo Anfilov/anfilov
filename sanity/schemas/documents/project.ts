@@ -33,22 +33,6 @@ export const project = defineType({
       validation: (r) => r.required().min(1990).max(2030),
     }),
     defineField({
-      name: "category",
-      title: "Kategorie",
-      type: "string",
-      options: {
-        list: [
-          { title: "Logo Design", value: "logo" },
-          { title: "Brand identita", value: "brand-identity" },
-          { title: "Webdesign", value: "webdesign" },
-          { title: "Grafický design", value: "graphic-design" },
-          { title: "Obalový design", value: "packaging-design" },
-        ],
-        layout: "radio",
-      },
-      validation: (r) => r.required(),
-    }),
-    defineField({
       name: "image",
       title: "Hlavní obrázek",
       type: "imageWithAlt",
@@ -146,12 +130,11 @@ export const project = defineType({
       title: "title",
       client: "client",
       year: "year",
-      category: "category",
       media: "image.image",
     },
-    prepare: ({ title, client, year, category, media }) => ({
+    prepare: ({ title, client, year, media }) => ({
       title: title || "Bez názvu",
-      subtitle: [client, year, category].filter(Boolean).join(" · "),
+      subtitle: [client, year].filter(Boolean).join(" · "),
       media,
     }),
   },

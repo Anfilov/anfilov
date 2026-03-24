@@ -12,6 +12,20 @@ export const structure: StructureResolver = (S) =>
           S.document().schemaType("siteSettings").documentId("siteSettings"),
         ),
       S.divider(),
+      // Stránka služby — singleton
+      S.listItem()
+        .title("Stránka služby (rozcestník)")
+        .id("sluzbyPage")
+        .child(
+          S.document().schemaType("sluzbyPage").documentId("sluzbyPage"),
+        ),
+      // Stránka portfolia — singleton
+      S.listItem()
+        .title("Stránka portfolia")
+        .id("portfolioPage")
+        .child(
+          S.document().schemaType("portfolioPage").documentId("portfolioPage"),
+        ),
       // Služby
       S.documentTypeListItem("sluzba").title("Služby"),
       S.divider(),
