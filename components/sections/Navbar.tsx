@@ -11,7 +11,6 @@ const navLinks = [
   { label: "Služby", href: "/sluzba" },
   { label: "Portfolio", href: "/portfolio" },
   { label: "Slovník", href: "/slovnik" },
-  { label: "Kontakt", href: "/kontakt" },
 ];
 
 /* ── ANFILOV Symbol for nav ── */
@@ -188,7 +187,7 @@ export function Navbar() {
                     href="/kontakt"
                     className="inline-flex items-center justify-center gap-2 font-semibold font-[family-name:var(--font-ui)] tracking-[0.01em] rounded-[var(--btn-radius)] cursor-pointer select-none transition-[background-color,transform,box-shadow,border-color,color] duration-[var(--duration-normal)] ease-[var(--ease-spring)] focus-visible:ring-2 focus-visible:ring-[var(--color-gold)] focus-visible:ring-offset-2 focus-visible:outline-none bg-[var(--color-forest-mid)] text-[var(--color-cream)] hover:bg-[var(--color-forest)] active:scale-[0.98] shadow-[var(--shadow-forest-md)] hover:shadow-[var(--shadow-forest-md)] text-[13px] px-[calc(var(--btn-padding-x)*0.7)] py-[calc(var(--btn-padding-y)*0.7)] min-h-[36px]"
                   >
-                    Začít
+                    Kontakt
                   </Link>
                 </div>
               </div>

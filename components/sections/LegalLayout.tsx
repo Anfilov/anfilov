@@ -37,15 +37,6 @@ export function LegalLayout({
     <>
       {/* ━━━ Hero — matches SluzbaHero pattern ━━━ */}
       <section className="relative overflow-hidden bg-[var(--color-surface)]">
-        {/* Subtle diagonal pattern */}
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            backgroundImage:
-              "repeating-linear-gradient(45deg, transparent, transparent 24px, rgba(200,168,78,0.025) 24px, rgba(200,168,78,0.025) 25px)",
-          }}
-        />
 
         <Container className="relative pt-20 sm:pt-28 lg:pt-32 pb-14 sm:pb-20">
           {/* Breadcrumb */}

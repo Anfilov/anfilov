@@ -45,25 +45,20 @@ const footerLinks = [
     links: [
       { label: "simon@anfilov.cz", href: "mailto:simon@anfilov.cz" },
       { label: "+420 602 26 26 33", href: "tel:+420602262633" },
-      { label: "LinkedIn", href: "https://www.linkedin.com/in/simon-anfilov/" },
     ],
   },
   {
-    title: "Služby",
+    title: "Nabídka",
     links: [
-      { label: "Tvorba loga", href: "#" },
-      { label: "Brand identita", href: "#" },
-      { label: "Webdesign", href: "#" },
-      { label: "Grafický design", href: "#" },
+      { label: "Služby", href: "/sluzba" },
+      { label: "Portfolio", href: "/portfolio" },
     ],
   },
   {
     title: "Zdroje",
     links: [
-      { label: "Portfolio", href: "#" },
+      { label: "Články", href: "#" },
       { label: "Slovník", href: "/slovnik" },
-      { label: "Recenze klientů", href: "#" },
-      { label: "Kontakt", href: "/kontakt" },
     ],
   },
   {
@@ -152,6 +147,7 @@ export function Footer() {
                   <li key={link.label}>
                     <a
                       href={link.href}
+                      {...("external" in link && link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                       className="
                         text-sm text-[var(--sc-text-muted)]
                         hover:text-[var(--sc-text)]
@@ -169,9 +165,9 @@ export function Footer() {
           ))}
         </div>
 
-        <Separator className="my-8 !bg-[var(--sc-border)]" />
+        <Separator className="my-14 !bg-[var(--sc-border)]" />
 
-        <p className="text-xs text-[var(--sc-text-dimmer)] font-[family-name:var(--font-body)] pb-6">
+        <p className="text-xs text-[var(--sc-text-dimmer)] font-[family-name:var(--font-body)] pb-10">
           &copy; {new Date().getFullYear()} Simon Anfilov, Krhanice 275, 257 42
           Krhanice
         </p>

@@ -827,7 +827,7 @@ html, body {
 }
 
 [data-theme="dark"] .section-contrast {
-  --sc-bg: var(--color-surface-elevated);
+  --sc-bg: var(--color-surface-sunken);
   --sc-card-bg: rgba(245, 240, 230, 0.04);
   --sc-text: var(--color-text-primary);
   --sc-text-muted: var(--color-text-secondary);

@@ -97,14 +97,6 @@ export default async function SluzbyPage() {
       <main>
         {/* Hero */}
         <section className="relative overflow-hidden bg-[var(--color-surface)]">
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              backgroundImage:
-                "repeating-linear-gradient(45deg, transparent, transparent 24px, var(--color-glow-subtle) 24px, var(--color-glow-subtle) 25px)",
-            }}
-          />
 
           <Container className="relative pt-20 sm:pt-28 lg:pt-32 pb-10 sm:pb-14">
             <Breadcrumbs
