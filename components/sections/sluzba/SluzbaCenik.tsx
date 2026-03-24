@@ -51,11 +51,11 @@ function useIsDesktop() {
 
 function DotScore({ score, max = 5, highlight = false }: { score: number; max?: number; highlight?: boolean }) {
   return (
-    <span className="inline-flex gap-1.5" aria-label={`${score} z ${max}`}>
+    <span className="inline-flex gap-1 sm:gap-1.5" aria-label={`${score} z ${max}`}>
       {Array.from({ length: max }, (_, i) => (
         <span
           key={i}
-          className={`w-2 h-2 rounded-full ${
+          className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full ${
             i < score
               ? highlight
                 ? "bg-[var(--color-gold)]"
@@ -178,7 +178,7 @@ export function SluzbaCenik({ offer }: Props) {
                 {offer.cenikTableTitle || "Proč je to se mnou výhodnější"}
               </h3>
               <div className="rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface-elevated)] overflow-x-auto">
-              <table className="w-full text-[12px] sm:text-[14px]" style={{ minWidth: 480 }}>
+              <table className="w-full text-[12px] sm:text-[14px]">
                 <thead>
                   <tr className="border-b-2 border-[var(--color-border)]">
                     <th className="text-left py-3 px-3 sm:py-4 sm:px-5 font-semibold text-[11px] sm:text-[13px] uppercase tracking-[1px] sm:tracking-[1.5px] text-[var(--color-text-secondary)] font-[family-name:var(--font-ui)]">

@@ -128,7 +128,6 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      style={{ overflowX: "hidden" }}
       lang={siteConfig.locale}
       suppressHydrationWarning
       data-layout={siteConfig.layout}
@@ -157,7 +156,7 @@ export default function RootLayout({
           />
         )}
       </head>
-      <body className="overflow-x-hidden">
+      <body>
         <ThemeProvider>
           <ScrollReveal />
           {children}

@@ -47,8 +47,8 @@ export function SluzbaComparison({ offer }: Props) {
           </h2>
         </header>
 
-        <div className="overflow-x-auto -mx-4 px-4">
-          <div className="min-w-[580px] rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface-elevated)] overflow-hidden">
+        <div className="overflow-x-auto">
+          <div className="rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface-elevated)] overflow-hidden">
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b-2 border-[var(--color-border)]">
