@@ -34,8 +34,9 @@ export interface SanitySluzba {
   reseniOverline?: string;
   reseniTitle?: string;
   reseniItems?: { title: string; text: string }[];
-  reseniMediaType?: "image" | "embed";
+  reseniMediaType?: "image" | "icon" | "embed" | "none";
   reseniImage?: { image: any; alt?: string; caption?: string };
+  reseniIcon?: { provider: string; name: string };
   reseniEmbed?: string;
 
   procesOverline?: string;
@@ -173,6 +174,8 @@ export function mapSanityToSluzbaData(raw: SanitySluzba): SluzbaData {
       ? (() => { try { return urlForImage(raw.reseniImage.image).width(800).height(800).fit("max").url(); } catch { return ""; } })()
       : "",
     reseniImageCaption: raw.reseniImage?.caption ?? "",
+    reseniMediaType: raw.reseniMediaType,
+    reseniIconName: raw.reseniIcon?.name,
 
     // Proces
     procesOverline: raw.procesOverline,

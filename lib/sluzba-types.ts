@@ -113,6 +113,8 @@ export interface SluzbaData {
   deliverablesTrustNote: string;
   reseniImageUrl?: string;
   reseniImageCaption?: string;
+  reseniMediaType?: "image" | "icon" | "embed" | "none";
+  reseniIconName?: string;
 
   // Blok 4 — Process
   procesOverline?: string;

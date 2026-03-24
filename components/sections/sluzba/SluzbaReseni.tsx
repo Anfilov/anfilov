@@ -1,4 +1,4 @@
-import { Check } from "lucide-react";
+import { Check, icons } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import type { SluzbaData } from "@/lib/sluzba-types";
 
@@ -11,12 +11,21 @@ export function SluzbaReseni({ offer }: Props) {
   const items = offer.deliverables;
   if (!items.length) return null;
 
+  const hasImage = offer.reseniMediaType === "image" && offer.reseniImageUrl;
+  const hasIcon = offer.reseniMediaType === "icon" && offer.reseniIconName;
+  const hasMedia = hasImage || hasIcon;
+
+  // Resolve Lucide icon by name
+  const LucideIcon = hasIcon
+    ? icons[offer.reseniIconName as keyof typeof icons] ?? null
+    : null;
+
   return (
     <section className="bg-[var(--color-surface-sunken)]" style={{ paddingTop: "var(--section-padding-y)", paddingBottom: "calc(var(--section-padding-y) / 2)" }}>
       <Container>
-        <div className={`${offer.reseniImageUrl ? "grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start" : "max-w-2xl"}`}>
-          {/* Left — image (only if present) */}
-          {offer.reseniImageUrl && (
+        <div className={hasMedia ? "grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start" : "max-w-2xl"}>
+          {/* Left — media (image or icon) */}
+          {hasImage && (
             <div className="flex justify-center">
               <figure className="w-full">
                 <div className="rounded-[var(--radius-lg)] bg-[#FAF8F4] shadow-[var(--shadow-md)] overflow-hidden">
@@ -33,6 +42,13 @@ export function SluzbaReseni({ offer }: Props) {
                   </figcaption>
                 )}
               </figure>
+            </div>
+          )}
+          {hasIcon && LucideIcon && (
+            <div className="flex justify-center items-center">
+              <div className="w-[200px] h-[200px] rounded-[var(--radius-lg)] bg-[var(--color-accent-subtle)] flex items-center justify-center">
+                <LucideIcon size={96} strokeWidth={1.2} className="text-[var(--color-gold)]" />
+              </div>
             </div>
           )}
 

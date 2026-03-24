@@ -157,6 +157,7 @@ const sluzbaFields = `
     alt,
     caption
   },
+  reseniIcon,
   reseniEmbed,
   procesOverline,
   procesTitle,

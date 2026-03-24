@@ -304,7 +304,9 @@ export const sluzba = defineType({
       options: {
         list: [
           { title: "Obrázek", value: "image" },
+          { title: "Ikona (Lucide)", value: "icon" },
           { title: "Embed kód (iframe / script / Lottie)", value: "embed" },
+          { title: "Žádné (jen text)", value: "none" },
         ],
         layout: "radio",
       },
@@ -316,6 +318,18 @@ export const sluzba = defineType({
       title: "Obrázek",
       type: "imageWithAlt",
       hidden: ({ document }) => document?.reseniMediaType !== "image",
+      group: "reseni",
+    }),
+    defineField({
+      name: "reseniIcon",
+      title: "Ikona",
+      type: "iconPicker",
+      options: {
+        providers: ["lu"],
+        outputFormat: "react",
+      },
+      description: "Vyberte ikonu z knihovny Lucide.",
+      hidden: ({ document }) => document?.reseniMediaType !== "icon",
       group: "reseni",
     }),
     defineField({
