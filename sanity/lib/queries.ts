@@ -158,6 +158,8 @@ const sluzbaFields = `
     caption
   },
   reseniIcon,
+  reseniVideo { asset-> { url } },
+  reseniVideoLoop,
   reseniEmbed,
   procesOverline,
   procesTitle,

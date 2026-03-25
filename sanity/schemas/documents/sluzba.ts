@@ -237,14 +237,14 @@ export const sluzba = defineType({
               validation: (r) => r.required(),
               options: {
                 list: [
-                  { title: "⚠️ AlertTriangle — varování", value: "AlertTriangle" },
-                  { title: "🛑 AlertOctagon — stop, nebezpečí", value: "AlertOctagon" },
+                  { title: "⚠️ TriangleAlert — varování", value: "TriangleAlert" },
+                  { title: "🛑 OctagonAlert — stop, nebezpečí", value: "OctagonAlert" },
                   { title: "🚫 Ban — zákaz, problém", value: "Ban" },
-                  { title: "❌ XCircle — chyba, selhání", value: "XCircle" },
+                  { title: "❌ CircleX — chyba, selhání", value: "CircleX" },
                   { title: "☹️ Frown — nespokojenost", value: "Frown" },
                   { title: "😠 Angry — frustrace", value: "Angry" },
                   { title: "😐 Meh — průměrnost", value: "Meh" },
-                  { title: "❓ HelpCircle — nejistota", value: "HelpCircle" },
+                  { title: "❓ CircleQuestionMark — nejistota, otázka", value: "CircleQuestionMark" },
                   { title: "🔻 TrendingDown — pokles, ztráta", value: "TrendingDown" },
                   { title: "👎 ThumbsDown — negativní hodnocení", value: "ThumbsDown" },
                   { title: "🕐 Clock — čas, deadline", value: "Clock" },
@@ -264,7 +264,7 @@ export const sluzba = defineType({
                   { title: "🔌 Unplug — odpojení", value: "Unplug" },
                   { title: "📋 Copy — duplikát, neoriginální", value: "Copy" },
                   { title: "🗑️ Trash2 — odpad, zbytečné", value: "Trash2" },
-                  { title: "📉 BarChartBig — špatné výsledky", value: "BarChartBig" },
+                  { title: "📉 ChartBarBig — špatné výsledky", value: "ChartBarBig" },
                   { title: "🔇 VolumeX — nikdo neposlouchá", value: "VolumeX" },
                   { title: "🚧 Construction — nedokončené", value: "Construction" },
                 ],
@@ -340,6 +340,7 @@ export const sluzba = defineType({
       options: {
         list: [
           { title: "Obrázek", value: "image" },
+          { title: "Video (MP4 / WebM)", value: "video" },
           { title: "Embed kód (iframe / script / Lottie)", value: "embed" },
         ],
         layout: "radio",
@@ -352,6 +353,25 @@ export const sluzba = defineType({
       title: "Obrázek",
       type: "imageWithAlt",
       hidden: ({ document }) => document?.reseniMediaType !== "image",
+      group: "reseni",
+    }),
+    defineField({
+      name: "reseniVideo",
+      title: "Video",
+      type: "file",
+      options: { accept: "video/mp4,video/webm" },
+      description:
+        "Krátké video (5–15 s, max 5 MB). Přehrává se automaticky, bez zvuku.",
+      hidden: ({ document }) => document?.reseniMediaType !== "video",
+      group: "reseni",
+    }),
+    defineField({
+      name: "reseniVideoLoop",
+      title: "Smyčka videa",
+      type: "boolean",
+      description: "Zapnout = video se opakuje ve smyčce.",
+      initialValue: true,
+      hidden: ({ document }) => document?.reseniMediaType !== "video",
       group: "reseni",
     }),
     defineField({

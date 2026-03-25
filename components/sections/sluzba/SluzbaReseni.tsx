@@ -11,30 +11,41 @@ export function SluzbaReseni({ offer }: Props) {
   const items = offer.deliverables;
   if (!items.length) return null;
 
-  const hasImage = !!offer.reseniImageUrl;
+  const hasMedia = !!offer.reseniImageUrl || !!offer.reseniVideoUrl;
 
   return (
     <section className="bg-[var(--color-surface-sunken)]" style={{ paddingTop: "var(--section-padding-y)", paddingBottom: "calc(var(--section-padding-y) / 2)" }}>
       <Container>
-        <div className={hasImage ? "grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start" : "max-w-2xl"}>
-          {/* Left — image */}
-          {hasImage && (
+        <div className={hasMedia ? "grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start" : "max-w-2xl"}>
+          {/* Left — media (image or video) */}
+          {hasMedia && (
             <div className="flex justify-center">
-              <figure className="w-full">
+              <div className="w-full">
                 <div className="rounded-[var(--radius-lg)] overflow-hidden">
-                  <img
-                    src={offer.reseniImageUrl}
-                    alt={`${offer.name} — ukázka výstupu`}
-                    className="block w-full h-auto"
-                    loading="lazy"
-                  />
+                  {offer.reseniMediaType === "video" && offer.reseniVideoUrl ? (
+                    <video
+                      src={offer.reseniVideoUrl}
+                      autoPlay
+                      muted
+                      playsInline
+                      loop={offer.reseniVideoLoop !== false}
+                      className="block w-full h-auto"
+                    />
+                  ) : offer.reseniImageUrl ? (
+                    <img
+                      src={offer.reseniImageUrl}
+                      alt={`${offer.name} — ukázka výstupu`}
+                      className="block w-full h-auto"
+                      loading="lazy"
+                    />
+                  ) : null}
                 </div>
                 {offer.reseniImageCaption && (
-                  <figcaption className="mt-3 text-center text-[15px] italic text-[var(--color-text-tertiary)] font-[family-name:var(--font-body)]">
+                  <p className="mt-3 text-center text-[15px] italic text-[var(--color-text-tertiary)] font-[family-name:var(--font-body)]">
                     {offer.reseniImageCaption}
-                  </figcaption>
+                  </p>
                 )}
-              </figure>
+              </div>
             </div>
           )}
 

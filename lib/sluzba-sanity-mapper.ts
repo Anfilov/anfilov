@@ -34,8 +34,10 @@ export interface SanitySluzba {
   reseniOverline?: string;
   reseniTitle?: string;
   reseniItems?: { title: string; text: string }[];
-  reseniMediaType?: "image" | "icon" | "embed" | "none";
+  reseniMediaType?: "image" | "video" | "icon" | "embed" | "none";
   reseniImage?: { image: any; alt?: string; caption?: string };
+  reseniVideo?: { asset: { url: string } };
+  reseniVideoLoop?: boolean;
   reseniIcon?: string;
   reseniEmbed?: string;
 
@@ -177,6 +179,8 @@ export function mapSanityToSluzbaData(raw: SanitySluzba): SluzbaData {
       : "",
     reseniImageCaption: raw.reseniImage?.caption ?? "",
     reseniMediaType: raw.reseniMediaType,
+    reseniVideoUrl: raw.reseniVideo?.asset?.url ?? "",
+    reseniVideoLoop: raw.reseniVideoLoop ?? true,
     reseniIconName: raw.reseniIcon,
 
     // Proces
