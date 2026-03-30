@@ -91,9 +91,7 @@ export interface SluzbaData {
   heroMediaType?: "image" | "video" | "embed";
   heroEmbed?: string;
 
-  heroPriceLabel?: string;
   heroProjectsLabel?: string;
-  heroDeliveryLabel?: string;
   rating: number;
   projectCount: number;
 
@@ -144,7 +142,6 @@ export interface SluzbaData {
   cenikIncludedTitle?: string;
   cenikIncludedItems?: { name: string; desc: string }[];
   cenikTableTitle?: string;
-  cenikTableNote?: string;
   comparison: SluzbaComparison;
   pricing: SluzbaCenik;
 

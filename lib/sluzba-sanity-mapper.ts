@@ -20,9 +20,7 @@ export interface SanitySluzba {
   heroVideoLoop?: boolean;
   heroEmbed?: string;
 
-  heroPriceLabel?: string;
   heroProjectsLabel?: string;
-  heroDeliveryLabel?: string;
   atomicAnswer?: string;
   metaTitle?: string;
   metaDescription?: string;
@@ -66,7 +64,6 @@ export interface SanitySluzba {
   cenikTableTitle?: string;
   cenikTableColumns?: string[];
   cenikTableRows?: { criterion: string; scores: number[] }[];
-  cenikTableNote?: string;
 
   nastrojeOverline?: string;
   nastrojeTitle?: string;
@@ -135,7 +132,7 @@ export function mapSanityToSluzbaData(raw: SanitySluzba): SluzbaData {
     name: raw.name,
     slug: raw.slug,
     tema: raw.name,
-    priceFrom: parsePrice(raw.cenikPriceLabel ?? raw.heroPriceLabel),
+    priceFrom: parsePrice(raw.cenikPriceLabel),
     deliveryDays,
     metaTitle: raw.metaTitle ?? raw.name,
     metaDescription: raw.metaDescription ?? "",
@@ -149,9 +146,7 @@ export function mapSanityToSluzbaData(raw: SanitySluzba): SluzbaData {
     heroMediaType: raw.heroMediaType,
     heroEmbed: raw.heroEmbed,
 
-    heroPriceLabel: raw.heroPriceLabel,
     heroProjectsLabel: raw.heroProjectsLabel,
-    heroDeliveryLabel: raw.heroDeliveryLabel,
     rating: 4.9,
     projectCount: 127,
 
@@ -210,10 +205,9 @@ export function mapSanityToSluzbaData(raw: SanitySluzba): SluzbaData {
     cenikIncludedTitle: raw.cenikIncludedTitle,
     cenikIncludedItems: raw.cenikIncludedItems,
     cenikTableTitle: raw.cenikTableTitle,
-    cenikTableNote: raw.cenikTableNote,
     comparison,
     pricing: {
-      anchor: parsePrice(raw.cenikPriceLabel ?? raw.heroPriceLabel),
+      anchor: parsePrice(raw.cenikPriceLabel),
       examples: [],
       factors: [],
     },

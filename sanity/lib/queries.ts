@@ -136,9 +136,7 @@ const sluzbaFields = `
   heroVideo { asset-> { url } },
   heroVideoLoop,
   heroEmbed,
-  heroPriceLabel,
   heroProjectsLabel,
-  heroDeliveryLabel,
   atomicAnswer,
   metaTitle,
   metaDescription,
@@ -197,7 +195,6 @@ const sluzbaFields = `
   cenikTableTitle,
   cenikTableColumns,
   cenikTableRows[] { criterion, scores },
-  cenikTableNote,
   nastrojeOverline,
   nastrojeTitle,
   nastrojeItems[]-> { ${toolFields} },
@@ -239,7 +236,7 @@ export async function getSluzbyPage() {
           name,
           "slug": slug.current,
           heroTitle,
-          heroPriceLabel
+          cenikPriceLabel
         }
       }
     }`,

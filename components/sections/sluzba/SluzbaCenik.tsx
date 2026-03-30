@@ -219,7 +219,7 @@ export function SluzbaCenik({ offer }: Props) {
               </table>
 
               <p className="px-5 py-3 text-[11px] text-[var(--color-text-tertiary)] font-[family-name:var(--font-ui)] border-t border-[var(--color-border)]">
-                {offer.cenikTableNote || "Srovnání vychází z průměrných zkušeností klientů."}
+                Hodnocení 1–5 na základě mých zkušeností a zpětné vazby od klientů.
               </p>
               </div>
             </motion.div>

@@ -13,6 +13,11 @@ interface Props {
   googleReviewsUrl?: string;
 }
 
+function pracovnichDniDo(n: number): string {
+  if (n === 1) return "1 pracovního dne";
+  return `${n} pracovních dní`;
+}
+
 /** Hero — hlavní banner s Atomic Answer. */
 export function SluzbaHero({ offer, googleRating, googleReviewCount, googleReviewsUrl = "#" }: Props) {
   const rating = googleRating ?? offer.rating;
@@ -49,10 +54,10 @@ export function SluzbaHero({ offer, googleRating, googleReviewCount, googleRevie
               </p>
             )}
 
-            {/* Price anchor */}
-            {offer.heroPriceLabel && (
+            {/* Price anchor — derived from ceník */}
+            {offer.cenikPriceLabel && (
               <p className="text-2xl sm:text-3xl font-bold text-[var(--color-gold)] font-[family-name:var(--font-heading)] tracking-tight mb-6">
-                {offer.heroPriceLabel}
+                Již {offer.cenikPriceLabel}
               </p>
             )}
 
@@ -111,11 +116,11 @@ export function SluzbaHero({ offer, googleRating, googleReviewCount, googleRevie
                   </span>
                 </>
               )}
-              {offer.heroDeliveryLabel && (
+              {offer.deliveryDays > 0 && (
                 <>
                   <span className="text-[var(--color-border-strong)]" aria-hidden="true">&middot;</span>
                   <span className="text-base font-bold text-[var(--color-text-primary)] font-[family-name:var(--font-heading)]">
-                    {offer.heroDeliveryLabel}
+                    Dodání do {pracovnichDniDo(offer.deliveryDays)}
                   </span>
                 </>
               )}

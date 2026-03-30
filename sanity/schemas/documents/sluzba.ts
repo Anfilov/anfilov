@@ -152,24 +152,10 @@ export const sluzba = defineType({
 
     // ── Trust signály (volné texty) ─────────────────────────────────
     defineField({
-      name: "heroPriceLabel",
-      title: "Cena (štítek)",
-      type: "string",
-      description: 'Celý text, např. "Již od 15 000 Kč". Zobrazí se pod podnadpisem.',
-      group: "hero",
-    }),
-    defineField({
       name: "heroProjectsLabel",
       title: "Projekty (štítek)",
       type: "string",
       description: 'Celý text, např. "100+ projektů". Zobrazí se v řádku trust signálů.',
-      group: "hero",
-    }),
-    defineField({
-      name: "heroDeliveryLabel",
-      title: "Dodání (štítek)",
-      type: "string",
-      description: 'Celý text, např. "dodání cca 12 dní". Zobrazí se v řádku trust signálů.',
       group: "hero",
     }),
 
@@ -648,12 +634,6 @@ export const sluzba = defineType({
           },
         },
       ],
-    }),
-    defineField({
-      name: "cenikTableNote",
-      title: "Poznámka pod tabulkou",
-      type: "string",
-      group: "cenik",
     }),
 
     // ── FAQ ─────────────────────────────────────────────────────────

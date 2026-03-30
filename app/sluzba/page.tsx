@@ -35,7 +35,7 @@ interface SluzbaListItem {
   name: string;
   slug: string;
   heroTitle?: string;
-  heroPriceLabel?: string;
+  cenikPriceLabel?: string;
 }
 
 interface Category {
@@ -142,9 +142,9 @@ export default async function SluzbyPage() {
                           <h3 className="text-[15px] font-semibold text-[var(--color-text-primary)] font-[family-name:var(--font-heading)] tracking-tight leading-snug mb-1.5 group-hover:text-[var(--color-forest-mid)] transition-colors duration-[var(--duration-fast)]">
                             {sluzba.name}
                           </h3>
-                          {sluzba.heroPriceLabel && (
+                          {sluzba.cenikPriceLabel && (
                             <p className="text-[12px] text-[var(--color-text-tertiary)] font-[family-name:var(--font-ui)]">
-                              {sluzba.heroPriceLabel}
+                              Již {sluzba.cenikPriceLabel}
                             </p>
                           )}
                         </Link>
