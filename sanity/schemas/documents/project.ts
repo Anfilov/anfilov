@@ -24,13 +24,12 @@ export const project = defineType({
       name: "client",
       title: "Klient",
       type: "string",
-      validation: (r) => r.required(),
     }),
     defineField({
       name: "year",
       title: "Rok realizace",
       type: "number",
-      validation: (r) => r.required().min(1990).max(2030),
+      validation: (r) => r.min(1990).max(2030),
     }),
     defineField({
       name: "image",
