@@ -44,14 +44,16 @@ export function SluzbaClanky({ offer }: Props) {
             >
               {/* Thumbnail */}
               <div className="relative aspect-[5/3] bg-[var(--color-surface-sunken)]">
-                <Image
-                  src={article.thumbnail}
-                  alt={article.title}
-                  fill
-                  className="object-cover transition-transform duration-[var(--duration-slow)] group-hover:scale-[1.03]"
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  loading="lazy"
-                />
+                {article.thumbnail && (
+                  <Image
+                    src={article.thumbnail}
+                    alt={article.title}
+                    fill
+                    className="object-cover transition-transform duration-[var(--duration-slow)] group-hover:scale-[1.03]"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    loading="lazy"
+                  />
+                )}
               </div>
 
               {/* Content */}

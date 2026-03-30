@@ -103,9 +103,9 @@ export function SluzbaAutor() {
           <div className="flex-1 min-w-0">
             <p className="text-[17px] text-[var(--color-text-secondary)] font-[family-name:var(--font-body)] leading-[1.7] mb-6">
               Celý život jsem až po uši v&nbsp;brandingu, reklamě a&nbsp;marketingu.
-              V&nbsp;90. letech jsem začal profesní kariéru jako DTP grafik. Dnes se
-              věnuji strategické tvorbě velkých i&nbsp;malých značek pro firmy
-              i&nbsp;jednotlivce.
+              V&nbsp;mládí jsem prošel několika nadnárodními agenturami. Dnes jsem již řadu
+              let na volné noze a&nbsp;věnuji se strategické tvorbě značek
+              a&nbsp;marketingu pro firmy i&nbsp;jednotlivce.
             </p>
 
             <div className="flex flex-wrap items-center gap-4">

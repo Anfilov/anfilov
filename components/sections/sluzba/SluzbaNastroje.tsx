@@ -39,12 +39,14 @@ export function SluzbaNastroje({ tools, overline, title }: SluzbaNastrojeProps) 
               className="group flex flex-col items-start gap-3"
             >
               <div className="w-[100px] h-[28px] sm:w-[160px] sm:h-[40px] flex items-center">
-                <img
-                  src={tool.logoUrl}
-                  alt={tool.name}
-                  loading="lazy"
-                  className="w-full h-full object-contain object-left"
-                />
+                {tool.logoUrl && (
+                  <img
+                    src={tool.logoUrl}
+                    alt={tool.name}
+                    loading="lazy"
+                    className="w-full h-full object-contain object-left"
+                  />
+                )}
               </div>
               <span className="text-[13px] font-semibold text-[var(--color-text-tertiary)] group-hover:text-[var(--color-text-primary)] transition-colors duration-[var(--duration-slow)] font-[family-name:var(--font-ui)]">
                 {tool.name}
