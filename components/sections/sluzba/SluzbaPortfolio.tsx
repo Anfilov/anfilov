@@ -218,7 +218,7 @@ export function SluzbaPortfolio({ projects, serviceName, overline, title }: Prop
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
               <div className="w-8 h-8 border-2 border-white/20 border-t-white/70 rounded-full animate-spin" />
             </div>
-            {/\.(svg|png)/.test(images[lightbox.imageIdx].src) ? (
+            {/\.(svg|png)(\?.*)?$/.test(images[lightbox.imageIdx].src) ? (
               <div
                 className="w-[min(700px,90vmin)] h-[min(700px,90vmin)] rounded-[var(--radius-lg)] overflow-hidden flex items-center justify-center p-[clamp(24px,5vw,64px)] relative z-10"
                 style={{ backgroundColor: "#fff" }}

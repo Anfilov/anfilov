@@ -82,7 +82,7 @@ function buildPortfolioItem(p: RawProject): PortfolioItem | null {
 
   const lightboxImages: { src: string; alt: string }[] = [
     {
-      src: urlForImage(img.image).width(1400).height(1400).fit("max").url(),
+      src: urlForImage(img.image).width(1400).fit("max").url(),
       alt: img.alt || p.client,
     },
     ...gallery.map((g) => ({
