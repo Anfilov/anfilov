@@ -108,12 +108,17 @@ export function AboutHero() {
             </div>
           </div>
 
-          {/* Photo */}
+          {/* Portrait video */}
           <div className="relative order-1 lg:order-2 flex items-center justify-center">
             <div className="relative rounded-[var(--radius-lg)] overflow-hidden max-w-md w-full">
-              <img
-                src="https://content.app-sources.com/s/41101902986880176/thumbnails/640x480/PR_Images/Simon-Anfilov-Office-1080px-1580604.jpg?format=webp"
-                alt="Simon Anfilov v pracovně"
+              <video
+                src="/videos/anfilov-portrait.mp4"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="auto"
+                aria-label="Simon Anfilov — portrét"
                 className="block w-full h-auto"
               />
               <div
