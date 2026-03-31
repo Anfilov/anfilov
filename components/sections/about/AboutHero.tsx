@@ -39,6 +39,7 @@ function useCounter(target: number, duration = 2500) {
 }
 
 export function AboutHero() {
+  const videoRef = useRef<HTMLVideoElement>(null);
   const years = useCounter(30, 2500);
   const logos = useCounter(200, 2800);
   const agencies = useCounter(5, 2200);
@@ -108,14 +109,22 @@ export function AboutHero() {
             </div>
           </div>
 
-          {/* Portrait video */}
-          <div className="relative order-1 lg:order-2 flex items-center justify-center">
+          {/* Portrait video — plays once, restarts on hover */}
+          <div
+            className="relative order-1 lg:order-2 flex items-center justify-center cursor-pointer"
+            onMouseEnter={() => {
+              const v = videoRef.current;
+              if (!v) return;
+              v.currentTime = 0;
+              v.play().catch(() => {});
+            }}
+          >
             <div className="relative rounded-[var(--radius-lg)] overflow-hidden max-w-md w-full">
               <video
+                ref={videoRef}
                 src="/videos/anfilov-portrait.mp4"
                 autoPlay
                 muted
-                loop
                 playsInline
                 preload="auto"
                 aria-label="Simon Anfilov — portrét"
