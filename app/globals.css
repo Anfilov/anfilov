@@ -642,11 +642,11 @@ html, body {
   --body-size: 18px;
   --body-line-height: 1.70;
 
-  /* Layout defaults (center) — overridden by [data-layout] */
-  --layout-text: center;
-  --layout-mx: auto;
-  --layout-justify: center;
-  --layout-items: center;
+  /* Layout defaults — match site.config layout: "left" */
+  --layout-text: left;
+  --layout-mx: 0;
+  --layout-justify: flex-start;
+  --layout-items: flex-start;
 }
 
 /* ================================================================
