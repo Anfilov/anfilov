@@ -19,7 +19,7 @@ export function AboutStory() {
           </p>
 
           {/* Tim's quote — highlighted */}
-          <blockquote className="border-l-[3px] border-[var(--color-gold)] pl-5 py-1 text-[var(--color-text-primary)] font-[family-name:var(--font-heading)] text-[17px] sm:text-[18px] italic leading-[1.6]">
+          <blockquote className="border-l-[3px] border-[var(--color-gold)] pl-5 py-1 text-[var(--color-text-primary)] font-[family-name:var(--font-heading)] text-[17px] sm:text-[18px] italic leading-[1.6] text-balance">
             &bdquo;Zítra ráno odlítáme do Ameriky. Už nepřijdu, nechceš to dělat za&nbsp;mně? Pojď, já&nbsp;Ti ukážu, jak se to dělá.&ldquo;
           </blockquote>
 
@@ -27,11 +27,17 @@ export function AboutStory() {
             To víte, že jsem chtěl. Grafika, design a&nbsp;počítače byla vždycky moje vášeň. Ale tohle jsem neuměl. Sedli jsme si ten večer v&nbsp;prázdné kanceláři a&nbsp;Tim mi v&nbsp;nejrychlejším kurzu na světě nalil do hlavy základní principy počítačové grafiky a&nbsp;grafické sazby.
           </p>
           <p>
-            Když jsem druhý den přišel do práce, přiřítil se ke mně vzteky rudý šéfredaktor: <em>&bdquo;Tim odletěl do Ameriky, prý to zvládneš za&nbsp;něj. Zvládneš to? Za&nbsp;14&nbsp;dní jdeme do tisku. ZVLÁDNEŠ TO?!!&ldquo;</em>
+            Když jsem druhý den přišel do práce, přiřítil se ke mně vzteky rudý šéfredaktor:
           </p>
+          <blockquote className="border-l-[3px] border-[var(--color-gold)] pl-5 py-1 text-[var(--color-text-primary)] font-[family-name:var(--font-heading)] text-[17px] sm:text-[18px] italic leading-[1.6] text-balance">
+            &bdquo;Tim odletěl do Ameriky, prý to zvládneš za&nbsp;něj. Zvládneš to? Za&nbsp;14&nbsp;dní jdeme do tisku. ZVLÁDNEŠ TO?!!&ldquo;
+          </blockquote>
           <p>
-            To jsou ty situace, kdy stojíte a&nbsp;před očima se vám promítne celý život. Já blbec tam stál a&nbsp;odpověděl: <em>&bdquo;Jó, zvládnu. Tim mi všechno ukázal.&ldquo;</em>
+            To jsou ty situace, kdy stojíte a&nbsp;před očima se vám promítne celý život. Já blbec tam stál a&nbsp;odpověděl:
           </p>
+          <blockquote className="border-l-[3px] border-[var(--color-gold)] pl-5 py-1 text-[var(--color-text-primary)] font-[family-name:var(--font-heading)] text-[17px] sm:text-[18px] italic leading-[1.6] text-balance">
+            &bdquo;Jó, zvládnu. Tim mi všechno ukázal.&ldquo;
+          </blockquote>
           <p>
             Příští dva týdny jsem se každé ráno psychicky hroutil. Jednou jsem se dokonce rozbrečel. Opravdu. Rozbrečel. Byl jsem denně do noci u&nbsp;toho obrovského monitoru a&nbsp;hledal jsem způsoby, jak udělat nebo vyřešit to či ono. Neměl jsem žádný manuál, žádné video návody, žádný Google, nic. Jenom svoji beznaději, anglický software, postup &bdquo;pokus&nbsp;– omyl&ldquo; a&nbsp;strašnou chuť to dokázat.
           </p>

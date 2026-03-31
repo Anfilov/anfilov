@@ -222,7 +222,7 @@ export default async function PortfolioPage() {
 
         <CtaBlock
           overline="Líbí se vám, co vidíte?"
-          title="Pojďme vytvořit něco i pro vás"
+          title={<>Vytvořím vám<br /> podobný design</>}
         />
       </main>
 

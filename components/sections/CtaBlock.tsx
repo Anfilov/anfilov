@@ -7,7 +7,7 @@ import { Container } from "@/components/ui/Container";
 
 interface CtaBlockProps {
   overline?: string;
-  title?: string;
+  title?: React.ReactNode;
   subtitle?: string;
   buttonLabel?: string;
   buttonHref?: string;

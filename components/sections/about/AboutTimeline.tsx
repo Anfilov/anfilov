@@ -1,15 +1,22 @@
 "use client";
 
-import { useEffect, useRef, useCallback } from "react";
+import { useEffect, useRef, useCallback, type ReactNode } from "react";
 import { Container } from "@/components/ui/Container";
+
+const L = (href: string, children: ReactNode) => (
+  <a href={href} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 decoration-[var(--color-gold)]/40 hover:decoration-[var(--color-gold)] transition-colors">
+    {children}
+  </a>
+);
 
 interface TimelineItem {
   year: string;
   role: string;
   company: string;
-  description: string;
+  description: ReactNode;
   image?: string;
   highlight?: string;
+  highlightUrl?: string;
 }
 
 const items: TimelineItem[] = [
@@ -18,26 +25,25 @@ const items: TimelineItem[] = [
     role: "Brand Designer",
     company: "Freelance",
     description:
-      "Práce na volné noze, rozmanitost tvůrčích výzev a neustálá změna je to, co mi vyhovuje. Pomáhám malým i velkým firmám budovat jejich značky od strategie po design.",
+      "Práce na volné noze, rozmanitost tvůrčích výzev a neustálá změna je to, co mi vyhovuje. Pomáhám malým i velkým firmám budovat jejich značky od strategie po design. Jsem grafik, textař a tvůrce.",
     image:
       "https://content.app-sources.com/s/41101902986880176/thumbnails/640x480/PR_Images/Simon-Anfilov-Office-1080px-1580604.jpg?format=webp",
   },
   {
     year: "2003",
     role: "Kreativní ředitel",
-    company: "WMC Grey",
-    description:
-      "Spolupráce s Tomášem Vondráčkem a Milanem Šteidlerem. Vznik legendárního TV spotu s Leninem pro JVC.",
+    company: "WMC",
+    description: <>V roce 2003 jsem nastoupil do agentury WMC pod křídla {L("https://www.linkedin.com/in/vondracek-tomas/", "Tomáše Vondráčka")}. Ve spolupráci s {L("https://www.linkedin.com/in/milan-šteindler-3a9b5483/", "Milanem Šteidlerem")} jsme natočili tehdy úžasný {L("https://www.youtube.com/watch?v=AvZabDa1S-M", "TV spot s Leninem")} pro JVC. Dnes by nás za to rusové otrávili novičokem.</>,
     image:
       "https://content.app-sources.com/s/41101902986880176/thumbnails/640x480/PR_Images/Lenin-Simon-Shoot-9752780.jpg?format=webp",
     highlight: "TV spot s Leninem pro JVC",
+    highlightUrl: "https://www.youtube.com/watch?v=AvZabDa1S-M",
   },
   {
     year: "1997–1998",
     role: "Senior Art Director",
     company: "Mark BBDO",
-    description:
-      "Kreativní dvojka s Viktorem Špálou (copywriter). Strategické koncepční myšlení, branding a vizuální identita na mezinárodní úrovni.",
+    description: <>S parťákem textařem {L("https://www.linkedin.com/in/viktor-špála-48b36089/", "Viktorem Špálou")} jsme jako tým nastoupili do agentury BBDO, která měla tehdy hodně našlápnuto. Zde jsem pochopil, že mé nejsilnější stránky jsou strategické koncepční myšlení a grafický cit zaměřený na branding a vizuální identitu.</>,
     image:
       "https://content.app-sources.com/s/41101902986880176/thumbnails/640x480/PR_Images/Simon-Anfilov-Crazy-0184550.jpg?format=webp",
   },
@@ -45,18 +51,18 @@ const items: TimelineItem[] = [
     year: "1996–1997",
     role: "Art Director",
     company: "DMB&B",
-    description:
-      "Pod vedením kreativního ředitele Scotta Merrella. Ocenění Golden Drum Grand Prix — jeden z nejprestižnějších festivalů reklamy v Evropě.",
+    description: <>Díky skvělému kreativnímu řediteli {L("https://www.linkedin.com/in/gscottmerrell/", "Scottovi Merrellovi")} jsem se do DMB&B vrátil. Tentokrát jako Art Director. Scott položil základy pro moje strategické myšlení v reklamě a týmovou spolupráci. Pod jeho vedením se nám s kolegou textařem Viktorem Špálou podařilo získat prestižní mezinárodní reklamní ocenění Golden Drum Grand Prix za tento {L("https://youtu.be/J4nQ2VRT9hE", "bláznivý TV spot")}.</>,
     image:
       "https://content.app-sources.com/s/41101902986880176/thumbnails/640x480/PR_Images/Golden-Drum-0184581.jpg?format=webp",
     highlight: "Golden Drum Grand Prix",
+    highlightUrl: "https://youtu.be/J4nQ2VRT9hE",
   },
   {
     year: "1995–1996",
     role: "Art Director",
     company: "SGA Praha",
     description:
-      "Malá česká agentura s důrazem na precizní umělecké zpracování a přípravu pro tisk.",
+      "Malá česká agentura mi poskytla prostor realizovat mé výtvarné nápady a zdokonalit se především v předtiskové přípravě a dalších grafických aplikacích.",
     image:
       "https://content.app-sources.com/s/41101902986880176/thumbnails/640x480/PR_Images/SGA-Branded-0184607.jpg?format=webp",
   },
@@ -64,15 +70,14 @@ const items: TimelineItem[] = [
     year: "1994–1995",
     role: "DTP Manager",
     company: "DMB&B",
-    description:
-      "Mentor Michal Vojtek. Příležitost učit se od západních reklamních profesionálů a budovat DTP oddělení od základu.",
+    description: <>Znalost DTP mi otevřela dveře do jedné z renomovaných síťových reklamních agentur této bouřlivé porevoluční doby. Zde jsem dostal šanci učit se od výtečného kolegy {L("https://www.linkedin.com/in/vojtekpsd/", "Michala Vojtka")} a několika ostřílených zahraničních (západních) reklamních matadorů.</>,
   },
   {
     year: "1993–1994",
     role: "DTP Designer",
     company: "GGK Prague",
     description:
-      "Moje první práce v agentuře. Metodou pokus-omyl, bez manuálů, bez internetu — čistá vášeň a odhodlání.",
+      "Do agentury GGK jsem vkročil s přesvědčením, že hodně ohledně DTP umím, abych záhy zjistil, že to tak není. V práci jsem proto musel být často do noci, abych se metodou pokus a omyl rychle vše doučil. Mladost, radost.",
   },
 ];
 
@@ -214,9 +219,15 @@ function TimelineCard({
       </p>
 
       {item.highlight && (
-        <span className="inline-block mt-3 text-[12px] font-bold tracking-[0.1em] uppercase px-3 py-1.5 rounded-full bg-[var(--color-gold)]/10 text-[var(--color-gold)] border border-[var(--color-gold)]/20 font-[family-name:var(--font-ui)]">
-          {item.highlight}
-        </span>
+        item.highlightUrl ? (
+          <a href={item.highlightUrl} target="_blank" rel="noopener noreferrer" className="inline-block mt-3 text-[12px] font-bold tracking-[0.1em] uppercase px-3 py-1.5 rounded-full bg-[var(--color-gold)]/10 text-[var(--color-gold)] border border-[var(--color-gold)]/20 font-[family-name:var(--font-ui)] no-underline hover:bg-[var(--color-gold)]/20 transition-colors">
+            {item.highlight}
+          </a>
+        ) : (
+          <span className="inline-block mt-3 text-[12px] font-bold tracking-[0.1em] uppercase px-3 py-1.5 rounded-full bg-[var(--color-gold)]/10 text-[var(--color-gold)] border border-[var(--color-gold)]/20 font-[family-name:var(--font-ui)]">
+            {item.highlight}
+          </span>
+        )
       )}
 
       {item.image && (

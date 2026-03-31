@@ -8,10 +8,11 @@ import { cn } from "@/lib/utils";
 
 const navLinks = [
   { label: "Homepage", href: "/" },
-  { label: "O mně", href: "/o-mne" },
   { label: "Služby", href: "/sluzba" },
   { label: "Portfolio", href: "/portfolio" },
   { label: "Slovník", href: "/slovnik" },
+  { label: "O mně", href: "/o-mne" },
+  { label: "Kontakt", href: "/kontakt" },
 ];
 
 /* ── ANFILOV Symbol for nav ── */

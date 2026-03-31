@@ -32,8 +32,7 @@ export default function AboutPage() {
         <AboutClients />
         <CtaBlock
           overline="Pojďme spolupracovat"
-          title="Máte projekt, který potřebuje značku?"
-          subtitle="Napište mi — rád se podívám, jak vám mohu pomoci."
+          title={<>Máte projekt, který si<br /> zaslouží pořádnou výzvu?</>}
         />
       </main>
       <Footer />

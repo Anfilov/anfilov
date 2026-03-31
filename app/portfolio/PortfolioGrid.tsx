@@ -46,19 +46,35 @@ export function PortfolioGrid({
     [categories, activeTab],
   );
 
-  // Filtered by search
+  // All projects (deduplicated by _id) for cross-category search
+  const allProjects = useMemo(() => {
+    const seen = new Set<string>();
+    const result: typeof categoryProjects = [];
+    for (const cat of categories) {
+      for (const p of cat.projects) {
+        if (!seen.has(p._id)) {
+          seen.add(p._id);
+          result.push(p);
+        }
+      }
+    }
+    return result;
+  }, [categories]);
+
+  // Filtered by search — when searching, look across ALL categories
   const filtered = useMemo(() => {
-    if (!query.trim()) return categoryProjects;
-    const q = normalize(query.trim());
-    return categoryProjects.filter((p) => {
+    const q = query.trim();
+    if (!q) return categoryProjects;
+    const nq = normalize(q);
+    return allProjects.filter((p) => {
       const haystack = normalize(
         [p.client, p.title ?? "", p.description ?? "", ...(p.tags ?? [])].join(
           " ",
         ),
       );
-      return haystack.includes(q);
+      return haystack.includes(nq);
     });
-  }, [categoryProjects, query]);
+  }, [categoryProjects, allProjects, query]);
 
   // Visible slice
   const visible = filtered.slice(0, visibleCount);

@@ -170,7 +170,7 @@ export function mapSanityToSluzbaData(raw: SanitySluzba): SluzbaData {
     })),
     deliverablesTrustNote: "",
     reseniImageUrl: raw.reseniImage?.image
-      ? (() => { try { return urlForImage(raw.reseniImage.image).width(800).height(800).fit("max").url(); } catch { return ""; } })()
+      ? (() => { try { return urlForImage(raw.reseniImage.image).width(800).fit("max").url(); } catch { return ""; } })()
       : "",
     reseniImageCaption: raw.reseniImage?.caption ?? "",
     reseniMediaType: raw.reseniMediaType,
