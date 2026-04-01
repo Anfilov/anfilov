@@ -95,7 +95,7 @@ export function RoadmapTimeline() {
                     <h3 className="text-base font-bold text-[var(--color-text-primary)] font-[family-name:var(--font-heading)] tracking-[var(--heading-tracking)]">
                       {item.title}
                     </h3>
-                    <span className={`inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-[0.15em] px-2 py-0.5 rounded-[var(--radius-pill)] ${config.color}`}>
+                    <span className={`inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-[0.15em] px-2 py-0.5 rounded-full ${config.color}`}>
                       {config.icon}
                       {config.label}
                     </span>

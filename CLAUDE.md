@@ -5,6 +5,7 @@
 Tvoříme webdesign pro **ANFILOV** (anfilov.cz) — designové studio. Web je v **českém jazyce**.
 
 Při práci na frontendu vždy aktivuj skill `/frontend-design`.
+Při jakékoliv práci na tomto projektu vždy aktivuj skill `/anfilov-visual-guidelines` — obsahuje kompletní brand identitu, tokeny, barvy, typografii a pravidla.
 
 ## Tech stack
 

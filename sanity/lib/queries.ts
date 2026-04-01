@@ -155,7 +155,6 @@ const sluzbaFields = `
     alt,
     caption
   },
-  reseniIcon,
   reseniVideo { asset-> { url } },
   reseniVideoLoop,
   reseniEmbed,
@@ -293,7 +292,7 @@ const glossaryDetailFields = `
     alt
   },
   relatedTerms[]-> { _id, term, "slug": slug.current, hasDetailPage, shortDefinition, category },
-  relatedServices[]-> { _id, name, "slug": slug.current, heroTitle, heroPriceLabel },
+  relatedServices[]-> { _id, name, "slug": slug.current, heroTitle, cenikPriceLabel },
   metaTitle,
   metaDescription
 `;

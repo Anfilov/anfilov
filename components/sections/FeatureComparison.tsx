@@ -72,7 +72,7 @@ export function FeatureComparison() {
           <div className="grid grid-cols-[1fr_100px_100px] sm:grid-cols-[1fr_120px_120px] items-end border-b-2 border-[var(--color-border)] pb-3 mb-1">
             <div />
             <div className="text-center">
-              <span className="inline-block px-3 py-1 rounded-[var(--radius-pill)] bg-[var(--color-accent)] text-[var(--color-text-on-accent)] text-xs font-bold font-[family-name:var(--font-heading)] tracking-wide uppercase">
+              <span className="inline-block px-3 py-1 rounded-full bg-[var(--color-accent)] text-[var(--color-text-on-accent)] text-xs font-bold font-[family-name:var(--font-heading)] tracking-wide uppercase">
                 Us
               </span>
             </div>

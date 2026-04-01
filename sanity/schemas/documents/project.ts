@@ -103,7 +103,7 @@ export const project = defineType({
       name: "services",
       title: "Související služby",
       type: "array",
-      of: [{ type: "reference", to: [{ type: "page" }] }],
+      of: [{ type: "reference", to: [{ type: "sluzba" }] }],
       description: "Propojení na stránky nabídek",
     }),
     defineField({

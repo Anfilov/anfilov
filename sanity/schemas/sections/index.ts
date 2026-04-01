@@ -56,6 +56,4 @@ import type { SchemaTypeDefinition } from "sanity";
  * export const sectionSchemas: SchemaTypeDefinition[] = [featureGrid];
  * ```
  */
-import { offerVideo } from "./offer-video";
-
-export const sectionSchemas: SchemaTypeDefinition[] = [offerVideo];
+export const sectionSchemas: SchemaTypeDefinition[] = [];

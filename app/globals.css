@@ -19,6 +19,7 @@ html, body {
   --color-gold-hover: #B89A42;
   --color-gold-light: #E8D9A0;
   --color-gold-dark: #8B7D5E;
+  --color-gold-glow: rgba(200, 168, 78, 0.35);
 
   /* Forest */
   --color-forest: #1A3A2E;

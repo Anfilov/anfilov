@@ -59,7 +59,7 @@ interface GlossaryTerm {
     name: string;
     slug: string;
     heroTitle?: string;
-    heroPriceLabel?: string;
+    cenikPriceLabel?: string;
   }[];
   metaTitle?: string;
   metaDescription?: string;
@@ -312,9 +312,9 @@ export default async function GlossaryDetailPage({ params }: PageProps) {
                     <h3 className="text-lg font-bold text-[var(--color-text-primary)] font-[family-name:var(--font-heading)] tracking-tight mb-2">
                       {svc.heroTitle || svc.name}
                     </h3>
-                    {svc.heroPriceLabel && (
+                    {svc.cenikPriceLabel && (
                       <p className="text-sm font-bold text-[var(--color-gold)] font-[family-name:var(--font-heading)] mb-3">
-                        {svc.heroPriceLabel}
+                        {svc.cenikPriceLabel}
                       </p>
                     )}
                     <span className="inline-flex items-center gap-1 text-sm font-semibold text-[var(--color-forest-mid)] font-[family-name:var(--font-ui)] group-hover:gap-2 transition-all duration-[var(--duration-fast)]">
