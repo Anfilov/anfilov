@@ -196,7 +196,7 @@ export default async function GlossaryDetailPage({ params }: PageProps) {
             />
 
             <header className="max-w-[680px]">
-              <span className="inline-block text-[11px] font-semibold px-2.5 py-1 rounded-[var(--radius-xs)] font-[family-name:var(--font-ui)] bg-[color-mix(in_srgb,var(--color-gold)_12%,transparent)] text-[var(--color-gold-dark)] mb-4">
+              <span className="inline-block text-[12px] font-semibold px-2.5 py-1 rounded-[var(--radius-xs)] font-[family-name:var(--font-ui)] bg-[color-mix(in_srgb,var(--color-gold)_12%,transparent)] text-[var(--color-gold-dark)] mb-4">
                 {term.category}
               </span>
 

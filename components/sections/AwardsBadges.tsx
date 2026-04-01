@@ -111,7 +111,7 @@ export function AwardsBadges() {
               </p>
 
               {/* Issuer */}
-              <p className="mt-1 text-[11px] text-[var(--color-text-tertiary)] font-[family-name:var(--font-body)]">
+              <p className="mt-1 text-[12px] text-[var(--color-text-tertiary)] font-[family-name:var(--font-body)]">
                 {award.issuer}
               </p>
             </div>

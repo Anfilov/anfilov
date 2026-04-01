@@ -96,7 +96,7 @@ function MarqueeRow({
                 <cite className="text-xs font-semibold text-[var(--color-text-primary)] not-italic font-[family-name:var(--font-heading)]">
                   {item.name}
                 </cite>
-                <p className="text-[11px] text-[var(--color-text-secondary)] font-[family-name:var(--font-body)]">
+                <p className="text-[12px] text-[var(--color-text-secondary)] font-[family-name:var(--font-body)]">
                   {item.role}
                 </p>
               </div>
@@ -115,7 +115,7 @@ export function TestimonialMarquee() {
     <section className="bg-[var(--color-surface)] py-[var(--section-padding-y)]">
       <Container>
         <div className="layout-text mb-10">
-          <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-[var(--color-text-tertiary)] font-[family-name:var(--font-heading)] mb-3">
+          <p className="text-[12px] font-bold tracking-[0.2em] uppercase text-[var(--color-text-tertiary)] font-[family-name:var(--font-heading)] mb-3">
             Wall of love
           </p>
           <h2 className="text-2xl sm:text-3xl font-bold tracking-tight font-[family-name:var(--font-heading)] text-[var(--color-text-primary)]">

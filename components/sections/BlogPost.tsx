@@ -51,7 +51,7 @@ function Sidebar() {
     <aside className="flex flex-col gap-8 lg:sticky lg:top-[calc(var(--nav-height)+24px)] lg:self-start">
       {/* Author card */}
       <div className="bg-[var(--color-surface-elevated)] rounded-[var(--card-radius)] border border-[var(--color-border)] p-5">
-        <p className="text-[11px] font-bold tracking-[0.15em] uppercase text-[var(--color-text-tertiary)] mb-4 font-[family-name:var(--font-heading)]">
+        <p className="text-[12px] font-bold tracking-[0.15em] uppercase text-[var(--color-text-tertiary)] mb-4 font-[family-name:var(--font-heading)]">
           Written by
         </p>
         <div className="flex items-center gap-3 mb-4">
@@ -85,7 +85,7 @@ function Sidebar() {
 
       {/* Tags */}
       <div className="bg-[var(--color-surface-elevated)] rounded-[var(--card-radius)] border border-[var(--color-border)] p-5">
-        <p className="text-[11px] font-bold tracking-[0.15em] uppercase text-[var(--color-text-tertiary)] mb-3 font-[family-name:var(--font-heading)]">
+        <p className="text-[12px] font-bold tracking-[0.15em] uppercase text-[var(--color-text-tertiary)] mb-3 font-[family-name:var(--font-heading)]">
           Tags
         </p>
         <div className="flex flex-wrap gap-2">
@@ -97,7 +97,7 @@ function Sidebar() {
 
       {/* Share */}
       <div className="bg-[var(--color-surface-elevated)] rounded-[var(--card-radius)] border border-[var(--color-border)] p-5">
-        <p className="text-[11px] font-bold tracking-[0.15em] uppercase text-[var(--color-text-tertiary)] mb-3 font-[family-name:var(--font-heading)]">
+        <p className="text-[12px] font-bold tracking-[0.15em] uppercase text-[var(--color-text-tertiary)] mb-3 font-[family-name:var(--font-heading)]">
           Share
         </p>
         <div className="flex gap-2">
@@ -133,7 +133,7 @@ function Sidebar() {
 
       {/* Related posts */}
       <div className="bg-[var(--color-surface-elevated)] rounded-[var(--card-radius)] border border-[var(--color-border)] p-5">
-        <p className="text-[11px] font-bold tracking-[0.15em] uppercase text-[var(--color-text-tertiary)] mb-4 font-[family-name:var(--font-heading)]">
+        <p className="text-[12px] font-bold tracking-[0.15em] uppercase text-[var(--color-text-tertiary)] mb-4 font-[family-name:var(--font-heading)]">
           Related articles
         </p>
         <div className="flex flex-col gap-4">

@@ -48,7 +48,7 @@ export function Alert({
         ${className}
       `}
     >
-      <Icon size={18} className="shrink-0 mt-0.5" aria-hidden="true" />
+      <Icon size={20} strokeWidth={1.5} className="shrink-0 mt-0.5" aria-hidden="true" />
       <div className="flex-1 min-w-0">
         {title && (
           <p className="text-sm font-semibold font-[family-name:var(--font-heading)] tracking-tight mb-0.5">

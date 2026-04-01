@@ -62,7 +62,7 @@ export function HeroProduct() {
                   <span className="w-3 h-3 rounded-full bg-[var(--color-success)]" />
                 </div>
                 <div className="flex-1 flex justify-center">
-                  <span className="text-[11px] text-[var(--color-text-tertiary)] font-mono bg-[var(--color-surface)] rounded-[var(--radius-sm)] px-3 py-1 border border-[var(--color-border)]">
+                  <span className="text-[12px] text-[var(--color-text-tertiary)] font-mono bg-[var(--color-surface)] rounded-[var(--radius-sm)] px-3 py-1 border border-[var(--color-border)]">
                     app.example.com/dashboard
                   </span>
                 </div>

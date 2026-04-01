@@ -92,7 +92,7 @@ export function IntegrationHub() {
                     top: `${y}%`,
                   }}
                 >
-                  <span className="text-[10px] sm:text-xs font-bold font-[family-name:var(--font-heading)] text-[var(--color-text-primary)] select-none">
+                  <span className="text-[12px] sm:text-xs font-bold font-[family-name:var(--font-heading)] text-[var(--color-text-primary)] select-none">
                     {spoke.name}
                   </span>
                 </div>

@@ -82,13 +82,13 @@ export function Navbar() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" style={{ marginTop: "max(0.5rem, env(safe-area-inset-top))" }}>
           <div className={cn(
             "transition-[max-width] duration-[350ms] ease-[var(--ease-spring)]",
-            isPill ? "mx-auto max-w-3xl" : "max-w-none"
+            isPill ? "mx-auto max-w-4xl" : "max-w-none"
           )}>
           <div
             className={cn(
               "transition-[background-color,box-shadow,border-color,backdrop-filter,padding,border-radius] duration-[350ms]",
               isPill
-                ? "rounded-[12px] border border-[var(--color-border)] bg-[var(--nav-bg)] backdrop-blur-[20px] shadow-[var(--shadow-md)] px-5"
+                ? "rounded-[12px] border border-[var(--color-border)] bg-[var(--nav-bg)] backdrop-blur-[20px] shadow-[var(--shadow-md)] px-6"
                 : "border border-transparent bg-transparent backdrop-blur-0 shadow-none px-0"
             )}
           >
@@ -179,9 +179,9 @@ export function Navbar() {
                     className="shrink-0 p-2 rounded-[var(--radius-sm)] text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors duration-[var(--duration-fast)] cursor-pointer min-h-[36px] min-w-[36px] inline-flex items-center justify-center focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:ring-offset-2 focus-visible:outline-none"
                   >
                     {theme === "light" ? (
-                      <Moon size={18} strokeWidth={1.5} aria-hidden="true" />
+                      <Moon size={20} strokeWidth={1.5} aria-hidden="true" />
                     ) : (
-                      <Sun size={18} strokeWidth={1.5} aria-hidden="true" />
+                      <Sun size={20} strokeWidth={1.5} aria-hidden="true" />
                     )}
                   </button>
 

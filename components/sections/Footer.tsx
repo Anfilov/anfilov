@@ -128,7 +128,7 @@ export function Footer() {
                       focus-visible:ring-2 focus-visible:ring-[var(--sc-text)] focus-visible:outline-none
                     "
                   >
-                    <Icon size={16} aria-hidden="true" />
+                    <Icon size={20} aria-hidden="true" />
                   </a>
                 );
               })}
@@ -138,7 +138,7 @@ export function Footer() {
           {/* ── Link columns ── */}
           {footerLinks.map((col) => (
             <div key={col.title}>
-              <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-[var(--color-gold)] mb-4 font-[family-name:var(--font-heading)]">
+              <p className="text-[12px] font-bold tracking-[0.2em] uppercase text-[var(--color-gold)] mb-4 font-[family-name:var(--font-heading)]">
                 {col.title}
               </p>
               <ul className="space-y-2">

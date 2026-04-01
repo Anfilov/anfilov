@@ -181,16 +181,16 @@ export function SluzbaCenik({ offer }: Props) {
               <table className="w-full text-[12px] sm:text-[14px]">
                 <thead>
                   <tr className="border-b-2 border-[var(--color-border)]">
-                    <th className="text-left py-3 px-3 sm:py-4 sm:px-5 font-semibold text-[11px] sm:text-[13px] uppercase tracking-[1px] sm:tracking-[1.5px] text-[var(--color-text-secondary)] font-[family-name:var(--font-ui)]">
+                    <th className="text-left py-3 px-3 sm:py-4 sm:px-5 font-semibold text-[12px] sm:text-[13px] uppercase tracking-[1px] sm:tracking-[1.5px] text-[var(--color-text-secondary)] font-[family-name:var(--font-ui)]">
                       Kritérium
                     </th>
-                    <th className="py-3 px-2 sm:py-4 sm:px-4 font-semibold text-[11px] sm:text-[13px] uppercase tracking-[1px] sm:tracking-[1.5px] font-[family-name:var(--font-ui)] text-center text-[var(--color-gold)] bg-[var(--color-accent-subtle)]">
+                    <th className="py-3 px-2 sm:py-4 sm:px-4 font-semibold text-[12px] sm:text-[13px] uppercase tracking-[1px] sm:tracking-[1.5px] font-[family-name:var(--font-ui)] text-center text-[var(--color-gold)] bg-[var(--color-accent-subtle)]">
                       ANFILOV
                     </th>
-                    <th className="py-3 px-2 sm:py-4 sm:px-4 font-semibold text-[11px] sm:text-[13px] uppercase tracking-[1px] sm:tracking-[1.5px] font-[family-name:var(--font-ui)] text-center text-[var(--color-warm-500)]">
+                    <th className="py-3 px-2 sm:py-4 sm:px-4 font-semibold text-[12px] sm:text-[13px] uppercase tracking-[1px] sm:tracking-[1.5px] font-[family-name:var(--font-ui)] text-center text-[var(--color-warm-500)]">
                       Agentura
                     </th>
-                    <th className="py-3 px-2 sm:py-4 sm:px-4 font-semibold text-[11px] sm:text-[13px] uppercase tracking-[1px] sm:tracking-[1.5px] font-[family-name:var(--font-ui)] text-center text-[var(--color-warm-500)]">
+                    <th className="py-3 px-2 sm:py-4 sm:px-4 font-semibold text-[12px] sm:text-[13px] uppercase tracking-[1px] sm:tracking-[1.5px] font-[family-name:var(--font-ui)] text-center text-[var(--color-warm-500)]">
                       Svépomocí
                     </th>
                   </tr>
@@ -218,7 +218,7 @@ export function SluzbaCenik({ offer }: Props) {
                 </tbody>
               </table>
 
-              <p className="px-5 py-3 text-[11px] text-[var(--color-text-tertiary)] font-[family-name:var(--font-ui)] border-t border-[var(--color-border)]">
+              <p className="px-5 py-3 text-[12px] text-[var(--color-text-tertiary)] font-[family-name:var(--font-ui)] border-t border-[var(--color-border)]">
                 Hodnocení 1–5 na základě mých zkušeností a zpětné vazby od klientů.
               </p>
               </div>

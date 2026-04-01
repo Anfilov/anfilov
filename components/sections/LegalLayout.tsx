@@ -52,7 +52,7 @@ export function LegalLayout({
             {/* ── Left column (2/5 = 40%) ── */}
             <div className="lg:col-span-2 reveal">
               {/* Overline */}
-              <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-[var(--color-text-accent)] mb-5 font-[family-name:var(--font-heading)]">
+              <p className="text-[12px] font-bold tracking-[0.2em] uppercase text-[var(--color-text-accent)] mb-5 font-[family-name:var(--font-heading)]">
                 Právní informace
               </p>
 
@@ -94,7 +94,7 @@ export function LegalLayout({
               <div className="h-px bg-[var(--color-border)] mb-[24px]" />
 
               {/* Správce */}
-              <span className="block text-[11px] font-bold tracking-[0.2em] uppercase text-[var(--color-warm-400)] mb-[12px]">
+              <span className="block text-[12px] font-bold tracking-[0.2em] uppercase text-[var(--color-warm-400)] mb-[12px]">
                 Správce webu
               </span>
               <div className="text-[14px] leading-[1.65] text-[var(--color-text-secondary)] space-y-[1px]">

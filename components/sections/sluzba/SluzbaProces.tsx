@@ -131,7 +131,7 @@ export function SluzbaProces({ offer }: Props) {
                   <h3 className="text-[15px] font-bold text-[var(--color-text-primary)] font-[family-name:var(--font-heading)] tracking-tight" style={{ marginBottom: 6 }}>
                     {step.title}
                   </h3>
-                  <span className="text-[11px] font-semibold text-[var(--color-warm-500)] font-[family-name:var(--font-ui)] bg-[var(--color-tag-gold)] px-2 py-0.5 rounded-[var(--radius-xs)] inline-block" style={{ marginBottom: 8 }}>
+                  <span className="text-[12px] font-semibold text-[var(--color-warm-500)] font-[family-name:var(--font-ui)] bg-[var(--color-tag-gold)] px-2 py-0.5 rounded-[var(--radius-xs)] inline-block" style={{ marginBottom: 8 }}>
                     {dny(step.days)}
                   </span>
                   <p className="text-[13px] text-[var(--color-text-secondary)] font-[family-name:var(--font-body)] leading-[1.6]">

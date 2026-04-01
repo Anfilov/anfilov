@@ -99,10 +99,10 @@ export function BeforeAfter() {
             </div>
 
             {/* Labels */}
-            <div className="absolute top-3 left-3 px-2 py-1 rounded-[var(--radius-sm)] bg-black/50 backdrop-blur-sm text-[10px] font-bold text-[var(--color-cream)] uppercase tracking-wider font-[family-name:var(--font-heading)]">
+            <div className="absolute top-3 left-3 px-2 py-1 rounded-[var(--radius-sm)] bg-black/50 backdrop-blur-sm text-[12px] font-bold text-[var(--color-cream)] uppercase tracking-wider font-[family-name:var(--font-heading)]">
               Before
             </div>
-            <div className="absolute top-3 right-3 px-2 py-1 rounded-[var(--radius-sm)] bg-black/50 backdrop-blur-sm text-[10px] font-bold text-[var(--color-cream)] uppercase tracking-wider font-[family-name:var(--font-heading)]">
+            <div className="absolute top-3 right-3 px-2 py-1 rounded-[var(--radius-sm)] bg-black/50 backdrop-blur-sm text-[12px] font-bold text-[var(--color-cream)] uppercase tracking-wider font-[family-name:var(--font-heading)]">
               After
             </div>
           </div>

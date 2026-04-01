@@ -248,7 +248,7 @@ export function PortfolioGrid({
                     loading="lazy"
                   />
                   {galleryCount > 1 && (
-                    <span className="absolute top-6 right-6 text-[11px] font-semibold font-[family-name:var(--font-ui)] px-2.5 py-1 rounded-[var(--radius-xs)] bg-[#F5F0E6] text-[#8B7D5E]">
+                    <span className="absolute top-6 right-6 text-[12px] font-semibold font-[family-name:var(--font-ui)] px-2.5 py-1 rounded-[var(--radius-xs)] bg-[#F5F0E6] text-[#8B7D5E]">
                       {galleryCount} fotek
                     </span>
                   )}
@@ -271,7 +271,7 @@ export function PortfolioGrid({
                       </span>
                     )}
                     {project.result && (
-                      <span className="text-[11px] font-semibold font-[family-name:var(--font-ui)] px-2.5 py-1 rounded-[var(--radius-xs)] bg-[var(--color-tag-gold)] text-[var(--color-text-secondary)]">
+                      <span className="text-[12px] font-semibold font-[family-name:var(--font-ui)] px-2.5 py-1 rounded-[var(--radius-xs)] bg-[var(--color-tag-gold)] text-[var(--color-text-secondary)]">
                         {project.result}
                       </span>
                     )}
@@ -326,7 +326,7 @@ export function PortfolioGrid({
               right: 0,
               bottom: 0,
               zIndex: 9999,
-              backgroundColor: "rgba(0,0,0,0.85)",
+              backgroundColor: "rgba(28,28,28,0.85)",
             }}
             onClick={(e) => {
               if (e.target === e.currentTarget) closeLightbox();

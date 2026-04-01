@@ -72,7 +72,7 @@ export function CaseStudyCards() {
                   <span className="text-sm font-bold font-[family-name:var(--font-heading)] text-[var(--color-text-primary)]">
                     {study.company}
                   </span>
-                  <span className="text-[11px] font-medium tracking-wide uppercase text-[var(--color-text-tertiary)] font-[family-name:var(--font-body)] bg-[var(--color-surface-sunken)] px-2 py-0.5 rounded-[var(--radius-sm)]">
+                  <span className="text-[12px] font-medium tracking-wide uppercase text-[var(--color-text-tertiary)] font-[family-name:var(--font-body)] bg-[var(--color-surface-sunken)] px-2 py-0.5 rounded-[var(--radius-sm)]">
                     {study.industry}
                   </span>
                 </div>

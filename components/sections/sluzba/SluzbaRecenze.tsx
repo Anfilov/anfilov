@@ -189,7 +189,7 @@ function ReviewCard({ review, ariaHidden, googleReviewsUrl }: { review: GoogleRe
               referrerPolicy="no-referrer"
             />
           ) : (
-            <span className="w-8 h-8 rounded-[22%] bg-[var(--color-surface-sunken)] text-[var(--color-text-tertiary)] text-[11px] font-bold font-[family-name:var(--font-heading)] inline-flex items-center justify-center">
+            <span className="w-8 h-8 rounded-[22%] bg-[var(--color-surface-sunken)] text-[var(--color-text-tertiary)] text-[12px] font-bold font-[family-name:var(--font-heading)] inline-flex items-center justify-center">
               {initials}
             </span>
           )}
@@ -197,7 +197,7 @@ function ReviewCard({ review, ariaHidden, googleReviewsUrl }: { review: GoogleRe
             <cite className="text-xs font-semibold text-[var(--color-text-primary)] not-italic font-[family-name:var(--font-heading)]">
               {review.author}
             </cite>
-            <p className="text-[11px] text-[var(--color-text-tertiary)] font-[family-name:var(--font-ui)]">
+            <p className="text-[12px] text-[var(--color-text-tertiary)] font-[family-name:var(--font-ui)]">
               {review.relativeTime}
             </p>
           </div>

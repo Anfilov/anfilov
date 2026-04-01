@@ -100,7 +100,7 @@ export function DataTable() {
               <dl className="grid grid-cols-2 gap-y-2 gap-x-4 text-sm">
                 {columns.slice(1).map((col) => (
                   <div key={col.key}>
-                    <dt className="text-[10px] font-bold uppercase tracking-[0.15em] text-[var(--color-text-tertiary)] font-[family-name:var(--font-heading)]">
+                    <dt className="text-[12px] font-bold uppercase tracking-[0.15em] text-[var(--color-text-tertiary)] font-[family-name:var(--font-heading)]">
                       {col.label}
                     </dt>
                     <dd className="text-[var(--color-text-primary)] font-[family-name:var(--font-body)] mt-0.5">

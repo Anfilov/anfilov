@@ -38,7 +38,7 @@ function TermCard({ t, highlighted }: { t: GlossaryTermListItem; highlighted?: b
   return (
     <div
       id={slugify(t.term)}
-      className={`py-5 border-b scroll-mt-40 transition-all duration-700 ${
+      className={`py-5 border-b scroll-mt-40 transition-all duration-[350ms] ${
         highlighted
           ? "border-[var(--color-gold)] bg-[rgba(200,168,78,0.08)] -mx-4 px-4 rounded-[8px]"
           : "border-[var(--color-border)]"
@@ -49,7 +49,7 @@ function TermCard({ t, highlighted }: { t: GlossaryTermListItem; highlighted?: b
           {t.term}
         </h3>
         <span
-          className="shrink-0 text-[11px] font-semibold px-2 py-0.5 rounded-[6px] font-[family-name:var(--font-ui)]"
+          className="shrink-0 text-[12px] font-semibold px-2 py-0.5 rounded-[6px] font-[family-name:var(--font-ui)]"
           style={{
             backgroundColor: (CATEGORY_STYLES[t.category] ?? DEFAULT_STYLE).bg,
             color: (CATEGORY_STYLES[t.category] ?? DEFAULT_STYLE).color,

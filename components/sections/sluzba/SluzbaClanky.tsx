@@ -60,7 +60,7 @@ export function SluzbaClanky({ offer }: Props) {
               <div className="p-6 flex flex-col flex-1">
                 <div className="flex items-center gap-2.5 mb-3">
                   <span
-                    className={`text-[11px] font-semibold tracking-wide uppercase px-2.5 py-1 rounded-[var(--radius-xs)] font-[family-name:var(--font-ui)] ${
+                    className={`text-[12px] font-semibold tracking-wide uppercase px-2.5 py-1 rounded-[var(--radius-xs)] font-[family-name:var(--font-ui)] ${
                       funnelColors[article.funnelTag] ?? funnelColors.TOFU
                     }`}
                   >

@@ -6,7 +6,7 @@ export function ProductScreenshot() {
     <section className="bg-[var(--color-surface)] py-[var(--section-padding-y)] overflow-hidden">
       <Container>
         <div className="layout-text mb-10">
-          <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-[var(--color-text-tertiary)] font-[family-name:var(--font-heading)] mb-3">
+          <p className="text-[12px] font-bold tracking-[0.2em] uppercase text-[var(--color-text-tertiary)] font-[family-name:var(--font-heading)] mb-3">
             Product preview
           </p>
           <h2 className="text-2xl sm:text-3xl font-bold tracking-tight font-[family-name:var(--font-heading)] text-[var(--color-text-primary)]">
@@ -36,7 +36,7 @@ export function ProductScreenshot() {
                 <span className="w-3 h-3 rounded-full bg-[var(--color-success)]" />
               </div>
               <div className="flex-1 flex justify-center">
-                <span className="text-[11px] text-[var(--color-text-tertiary)] font-mono bg-[var(--color-surface)] rounded-[var(--radius-sm)] px-3 py-1 border border-[var(--color-border)]">
+                <span className="text-[12px] text-[var(--color-text-tertiary)] font-mono bg-[var(--color-surface)] rounded-[var(--radius-sm)] px-3 py-1 border border-[var(--color-border)]">
                   app.example.com
                 </span>
               </div>

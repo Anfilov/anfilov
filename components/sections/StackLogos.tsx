@@ -96,7 +96,7 @@ export function StackLogos() {
               <p className="text-sm font-bold text-[var(--color-text-primary)] font-[family-name:var(--font-heading)] tracking-[var(--heading-tracking)]">
                 {item.name}
               </p>
-              <p className="mt-0.5 text-[11px] text-[var(--color-text-tertiary)] font-[family-name:var(--font-body)]">
+              <p className="mt-0.5 text-[12px] text-[var(--color-text-tertiary)] font-[family-name:var(--font-body)]">
                 {item.description}
               </p>
             </div>

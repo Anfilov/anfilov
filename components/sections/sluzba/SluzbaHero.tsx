@@ -14,8 +14,9 @@ interface Props {
 }
 
 function pracovnichDniDo(n: number): string {
-  if (n === 1) return "1 pracovního dne";
-  return `${n} pracovních dní`;
+  if (n === 1) return "1 den";
+  if (n >= 2 && n <= 4) return `${n} dny`;
+  return `${n} dní`;
 }
 
 /** Hero — hlavní banner s Atomic Answer. */

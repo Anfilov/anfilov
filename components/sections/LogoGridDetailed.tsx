@@ -53,7 +53,7 @@ export function LogoGridDetailed() {
               {/* Detail text — always visible */}
               <span
                 className="
-                  text-[11px] text-[var(--color-text-tertiary)]
+                  text-[12px] text-[var(--color-text-tertiary)]
                   font-[family-name:var(--font-body)]
                   group-hover:text-[var(--color-accent)]
                   transition-colors duration-[var(--duration-fast)]

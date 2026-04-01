@@ -68,8 +68,8 @@ function CopyButton({ text }: { text: string }) {
       className="
         absolute top-3 right-3 p-1.5
         rounded-[var(--radius-sm)]
-        text-slate-400
-        hover:text-slate-200 hover:bg-white/10
+        text-[var(--color-text-tertiary)]
+        hover:text-[var(--color-warm-200)] hover:bg-white/10
         transition-colors duration-[var(--duration-fast)]
         cursor-pointer min-h-[44px] min-w-[44px]
         inline-flex items-center justify-center
@@ -127,7 +127,7 @@ export function GettingStarted() {
               {/* Code block */}
               <div className="relative mt-auto mx-4 mb-4 sm:mx-5 sm:mb-5 rounded-[var(--radius-sm)] bg-[var(--color-surface-dark)] overflow-hidden">
                 <CopyButton text={step.code} />
-                <pre className="p-4 pr-12 text-[13px] leading-relaxed text-slate-100 font-mono overflow-x-auto">
+                <pre className="p-4 pr-12 text-[13px] leading-relaxed text-[var(--color-cream)] font-mono overflow-x-auto">
                   <code>{step.code}</code>
                 </pre>
               </div>

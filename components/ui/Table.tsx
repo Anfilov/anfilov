@@ -38,7 +38,7 @@ export function Table<T extends Record<string, unknown>>({
               <th
                 key={col.key}
                 className={`
-                  px-4 py-3 text-[11px] font-bold uppercase tracking-[0.1em]
+                  px-4 py-3 text-[12px] font-bold uppercase tracking-[0.1em]
                   font-[family-name:var(--font-heading)]
                   text-[var(--color-text-tertiary)]
                   ${alignClass[col.align ?? "left"]}

@@ -65,7 +65,7 @@ export function SplitComparison() {
                     rounded-full
                     bg-[var(--color-surface-elevated)] border border-[var(--color-border)]
                     shadow-[var(--shadow-sm)]
-                    text-[11px] font-bold tracking-wider text-[var(--color-text-tertiary)]
+                    text-[12px] font-bold tracking-wider text-[var(--color-text-tertiary)]
                     font-[family-name:var(--font-heading)]
                   "
                 >

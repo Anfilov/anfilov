@@ -87,14 +87,14 @@ export function IntegrationGrid() {
                   `}
                   aria-hidden="true"
                 >
-                  <Icon size={22} strokeWidth={1.6} />
+                  <Icon size={20} strokeWidth={1.5} />
                 </span>
 
                 <h3 className="text-sm font-bold font-[family-name:var(--font-heading)] text-[var(--color-text-primary)] mb-1">
                   {item.name}
                 </h3>
 
-                <span className="text-[11px] text-[var(--color-text-tertiary)] font-[family-name:var(--font-body)]">
+                <span className="text-[12px] text-[var(--color-text-tertiary)] font-[family-name:var(--font-body)]">
                   {item.tag}
                 </span>
               </article>

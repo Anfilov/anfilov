@@ -51,7 +51,7 @@ export function ShowcaseBlock({
             inline-flex items-center
             rounded-[var(--badge-radius)]
             px-[var(--badge-padding-x)] py-[var(--badge-padding-y)]
-            text-[10px] font-semibold uppercase tracking-[0.08em] leading-none
+            text-[12px] font-semibold uppercase tracking-[0.08em] leading-none
             ${categoryColors[category]}
           `}
         >

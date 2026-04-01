@@ -63,7 +63,7 @@ export function SluzbaAutor() {
       <Container>
         {/* Header */}
         <header className="mb-[var(--space-heading-gap)]">
-          <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-[var(--color-text-accent)] mb-5 font-[family-name:var(--font-heading)]">
+          <p className="text-[12px] font-bold tracking-[0.2em] uppercase text-[var(--color-text-accent)] mb-5 font-[family-name:var(--font-heading)]">
             Brand Designer
           </p>
           <h2 className="text-3xl sm:text-4xl lg:text-[2.5rem] leading-[1.12] tracking-[-0.03em]">

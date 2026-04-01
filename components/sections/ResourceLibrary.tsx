@@ -60,7 +60,7 @@ export function ResourceLibrary() {
                 <span className="inline-flex items-center justify-center w-9 h-9 rounded-[var(--radius-md)] bg-[var(--color-accent)]/10 text-[var(--color-accent)]">
                   {typeIcons[res.type]}
                 </span>
-                <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-[var(--color-text-tertiary)] font-[family-name:var(--font-heading)]">
+                <span className="text-[12px] font-bold uppercase tracking-[0.15em] text-[var(--color-text-tertiary)] font-[family-name:var(--font-heading)]">
                   {res.tag}
                 </span>
               </div>

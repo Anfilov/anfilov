@@ -101,7 +101,7 @@ export function ContactHero() {
           {/* ── Left column — info ── */}
           <div>
             {/* Overline */}
-            <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-[var(--color-text-accent)] mb-5 font-[family-name:var(--font-heading)]">
+            <p className="text-[12px] font-bold tracking-[0.2em] uppercase text-[var(--color-text-accent)] mb-5 font-[family-name:var(--font-heading)]">
               Kontakt
             </p>
 

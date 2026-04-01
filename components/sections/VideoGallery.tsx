@@ -92,7 +92,7 @@ export function VideoGallery() {
                   </div>
                 </div>
                 {/* Duration badge */}
-                <div className="absolute bottom-2 right-2 px-1.5 py-0.5 rounded-[var(--radius-sm)] bg-black/70 text-[11px] font-mono text-[var(--color-cream)] tabular-nums">
+                <div className="absolute bottom-2 right-2 px-1.5 py-0.5 rounded-[var(--radius-sm)] bg-black/70 text-[12px] font-mono text-[var(--color-cream)] tabular-nums">
                   {video.duration}
                 </div>
               </div>
