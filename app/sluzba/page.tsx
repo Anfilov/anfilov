@@ -82,13 +82,6 @@ export default async function SluzbyPage() {
     (c: Category) => c.services && c.services.length > 0,
   );
 
-  // Split into rows of 4 for the grid
-  const ROW_SIZE = 4;
-  const rows: Category[][] = [];
-  for (let i = 0; i < categories.length; i += ROW_SIZE) {
-    rows.push(categories.slice(i, i + ROW_SIZE));
-  }
-
   return (
     <>
       <Navbar />
@@ -118,42 +111,36 @@ export default async function SluzbyPage() {
           </Container>
         </section>
 
-        {/* Service cards grouped by category — 4 columns per row */}
+        {/* Service cards grouped by category — 3 columns */}
         <section className="bg-[var(--color-surface)] pb-[var(--section-padding-y)]">
           <Container>
-            {rows.map((row, rowIndex) => (
-              <div
-                key={rowIndex}
-                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-14"
-                style={rowIndex > 0 ? { marginTop: 48 } : undefined}
-              >
-                {row.map((cat, catIndex) => (
-                  <div key={catIndex}>
-                    <p className="text-[12px] font-semibold tracking-[3px] uppercase text-[var(--color-gold)] mb-6 pb-3 border-b border-[var(--color-border)] font-[family-name:var(--font-ui)]">
-                      {cat.label}
-                    </p>
-                    <div className="space-y-5">
-                      {cat.services.map((sluzba) => (
-                        <Link
-                          key={sluzba._id}
-                          href={`/sluzba/${sluzba.slug}`}
-                          className="group block no-underline"
-                        >
-                          <h3 className="text-[15px] font-semibold text-[var(--color-text-primary)] font-[family-name:var(--font-heading)] tracking-tight leading-snug mb-1.5 group-hover:text-[var(--color-forest-mid)] transition-colors duration-[var(--duration-fast)]">
-                            {sluzba.name}
-                          </h3>
-                          {sluzba.cenikPriceLabel && (
-                            <p className="text-[12px] text-[var(--color-text-tertiary)] font-[family-name:var(--font-ui)]">
-                              Již {sluzba.cenikPriceLabel}
-                            </p>
-                          )}
-                        </Link>
-                      ))}
-                    </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-14">
+              {categories.map((cat, catIndex) => (
+                <div key={catIndex}>
+                  <p className="text-[12px] font-semibold tracking-[3px] uppercase text-[var(--color-gold)] mb-6 pb-3 border-b border-[var(--color-border)] font-[family-name:var(--font-ui)]">
+                    {cat.label}
+                  </p>
+                  <div className="space-y-5">
+                    {cat.services.map((sluzba) => (
+                      <Link
+                        key={sluzba._id}
+                        href={`/sluzba/${sluzba.slug}`}
+                        className="group block no-underline"
+                      >
+                        <h3 className="text-lg font-semibold text-[var(--color-text-primary)] font-[family-name:var(--font-heading)] tracking-tight leading-snug mb-1.5 group-hover:text-[var(--color-forest-mid)] transition-colors duration-[var(--duration-fast)]">
+                          {sluzba.name}
+                        </h3>
+                        {sluzba.cenikPriceLabel && (
+                          <p className="text-sm text-[var(--color-text-tertiary)] font-[family-name:var(--font-ui)]">
+                            Již {sluzba.cenikPriceLabel}
+                          </p>
+                        )}
+                      </Link>
+                    ))}
                   </div>
-                ))}
-              </div>
-            ))}
+                </div>
+              ))}
+            </div>
           </Container>
         </section>
 
