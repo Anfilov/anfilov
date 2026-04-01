@@ -189,8 +189,8 @@ html, body {
   --duration-slow: 350ms;
 
   /* Scroll reveal tokens */
-  --reveal-distance: 32px;
-  --reveal-duration: 0.7s;
+  --reveal-distance: 24px;
+  --reveal-duration: 0.4s;
   --reveal-stagger: 0.12s;
   --reveal-easing: cubic-bezier(0, 0, 0.2, 1);
 

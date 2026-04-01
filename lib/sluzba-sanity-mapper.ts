@@ -119,9 +119,10 @@ export function mapSanityToSluzbaData(raw: SanitySluzba): SluzbaData {
   if (raw.heroImage?.image) {
     try {
       heroImageUrl = urlForImage(raw.heroImage.image)
-        .width(2560)
-        .height(2560)
+        .width(1200)
+        .height(900)
         .fit("max")
+        .quality(80)
         .url();
     } catch {
       heroImageUrl = "";

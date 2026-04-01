@@ -146,6 +146,8 @@ export default function RootLayout({
       className={fontVariables}
     >
       <head>
+        <link rel="preconnect" href="https://cdn.sanity.io" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://cdn.sanity.io" />
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <JsonLd />
         {siteConfig.cookieConsentId && (

@@ -37,22 +37,8 @@ export function ScrollReveal() {
     // Observe existing elements
     document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
 
-    // Observe dynamically added elements
-    const mutationObserver = new MutationObserver((mutations) => {
-      mutations.forEach((m) => {
-        m.addedNodes.forEach((node) => {
-          if (node instanceof HTMLElement) {
-            if (node.classList.contains("reveal")) observer.observe(node);
-            node.querySelectorAll?.(".reveal").forEach((el) => observer.observe(el));
-          }
-        });
-      });
-    });
-    mutationObserver.observe(document.body, { childList: true, subtree: true });
-
     return () => {
       observer.disconnect();
-      mutationObserver.disconnect();
     };
   }, []);
 

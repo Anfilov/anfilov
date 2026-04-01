@@ -34,7 +34,7 @@ export function SluzbaHeroVideo({ src, poster, loop = false, alt = "Video" }: Pr
         muted
         loop={loop}
         playsInline
-        preload="auto"
+        preload="metadata"
         aria-label={alt}
         className="block w-full h-auto"
       />
