@@ -39,11 +39,11 @@ export function VideoSection() {
                 fill
                 className="object-cover transition-transform duration-[var(--duration-normal)] group-hover:scale-[1.02]"
                 sizes="(max-width: 896px) 100vw, 896px"
-                unoptimized
+                loading="lazy"
               />
 
               {/* Overlay */}
-              <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors duration-[var(--duration-fast)]" />
+              <div className="absolute inset-0 bg-[var(--color-warm-900)]/30 group-hover:bg-[var(--color-warm-900)]/40 transition-colors duration-[var(--duration-fast)]" />
 
               {/* Play button */}
               <div className="absolute inset-0 flex items-center justify-center">

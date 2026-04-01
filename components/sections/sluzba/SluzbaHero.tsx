@@ -137,11 +137,14 @@ export function SluzbaHero({ offer, googleRating, googleReviewCount, googleRevie
               alt={`Ukázka služby ${offer.name}`}
             />
           ) : offer.heroImage ? (
-            <div className="relative order-1 lg:order-2 flex items-center justify-center rounded-[var(--radius-lg)] overflow-hidden">
-              <img
+            <div className="relative order-1 lg:order-2 aspect-[4/3] rounded-[var(--radius-lg)] overflow-hidden">
+              <Image
                 src={offer.heroImage}
                 alt={`Ukázka služby ${offer.name}`}
-                className="block w-full h-auto"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                priority
               />
             </div>
           ) : (
