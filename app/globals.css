@@ -744,7 +744,10 @@ html, body {
   }
 
   /* ===== SCROLL REVEAL ===== */
-  .reveal {
+  /* Elements are visible by default. JS adds .reveal-ready on <html> when
+     ScrollReveal initializes — only then do we hide elements for animation.
+     This prevents invisible content if JS fails or is delayed. */
+  .reveal-ready .reveal {
     opacity: 0;
     transform: translateY(var(--reveal-distance));
     transition:
@@ -752,18 +755,18 @@ html, body {
       transform var(--reveal-duration) var(--reveal-easing);
     will-change: opacity, transform;
   }
-  .reveal.is-visible {
+  .reveal-ready .reveal.is-visible {
     opacity: 1;
     transform: translateY(0);
   }
   /* Stagger children: apply .reveal-stagger on parent, .reveal on children */
-  .reveal-stagger > .reveal:nth-child(1) { transition-delay: 0s; }
-  .reveal-stagger > .reveal:nth-child(2) { transition-delay: var(--reveal-stagger); }
-  .reveal-stagger > .reveal:nth-child(3) { transition-delay: calc(var(--reveal-stagger) * 2); }
-  .reveal-stagger > .reveal:nth-child(4) { transition-delay: calc(var(--reveal-stagger) * 3); }
-  .reveal-stagger > .reveal:nth-child(5) { transition-delay: calc(var(--reveal-stagger) * 4); }
-  .reveal-stagger > .reveal:nth-child(6) { transition-delay: calc(var(--reveal-stagger) * 5); }
-  .reveal-stagger > .reveal:nth-child(n+7) { transition-delay: calc(var(--reveal-stagger) * 6); }
+  .reveal-ready .reveal-stagger > .reveal:nth-child(1) { transition-delay: 0s; }
+  .reveal-ready .reveal-stagger > .reveal:nth-child(2) { transition-delay: var(--reveal-stagger); }
+  .reveal-ready .reveal-stagger > .reveal:nth-child(3) { transition-delay: calc(var(--reveal-stagger) * 2); }
+  .reveal-ready .reveal-stagger > .reveal:nth-child(4) { transition-delay: calc(var(--reveal-stagger) * 3); }
+  .reveal-ready .reveal-stagger > .reveal:nth-child(5) { transition-delay: calc(var(--reveal-stagger) * 4); }
+  .reveal-ready .reveal-stagger > .reveal:nth-child(6) { transition-delay: calc(var(--reveal-stagger) * 5); }
+  .reveal-ready .reveal-stagger > .reveal:nth-child(n+7) { transition-delay: calc(var(--reveal-stagger) * 6); }
 
   /* ===== LAYOUT-AWARE UTILITIES ===== */
   .layout-text { text-align: var(--layout-text, center); }
